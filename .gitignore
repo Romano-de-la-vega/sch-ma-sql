@@ -1,0 +1,18 @@
+# Environnements virtuels
+.venv/
+venv/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.vscode/
