@@ -1,0 +1,1749 @@
+// --------------------------------------------------------------------------------
+// Generic functions
+// --------------------------------------------------------------------------------
+
+namespace _audit;
+
+// Method to get the list of non-working days for a given calendar. Function retrun a vector of dates
+method _get_holidays on plc.CALENDAR()
+{
+	var holidays = new vector();
+	if(this instanceof plc.CALENDAR && this!=undefined)
+	{
+		for(var hol in this.getinternalvalue("HOLIDAYS"))
+		{
+			var v_datevector = new plw.datevector(plc.TIME_UNIT.get("Day"), new date(hol[1]*60), new date(hol[2]*60));
+			v_datevector.pop();
+			for(var day in v_datevector)
+			{
+				holidays.push(day);
+			}
+		}
+	}
+	return holidays;
+}
+
+// Method to get the working time, in minutes, for each day of the week. Return a vector of Number values.
+method _get_calendar_working_time on plc.CALENDAR()
+{
+	var worked_periods = new vector();
+	for(var day in new vector("MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"))
+	{
+		// For each day fo the week, calculate the unworking time and deduct the working time
+		var unworking_time = 0;
+		if(this.getinternalvalue(day) instanceof list)
+		{
+			for(var period in this.getinternalvalue(day))
+			{
+				var duration = period[1]-period[0];
+				unworking_time += duration;
+			}
+		}
+		var working_time = 24 * 60 - unworking_time;
+		worked_periods.push(working_time);
+	}
+	return worked_periods;
+}
+
+// Calculate the weekly working time, in minutes
+method _get_weekly_working_time on plc.CALENDAR()
+{
+	var worked_periods = this._get_calendar_working_time();
+	var sum = 0;
+	for(var daily_wh in worked_periods)
+	{
+		sum+=daily_wh;
+	}
+	return sum;
+}
+
+// Calculate the mean daily working time, in minutes
+method _get_avg_daily_working_time on plc.CALENDAR()
+{
+	var worked_periods = this._get_calendar_working_time();
+	var working_days = 0;
+	var sum = 0;
+	for(var daily_wh in worked_periods)
+	{
+		if(daily_wh!=0)
+		{
+			sum+=daily_wh;
+			working_days+=1;
+		}
+	}
+	var weekly_worked_hours = working_days!=0 ? sum/working_days : 0;
+	return weekly_worked_hours;
+}
+
+// --------------------------------------------------------------------------------
+// Analysis functions
+// --------------------------------------------------------------------------------
+
+function _audit_calendar_holidays()
+{
+	var s_full_path_name = context._BA_NF_S_LOG_PATH + "/" +"audit_calendar_holidays.csv";
+	var o_file_path = new PathName(s_full_path_name); 
+	var s_delimiter = ";";
+
+	var o_csv_file = new plw.fileoutputstream(s_full_path_name,"OVERWRITE");
+	var v_header = new vector("Name", "Holiday");
+	o_csv_file.writeln(v_header.join(s_delimiter));
+	
+	// Loop on calendars
+	for(var cal in plc.CALENDAR)
+	{
+		for(var day in cal._get_holidays())
+		{
+			var v_line = new vector(cal.printattribute(), day.toString("DD/MM/YYYY"));
+			o_csv_file.writeln(v_line.join(s_delimiter));
+		}
+	}
+	
+	// Close File
+	o_csv_file.close();
+	plw.downloadFileFromServer(s_full_path_name);
+}
+
+// _audit_calendar_holidays();
+
+function _audit_calendars()
+{
+	var s_full_path_name = context._BA_NF_S_LOG_PATH + "/" +"audit_calendar.csv";
+	var o_file_path = new PathName(s_full_path_name); 
+	var s_delimiter = ";";
+
+	var o_csv_file = new plw.fileoutputstream(s_full_path_name,"OVERWRITE");
+	var v_header = new vector("Name", "Inherit holiday from", "Weekly working time (h)", "Average daily working time (h)", "Unworking period", "File");
+	o_csv_file.writeln(v_header.join(s_delimiter));
+	
+	// Loop on calendars
+	for(var cal in plc.CALENDAR)
+	{
+		
+		var v_line = new vector(cal.printattribute());
+		v_line.push(cal.PARENT !="" ? cal.PARENT.printattribute() : ""); // Inherit holiday from
+		v_line.push((cal._get_weekly_working_time()/60).tostring("####.0"));
+		v_line.push((cal._get_avg_daily_working_time()/60).tostring("####.00"));
+		var s_period = "[MON]:"+cal.MON+", [TUE]:"+cal.TUE+", [WED]:"+cal.WED+", [THU]:"+cal.THU+", [FRI]:"+cal.FRI+", [SAT]:"+cal.SAT+", [SUN]:"+cal.SUN;
+		v_line.push(s_period);
+		v_line.push(cal.FILE.printattribute());
+		
+		o_csv_file.writeln(v_line.join(s_delimiter));
+	}
+	
+	// Close File
+	o_csv_file.close();
+	plw.downloadFileFromServer(s_full_path_name);
+}
+
+// _audit_calendars();
+ 
+//* -*- Mode: pjs -*- *****************************************************
+//  COPYRIGHT (C) PLANISWARE $Date: 2020/05/20 08:19:36 $                                            
+//                                                                          
+//  All Rights Reserved                                                     
+// 
+//  This program and the information contained herein are confidential to
+//  and the property of PLANISWARE and are made available only to PLANISWARE
+//  employees for the sole purpose of conducting PLANISWARE business.
+// 
+//  This program and copy therof and the information contained herein shall
+//  be maintained in strictest confidence ; shall not be copied in whole or
+//  in part except as authorized by the employee's manager ; and shall not
+//  be disclosed or distributed (a) to persons who are not PLANISWARE employees,
+//  or (b) to PLANISWARE employees for whom such information is not necessary in
+//  connection with their assigned responsabilities.
+// 
+//  There shall be no exceptions to the terms and conditions set forth
+//  herein except as authorized in writing by the responsible PLANISWARE General
+//  Manager.
+//
+// 
+//  FILE    : $RCSfile: plw_js_download_scripts.pjs,v $
+// 
+//  AUTHOR  : $Author: cbondoux $
+// 
+//  VERSION : $Id: plw_js_download_scripts.pjs,v 3.1 2020/05/20 08:19:36 cbondoux Exp $
+// 
+//  PURPOSE :
+// 
+//  HISTORY :
+//  Log : https://cvs.planisware.com/viewvc/customers/planisware/plw_js_download_scripts.pjs?view=log
+//	2023-09-27 Florian LE CANUT, add compatibility with planisware < V6.3 (User script Object Class undefined)
+//**************************************************************************
+
+namespace tips;
+
+function plw_js_download_scripts(String sScriptName : "", Boolean bOnlyCustom : true, String sZipName : "")
+{
+	var hashtable h_script = new hashtable("STRING");
+
+	if (sScriptName != "")
+	{
+		for (var String s_script in sScriptName.split(","))
+		{
+			h_script.set(s_script,s_script);
+		}
+	}
+
+	var hashtable h_script_file = new hashtable("OBJECT");
+	
+	// Loop on Script L1
+	for (var plc.JavaScript o_script in plc.JavaScript)
+	{
+		if (h_script.count != 0 && h_script.get(o_script.name) == undefined){continue;} //if there are scriptname in argument, we consider only the scripts whose name is in the list
+		if (h_script.count == 0 && bOnlyCustom == true && o_script.file != undefined && o_script.file.processes != false){continue;} //if bOnlyCustom is true, we do not consider scripts stored in common files checked "Processes" 
+
+		var String s_fileName = o_script.name.toLowerCase();
+		if (o_script.V2){s_fileName += ".pjs";}
+		else{s_fileName += ".ojs";}
+
+		var o_pathName = plw.generateTemporaryFile(s_fileName);
+		var plw.fileOutputStream o_file = new plw.fileOutputStream(o_pathName, "overwrite");
+		o_file.write(o_script.data);
+		o_file.close();
+
+		h_script_file.set(o_pathName,s_fileName);  
+	}
+	
+	// Loop on User Script -> V6.2 compatibility: check that 'user_script' Object class is defined
+	if(plc.get("user_script")!=undefined)
+	{
+		for (var o_script in plc.get("user_script"))
+		{
+			if (h_script.count != 0 && h_script.get(o_script.name) == undefined){continue;} //if there are scriptname in argument, we consider only the scripts whose name is in the list
+			if (h_script.count == 0 && bOnlyCustom == true && o_script.file != undefined && o_script.file.processes != false){continue;} //if bOnlyCustom is true, we do not consider scripts stored in common files checked "Processes" 
+
+			var String s_fileName = o_script.name.toLowerCase() + ".pjs";
+
+			var o_pathName = plw.generateTemporaryFile(s_fileName);
+			var plw.fileOutputStream o_file = new plw.fileOutputStream(o_pathName, "overwrite");
+			o_file.write(o_script.#script-code#);
+			o_file.close();
+
+			h_script_file.set(o_pathName,s_fileName);  
+		} 
+	}
+	
+	// Manage download
+	if (h_script_file.count == 1)
+	{
+		for (var (o_pathName, s_fileName) in h_script_file){plw.downloadFileFromServer(o_pathName);}    
+	}
+
+	if (h_script_file.count > 1)
+	{
+		var String s_zipName = sZipName + ".zip";
+		if (sZipName == "")
+		{
+			var Date d_now = new date();
+			s_zipName = "DATABASE_NAME".callmacro().touppercase() + "_SCRIPT_FILES_" + d_now.tostring("YYYYMMDDTHHMMSS") + ".zip";
+		}
+
+		var o_zip_pathName = plw.generateTemporaryFile(s_zipName);
+		var plw.zipfile o_zipFile = new plw.zipfile(o_zip_pathName);
+
+		for (var (o_pathName, s_fileName) in h_script_file)
+		{
+			o_zipFile.append(o_pathName,s_fileName);
+		}
+		plw.downloadFileFromServer(o_zip_pathName);
+	}
+
+	h_script.delete();
+	h_script_file.delete();
+}
+
+// plw_js_download_scripts(sScriptName : "_TC_JS_TIMECARD,AGILE_RIGHTS"); //download the scripts given in argument
+// plw_js_download_scripts(bOnlyCustom : false); //download all the scripts
+// plw_js_download_scripts(); //download all the custom scripts 
+//* -*- Mode: pjs -*- *****************************************************
+//  COPYRIGHT (C) PLANISWARE $Date: 2022/02/19 16:08:26 $                                            
+//                                                                          
+//  All Rights Reserved                                                     
+// 
+//  This program and the information contained herein are confidential to
+//  and the property of PLANISWARE and are made available only to PLANISWARE
+//  employees for the sole purpose of conducting PLANISWARE business.
+// 
+//  This program and copy therof and the information contained herein shall
+//  be maintained in strictest confidence ; shall not be copied in whole or
+//  in part except as authorized by the employee's manager ; and shall not
+//  be disclosed or distributed (a) to persons who are not PLANISWARE employees,
+//  or (b) to PLANISWARE employees for whom such information is not necessary in
+//  connection with their assigned responsabilities.
+// 
+//  There shall be no exceptions to the terms and conditions set forth
+//  herein except as authorized in writing by the responsible PLANISWARE General
+//  Manager.
+//
+// 
+//  FILE    : $RCSfile: plw_js_impex_lib.pjs,v $
+// 
+//  AUTHOR  : $Author: cbondoux $
+// 
+//  VERSION : $Id: plw_js_impex_lib.pjs,v 3.1 2022/02/19 16:08:26 cbondoux Exp $
+// 
+//  PURPOSE :
+// 
+//  HISTORY :
+//  Log : https://cvs.planisware.com/viewvc/customers/planisware/plw_js_impex_lib.pjs?view=log
+//**************************************************************************
+namespace _plw_js_impex;
+
+function run_cvs_import(plc.ImpexFormat o_Format,plc.ImpexTarget o_ImpexTarget,String s_fileDirectory) {
+  
+  plw.writetolog("Running function run_cvs_import");
+  
+	var String s_fileExtension = "csv";
+  var Date d_now = new date();
+	var String s_treatedExtension = d_now.tostring("YYYYMMDDTHHMMSS") + ".done";  
+  
+  if (!(o_ImpexTarget instanceof plc.ImpexTarget && o_Format instanceof plc.ImpexFormat)){
+    plw.writetolog("Error: could not identify impex target and/or impex format.");
+    return false;
+  }
+  
+  var Pathname o_directoryPath = new Pathname(s_fileDirectory);
+  if (o_directoryPath.probefile() == false){
+    plw.writetolog("Error: directory ~a can't be found".format(s_fileDirectory));
+    return false;
+  }
+
+	var Vector v_files = new Vector();
+	for (var o_file in o_directoryPath where (o_file.type.tostring().touppercase() == s_fileExtension.touppercase())){
+    v_files.push(o_file);
+	}
+ 
+	if (v_files.length == 0){
+    plw.writetolog("Warning: no ~a file could be found in ~a".format(s_fileExtension,s_fileDirectory));
+    return false;
+  }
+
+  var String s_origin_filename = o_ImpexTarget.get("FILENAME"); //we store the current filename on the target because we will modify it when running the imports
+
+  v_files = v_files.sort("<", function () {return this.fileWriteDate();});  //we sort the file by dates : the oldest files are treated first
+  //then we import the files
+  for (var o_file in v_files){
+    o_ImpexTarget.set("FILENAME","\"~a\"".format(o_file.tostring()));
+    plw.writetolog("Import file ~a...".format(o_file.tostring()));
+    var o_Event = o_Format.doImportWithFormatAndTarget(o_ImpexTarget,true);
+    o_file.RenameFile(o_file.name+ "_" +s_treatedExtension);
+    plw.writetolog("Import done. Impex event: ~a. File renamed in ~a.".format(o_Event.printattribute(),o_file.tostring()));
+  }
+  
+  o_ImpexTarget.set("FILENAME",s_origin_filename); //we set back the origin file name now that the imports have been done
+  
+  return true;
+} 
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//  PLWSCRIPT	: plw_js_import_csv
+//
+//  AUTHOR		: Florian LE CANUT
+//
+//  MODIFICATION
+//			1.0 : 2023/01/03 FLC
+
+//	PURPOSE
+// 			This function is used to upload a CSV file, import its contents in order to mass create/modify/delete objects in Planisware, and then delete the file from the server. The class concerned by the import should be specified, either when executing the import function, or in the CSV file (dedicated column). Fields in the header of the CSV file are recognized through their label in the application. If a field is not recognized, then its content is not imported. The data affected by an update or a removal is identified using an Index field, see global variables for more details.
+
+//	Arguments of chooseFileAndUpload function
+//		objclass: This is an optional argument. It specifies the class of the objects that will be created or modified during the import process. If undefined, the script will look for a Class column in the CSV file.
+//		separator: An optional argument that specifies the character used to separate values in the CSV file. The default value is a comma (,).
+//		delimiter: An optional argument that indicates the delimiter character used in the CSV file. The default value is a double quote (").
+//		allow_creation: An optional boolean argument. If set to true (which is the default), the function allows the creation of new objects based on the imported data.
+//		allow_update: An optional boolean argument. If true (default), the function will update existing objects with the data from the CSV file.
+//		allow_removal: An optional boolean argument. If true (default), the function will remove objects based on the instructions in the CSV file.
+// 
+// Usage
+//		chooseCSVFileAndimport(): All optional arguments take their default values.
+//		chooseCSVFileAndimport(objclass: plc.task): This call specifies the object class as plc.task.
+//		chooseCSVFileAndimport(allow_creation : true, allow_update : false, allow_removal : false): This call specifically allows creation but not updating or removal of objects.
+//		chooseCSVFileAndimport(separator: ';'): This changes the default separator from a comma to a semicolon.
+//		The script also includes other functions and some example calls to chooseCSVFileAndimport with different combinations of arguments.
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+namespace _aci;
+
+// Global Variables
+var CSV_INDEX_SLOT = new vector("ONB", "Internal number", "ID", "Identifier"); // Fields recognized as index of an object in the CSV file, in order
+var CSV_REMOVE_SLOT = new vector("Delete", "Remove", "Delete?", "Remove?"); // Fields recognized as delete indicator of an object
+var CSV_CLASS_SLOT = new vector("Class", "Classe"); // Fields recognized as Class of an object
+var CSV_SLOT_SLOT = new vector("Slot", "Attribute", "Field"); // Fields recognized as Slot (Slot as row case)
+var CSV_SLOT_VALUE_SLOT = new vector("Slot value", "Value"); // Fields recognized as Slot (Slot as row case)
+
+// Function to upload a file to File Path 'FilePath'
+function chooseFileAndUpload(String FilePath: "", Boolean overwrite: false)
+{
+	if(FilePath!="")
+	{
+		//Upload file on server on default path
+		var FileUploaded = plw._Utils_chooseFileAndUploadOnServer();
+		if(FileUploaded!=undefined)
+		{
+		//		If target file already exist
+			var PathFilePath = new PathName(FilePath);
+			if(PathFilePath.probefile()!=false)
+			{
+				if(overwrite)
+				{
+				//		Delete existing file if it exist
+					PathFilePath.deletefile();
+				} else {
+					plw.alert("File "+FilePath+" already exist. File has been uploaded to path "+FileUploaded);
+					return false;
+				}
+			}
+			//Copy the uploaded file to the new path
+			var NewFile = FileUploaded.copyFile(PathFilePath);
+			//Delete the uploaded file on the default path
+			if(PathFilePath.probefile()==false)
+			{
+				plw.alert("The file "+FilePath+" could not be uploaded.");
+			}
+			FileUploaded.deletefile();
+			return FilePath;
+		}
+	}
+}
+
+// Generic function to create, update or remove object with pList
+function makeormodifywithplist(ObjectClass objclass : undefined, object_index : "", Vector pList : undefined, Vector pListMake : undefined, Vector pListModify : undefined, Boolean remove_object : false) 
+{
+	var o_obj = objclass.get(object_index);
+	if(o_obj!=undefined) 
+	{
+		if(remove_object) 
+		{ 
+			plw.writeln("makeormodifywithplist: delete object '"+object_index+"' from "+objclass.NAME); 
+			o_obj.delete();
+		} else {
+			if(pList instanceof Vector && pList!=undefined && pList.length>0) 
+			{ 
+				var pListFullModify = undefined; 
+				if(pListModify!=undefined && pListModify.length>0) 
+				{ 
+					pListFullModify = pList+pListModify; 
+				} else { 
+					pListFullModify = pList; 
+				}
+				plw.writeln("makeormodifywithplist: update object '"+object_index+"' from "+objclass.NAME+" with data: "+pListFullModify.toString()); 
+				o_obj.modifywithplist(pListFullModify);
+			} 
+		} 
+		return o_obj;
+	} else { 
+		if(pList instanceof Vector && pList.length>0 && !remove_object) 
+		{ 
+			var pListFullMake = undefined; 
+			if(pListMake!=undefined && pListMake.length>0) 
+			{ 
+				pListFullMake = pList+pListMake; 
+			} else { 
+				pListFullMake = pList; 
+			} 
+			plw.writeln("makeormodifywithplist: create object '"+object_index+"' from "+objclass.NAME+" with data: "+pListFullMake.toString()); 
+			o_obj = objclass.makeOpx2ObjectWithPlist(pListFullMake);
+			return o_obj; 
+		} 
+	}
+}
+
+// Generic function to create or update object with pList -> added arguments to manage creation, update & removal allowance
+function allow_makeormodifywithplist(ObjectClass objclass : undefined, object_index : "", Vector pList : undefined, Vector pListMake : undefined, Vector pListModify : undefined, boolean remove_object : false, boolean allow_creation : true, boolean allow_update : true, boolean allow_removal : true) 
+{
+	var o_obj = objclass.get(object_index);
+	if(o_obj==undefined && allow_creation)
+	{
+		return makeormodifywithplist(objclass : objclass, object_index : object_index, pList : pList, pListMake : pListMake, pListModify : pListModify, remove_object : remove_object); 
+	} else {
+		if(remove_object && allow_removal)
+		{
+			return makeormodifywithplist(objclass : objclass, object_index : object_index, pList : pList, pListMake : pListMake, pListModify : pListModify, remove_object : remove_object); 
+		} else {
+			if(o_obj!=undefined && allow_update) 
+			{
+				return makeormodifywithplist(objclass : objclass, object_index : object_index, pList : pList, pListMake : pListMake, pListModify : pListModify, remove_object : false);
+			}
+		}
+	}
+}
+
+// Function to treat CSV Line and return a vector
+function parseCSVLine(String line: "", separator: ',', delimiter: '"')
+{
+	// Check if line contains delimiters
+    var useDelimiter = (delimiter!="" && line.indexof(delimiter)!=undefined);
+	if(useDelimiter)
+	{
+	//		If the line contains delimiters, remove the delimiters from each element
+		line = line.replaceregexp('^'+delimiter,'').replaceregexp(delimiter+'$','').replaceregexp(delimiter+'[\r\n]','');
+		return line.splitRegexpToVector(delimiter+separator+delimiter);
+	} else {
+		line = line.replaceregexp('[\r\n]','');
+		return line.splitRegexpToVector(separator);
+	}
+}
+
+// Function to treat CSV Header and return a vector of slot ID (Planisware technical name), if found, or undefined, if not found
+function mapHeaderSlotLabel(vector header: undefined, ObjectClass objclass: undefined, boolean display_message: false)
+{
+	var output_v = new vector();
+	for(var slot_label in header)
+	{
+	//		Use 'attribute_getSlot' to transform Slot label into Planisware technical name (Slot Descriptor Representation)
+		var slot = plw.attribute_getSlot(objclass, slot_label);
+		var slot_mapping = slot!=undefined ? slot : undefined;
+		output_v.push(slot_mapping);
+	//		Display mapping
+		if(display_message)
+		{
+			plw.writeln("mapHeaderSlotLabel: Class "+objclass.NAME+", Slot "+slot_label+" -> "+slot_mapping.slot_getName());
+		}
+	}
+	return output_v;
+}
+
+// Performs a search in a vector using a vector of values
+method VectorPosition on vector(search_vector)
+{
+	if(this instanceof vector && this!=undefined && search_vector instanceof vector && search_vector!=undefined)
+	{
+		for(var obj in search_vector)
+		{
+			var position = this.position(obj);
+			if(position!=undefined)
+			{
+				return position;
+			}
+		}
+	}
+	return undefined;
+}
+
+// Function used to convert String into Boolean value
+method parseBoolean on String()
+{
+	var true_values = new vector("TRUE","X","YES");
+	if(true_values.position(this.toString().toUpperCase()) instanceOf Number) return true;
+	return false;
+}
+
+// Capitalize the first letter of the string
+function capitalizeFirstLetter(String str)
+{
+    if(str instanceof String)
+	{
+		if(str.length>1)
+		{
+			return str.charAt(0).toUpperCase() + str.toLowerCase().slice(1, str.length);
+		} else {
+			return str.toUpperCase();
+		}
+	}
+	return false;
+}
+
+// Generate String Case Variants
+function GenerateStringCaseVariants(vector) {
+	var transformedVector = new vector();
+	if(vector instanceof vector && vector!=undefined)
+	{
+		for(var str in vector)
+		{
+			transformedVector.push(str); // Original
+			transformedVector.push(str.toLowerCase()); // Lowercase
+			transformedVector.push(str.toUpperCase()); // Uppercase
+			transformedVector.push(capitalizeFirstLetter(str)); // Capitalize first letter
+		}
+	}
+	return transformedVector.removeduplicates();
+}
+
+// Function used to convert a value in the right format for a given slot
+function FormatStringValue(ObjectAttribute slot : undefined, String value : "")
+{
+//		General case, value is defined
+	if(slot!=undefined && value!="")
+	{
+		if (slot.slot_isBoolean()) return value.toString().parseBoolean();
+		if (slot.slot_getType()=="DURATION") return value.parseDuration(context.DURATION_FORMAT1);
+		if (slot.slot_isNumber()) return value.parseNumber(context.NUMBER_FORMAT1);
+		if (slot.slot_isDate()) return value.parseDate(context.DATE_FORMAT1);
+		if (slot.slot_isString() || slot.slot_isNotepad()) return value;
+		if ((slot.slot_isObject() || slot.slot_isAList()) && slot.slot_checkInput(value)) return value;
+		// Other cases
+		return slot.slot_getDefaultValue();
+	}
+	return "";
+}
+
+// Function used to import CSV data into Planisware. Object class can either be defined at CSV level (objclass argument) or in Class field.
+// Arguments 'allow_creation', 'allow_update' and 'allow_removal' are there 
+function import_csv(String filepath: "", String separator: ',', String delimiter: '"', ObjectClass objclass: undefined, boolean allow_creation : true, boolean allow_update : true, boolean allow_removal : true, boolean update_read_only_slots : false)
+{
+	if(filepath.probefile())
+	{
+		var o_file = new plw.fileinputstream(filepath);
+		
+		var header_hashtable = new hashtable("object"); // Hashtable containing the Slot label mapping of each object class in the file
+		var header_parsedline = undefined; // Vector of header slots (unmapped)
+		var index_position = undefined; // Position of the object index in the header of the CSV file - information used to recognize objects in the event of object removal or object update
+		var remove_position = undefined; // Position of the object index in the header of the CSV file
+		var class_position = undefined;
+		var slot_position = undefined;
+		var slot_value_position = undefined;
+		
+		var line = o_file.readline(); // Read first line
+		var line_number = 1;
+		var line_break = false;
+		var managed_objects = 0;
+        while(line != undefined && line_break==false)
+		{
+			// Parse CSV line
+			var parsedline = parseCSVLine(line: line, separator: separator, delimiter: delimiter);
+			// Manage each line: different case if header or not
+			if(line_number==1)
+			{
+				// Manage header
+				header_parsedline = parsedline;
+				
+				// Get the position of the index & class attribute
+				index_position = header_parsedline.VectorPosition(GenerateStringCaseVariants(CSV_INDEX_SLOT));
+				remove_position = header_parsedline.VectorPosition(GenerateStringCaseVariants(CSV_REMOVE_SLOT));
+				class_position = header_parsedline.VectorPosition(GenerateStringCaseVariants(CSV_CLASS_SLOT));
+				slot_position = header_parsedline.VectorPosition(GenerateStringCaseVariants(CSV_SLOT_SLOT));
+				slot_value_position = header_parsedline.VectorPosition(GenerateStringCaseVariants(CSV_SLOT_VALUE_SLOT));
+				
+				// Manage stop cases: 'index_position' & 'class_position' not defined
+				if(index_position==undefined)
+				{
+					plw.alert("Warning: no index field is defined -> creation only");
+				}
+				if(remove_position==undefined)
+				{
+					plw.alert("Warning: no remove field is defined -> creation and/or update only");
+				}
+				if(objclass==undefined && class_position==undefined)
+				{
+					line_break = true;
+					plw.alert("Error: no Class is defined for import, import aborted");
+				}
+				
+				plw.alert((slot_position==undefined || slot_value_position==undefined) ? "Info: use CSV columns for slot identification" : "Info: use CSV column '"+header_parsedline[slot_position]+"' for slot identification and '"+header_parsedline[slot_value_position]+"' for Slot value");
+				
+			} else {
+				// Manage CSV file
+				// Manage class information -> defined at CSV level in 'objclass' variable or defined for each line (class_position)
+				var line_class = (objclass!=undefined) ? objclass : parsedline[class_position].getObjectClass();
+				// Manage columns
+				if(line_class!=undefined && line_class instanceof ObjectClass)
+				{
+					var columns = undefined;
+					// Manage header information: get header transformed columns based on 'line_class' -> output stored in 'columns' & 'header_hashtable' hashtable
+					if(header_hashtable.get(line_class)==undefined)
+					{
+						columns = mapHeaderSlotLabel(header: header_parsedline, objclass: line_class);
+						header_hashtable.set(line_class, columns);
+					} else {
+						columns = header_hashtable.get(line_class);
+					}
+					
+					// Manage 'remove_object' boolean value -> use arbitrary context field 'APPLET-READ-ONLY' for boolean conversion
+					var remove_object = (remove_position!=undefined) ? parsedline[remove_position].parseBoolean() : false;
+					
+					// Case where slot info is defined in a row
+					if(slot_position!=undefined && slot_value_position!=undefined)
+					{
+						// overwrite the columns vector to specify the slot concerned and its value
+						columns[slot_value_position] = plw.attribute_getSlot(line_class, parsedline[slot_position]);
+					}
+					
+					// Manage each line
+					if(columns!=undefined)
+					{
+						// Build a PLIST of Object
+						var i = 0;
+						var plist = new vector();
+						for(var cell in parsedline)
+						{
+							// Treat only found labels
+							if(columns[i]!=undefined && (update_read_only_slots || !columns[i].slot_isAttributeReadOnly()))
+							{
+								plist.push(columns[i].slot_getName());
+								plist.push(FormatStringValue(slot : columns[i], value : cell));
+							}
+							i++;
+						}
+						var object_index = (index_position!=undefined && columns[index_position]!=undefined) ? FormatStringValue(slot : columns[index_position], value : parsedline[index_position]) : "";
+						var o_obj = allow_makeormodifywithplist(objclass : line_class, object_index : object_index, pList : plist, remove_object : remove_object, allow_creation : allow_creation, allow_update : allow_update, allow_removal : allow_removal);
+						if(o_obj!=undefined)
+						{
+							managed_objects++;
+						}
+					}
+					
+				} else {
+					plw.alert("Error on CSV line "+line_number+", class is not defined");
+					line_break = true; // Stop loop
+				}
+			}
+			// Manage next line
+			line = o_file.readline();
+			line_number++;
+		}
+		o_file.close();
+		// Manage end messages
+		plw.alert('File '+filepath+' has been treated, '+managed_objects+' objects created/updated/removed');
+		
+		// Print managed information
+		for(var objclass in header_hashtable)
+		{
+			var mapping = header_hashtable.get(objclass);
+			var i = 0;
+			for(var slot_label in header_parsedline)
+			{
+				var slot_mapping = mapping[i];
+				var updated_slot = slot_mapping!=undefined && (update_read_only_slots || !slot_mapping.slot_isAttributeReadOnly());
+				plw.alert("Field mapping: Class "+objclass.NAME+", Slot "+slot_label+" -> "+slot_mapping.slot_getName()+(updated_slot ? "" : " (NOT UPDATED)"));
+				i++;
+			}
+		}
+		
+	} else {
+		plw.alert('File '+filepath+' not found!');
+	}
+}
+
+// Function used to upload CSV file, import it and remove it
+function chooseCSVFileAndimport(ObjectClass objclass: undefined, String separator: ',', String delimiter: '"', boolean allow_creation : true, boolean allow_update : true, boolean allow_removal : true, boolean update_read_only_slots : false)
+{
+	var uploaded_file = plw._Utils_chooseFileAndUploadOnServer();
+	if(uploaded_file.probefile())
+	{
+		import_csv(filepath: uploaded_file, separator: separator, delimiter: delimiter, objclass: objclass, allow_creation : allow_creation, allow_update : allow_update, allow_removal : allow_removal, update_read_only_slots: update_read_only_slots);
+		uploaded_file.deletefile();
+	}
+	return false;
+}
+
+// ---------------------------------------------------------
+// Execute / examples
+// ---------------------------------------------------------
+
+// // Default call
+// chooseCSVFileAndimport();
+
+// // Import on class 'plc.task'
+// chooseCSVFileAndimport(objclass: plc.task);
+
+// // Set 'allow_creation', 'allow_update' and 'allow_removal' argument
+// chooseCSVFileAndimport(allow_creation : true, allow_update : false, allow_removal : false);
+
+// // Set 'separator' argument
+// chooseCSVFileAndimport(separator: ';', delimiter: '');
+
+// // Call with no_locking & no alerts
+// with([plw.no_locking,plw.no_alerts])
+// {
+	// chooseCSVFileAndimport();
+// }
+
+// // Set 'update_read_only_slots' argument -> force update of READ-ONLY slots. Could be useful for the initialization of field not accessible after object creation, such as "Project template"
+// chooseCSVFileAndimport(update_read_only_slots : true);
+
+
+// // Select a local file and import it to '/tmp/temp.csv'
+// chooseFileAndUpload(FilePath: "/tmp/temp.csv", overwrite: true);
+// import_csv(filepath: "/tmp/temp.csv", objclass: plc.task);
+ 
+namespace _aci;
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// Functions for CSV Export
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 
+// Method for retrieving the list of attributes of a given type on the considered class
+method class_get_slots_inherit_from_type on ObjectClass(ObjectClass object_class:undefined)
+{
+    var o_class = this;
+    var l_result = new List();
+	try {
+		for(var o_slot in o_class.listslots() where o_slot instanceof ObjectAttribute)
+		{
+			// Use of 'replaceregexp' to get ring attributes
+			var o_connecting_class = o_slot.DESCRIPTOR.TYPE.NAME.NAME.replaceregexp("\.\.\.", "").getObjectClass();
+			if(o_connecting_class != undefined) {
+				if(o_connecting_class.inheritFrom(object_class)) {
+					l_result.push(o_slot);
+				}
+			}
+		}
+	} catch (e) {
+		// nothing to do
+	}
+    return l_result;
+}
+
+// Get the list of attributes relating to a given type (all classes)
+function get_slots_inherit_from_type(ObjectClass object_class:undefined)
+{
+	// Get the list of analyzed classed
+	var h_classes = new hashtable("object");
+	for(var class_name in plc.class_object)
+	{
+		h_classes.set(object_class, 0);
+	}
+	
+	var String s_title = "Get slots related to "+object_class.COMMENT.multilingual_getCurrentLanguageString();
+	var Number n_steps = h_classes.CountHash();
+	var slots_list = new list();
+	with(plw.monitoring(title: s_title, steps: n_steps))
+	{
+		for(var obj_class in h_classes)
+		{
+			var attr_list = obj_class.class_get_slots_inherit_from_type(object_class: object_class);
+			slots_list+=attr_list;
+			s_title.monitor(n_steps);
+		}
+	
+	}
+	return slots_list;
+}
+
+// Search using a vector of String values. Insensitive to case.
+method serach_values on String(values)
+{
+	var search_input = this.toLowerCase();
+	if(values instanceof String)
+	{
+		var search_val = values.toLowerCase();
+		return search_input.search(search_val) instanceof Number;
+	}
+	if(values instanceof array)
+	{
+		for(var val in values)
+		{
+			if(search_input.serach_values(val))
+			{
+				return true;
+			}
+		}
+	}
+	return false;
+}
+
+// Get all formula slots
+function get_formula_slots()
+{
+	var slots_list = new list();
+	// Vector of conditions to match formula fields
+	var matching_criteria = ["attribute", "criteria", "filter", "display", "condition"];
+	
+	// setup monitoring
+	var String s_title = "Searching for formula slots";
+	var Number n_steps = 0;
+	for(var o_class_object in plc.class_object) n_steps++;
+	with(plw.monitoring(title: s_title, steps: n_steps))
+	{
+		for(var o_class_object in plc.class_object) {
+			var o_class = o_class_object.name.getObjectClass();
+			for(var o_slot in o_class.listslots() where o_slot.type == "STRING" && o_slot.descriptor.origin_class == o_class && o_slot.descriptor.type.name.name in ["STRING", "MULTI-LINE-STRING"]) {
+				var s_slot_comment = o_slot.descriptor.comment.messageString().substitutestring("Unknown message ", "");
+				if(s_slot_comment.serach_values(matching_criteria)) {
+					slots_list.push(o_slot);
+				}
+			}
+			s_title.monitor(true);
+		}
+	}
+	return slots_list;
+}
+
+// boolean parent_class: true, boolean permanent_class: true, boolean shadowed:true, boolean readonly:true
+// if(object_class instanceof ObjectClass && (parent_class || object_class.CHILDREN==false) && (permanent_class || object_class.PERMANENT==false))
+// 	if((shadowed || o_slot.DESCRIPTOR.SHADOWED==false) && (readonly || o_slot.DESCRIPTOR.READONLY==false))
+			{
+function get_analyzed_slots(ObjectClass object_class:undefined, boolean string_formula: true)
+{
+	var slots_list = new list();
+	if(object_class!=undefined)
+	{
+		slots_list+=get_slots_inherit_from_type(object_class: object_class);
+	}
+	if(string_formula)
+	{
+		slots_list+=get_formula_slots();
+	}
+	return slots_list.removeduplicates();
+}
+
+// Function generating CSV File resulting from data model analysis
+function generate_csv_analyze_attributes_slot_model(ObjectClass object_class: undefined, boolean string_formula: true)
+{
+	var slots_list = get_analyzed_slots(object_class: object_class, string_formula: string_formula);
+	var s_full_path_name = context._BA_NF_S_LOG_PATH + "/" +"slot_model_analysis.csv";
+	var o_file_path = new PathName(s_full_path_name); 
+	var s_delimiter = ";";
+	if (o_file_path instanceof PathName)
+	{
+		var o_csv_file = new plw.fileoutputstream(s_full_path_name,"OVERWRITE");
+		var v_header = new vector("Class Name", "Class Representation", "Class Description", "Class Permanent?", "Class Parent?", "Slot Name", "Slot Representation", "Slot Description", "Slot Type", "Slot Type Label","Slot ReadOnly?", "Slot Shadowed?");
+		o_csv_file.writeln(v_header.join(s_delimiter));
+		
+		// Analyze slot usage
+		for(var slot in slots_list)
+		{
+			var origin_class = slot.DESCRIPTOR.ORIGINCLASS;
+			var origin_class_representation = origin_class.REPRESENTATION.multilingual_getCurrentLanguageString();
+			var origin_class_label = origin_class.COMMENT.multilingual_getCurrentLanguageString();
+			var origin_class_permanent = origin_class.PERMANENT;
+			var origin_class_parent = !(origin_class.CHILDREN==false);
+			
+			var slot_name = slot.DESCRIPTOR.NAME.tostring();
+			var slot_representation = slot.DESCRIPTOR.REPRESENTATION.multilingual_getCurrentLanguageString();
+			var slot_label = slot.DESCRIPTOR.COMMENT.multilingual_getCurrentLanguageString();
+			var slot_type = slot.DESCRIPTOR.get("TYPE").NAME.multilingual_getCurrentLanguageString();
+			var slot_type_label = slot.DESCRIPTOR.get("TYPE").COMMENT.multilingual_getCurrentLanguageString();
+			
+			var slot_readonly = slot.DESCRIPTOR.READONLY;
+			var slot_shadowed = slot.DESCRIPTOR.SHADOWED;
+			
+			var v_line = new vector(origin_class.NAME.tostring(), origin_class_representation, origin_class_label, origin_class_permanent, origin_class_parent, slot_name, slot_representation, slot_label, slot_type, slot_type_label, slot_readonly, slot_shadowed);
+			o_csv_file.writeln(v_line.join(s_delimiter));
+		}
+		// End of treatment
+		o_csv_file.close(); 
+		plw.downloadFileFromServer(s_full_path_name);
+	}
+}
+
+function match_value(value, slot_value)
+{
+	if(slot_value instanceof array)
+	{
+		for(var val in slot_value)
+		{
+			if(match_value(value, slot_value))
+			{
+				return true;
+				break;
+			}
+		}
+		return false;
+	}
+	if(slot_value instanceof plc.OBJECT)
+	{
+		if(value instanceof plc.OBJECT)
+		{
+			return value==slot_value;
+		}
+		if(value instanceof String)
+		{
+			return value==slot_value.printattribute();
+		}
+	}
+	if(slot_value instanceof String)
+	{
+		if(value instanceof plc.OBJECT)
+		{
+			return slot_value.search(value.printattribute()) instanceof Number;
+		}
+		if(value instanceof String)
+		{
+			return slot_value.search(value) instanceof Number;
+		}
+	}
+}
+
+// Function to analyze value usage from a given attribute list
+function analyze_attributes_slot_usage(list slots_list: [], list analyzed_values: [])
+{
+	var v_return = new vector();
+	// Analyze calling classes
+	var String s_title = "Get attributes usage";
+	var Number n_steps = slots_list.length;
+	
+	with(plw.monitoring(title: s_title, steps: n_steps))
+	{
+		for(var slot in slots_list)
+		{
+			var origin_class = slot.DESCRIPTOR.ORIGINCLASS;
+			var origin_class_label = origin_class.COMMENT.multilingual_getCurrentLanguageString();
+			var slot_representation = slot.DESCRIPTOR.REPRESENTATION.multilingual_getCurrentLanguageString();
+			var slot_label = slot.DESCRIPTOR.COMMENT.multilingual_getCurrentLanguageString();
+			// Restrict analysis to permanent classes to avoid iterations on curves, etc.
+			if(origin_class.PERMANENT)
+			{
+				// Loop on class objects
+				for(var object in origin_class)
+				{
+					for(var value in analyzed_values)
+					{
+						if(match_value(value, object.getinternalvalue(slot_representation)))
+						{
+							var v_value = new vector(slot, object, value);
+							v_return.push(v_value);
+						}
+						
+						
+						// Manage the case where slot value is ring attribute
+						// for(var slot_value in object.getinternalvalue(slot_representation))
+						// {
+							// if(slot_value==value)
+							// {
+								// var v_value = new vector(slot, object, value);
+								// v_return.push(v_value);
+							// }
+						// }
+					}
+				}
+			}
+			var s_title_slot = s_title+" "+origin_class_label+":"+slot_label;
+			s_title_slot.monitor(n_steps);
+		}
+	}
+	return v_return;
+}
+
+// Function generating CSV File resulting from analysis
+function generate_csv_analyze_attributes_slot_usage(list slots_list: [], list analyzed_values: [])
+{
+	var s_full_path_name = context._BA_NF_S_LOG_PATH + "/" +"slot_usage_analysis.csv";
+	var o_file_path = new PathName(s_full_path_name); 
+	var s_delimiter = ";";
+	if (o_file_path instanceof PathName)
+	{
+		var o_csv_file = new plw.fileoutputstream(s_full_path_name,"OVERWRITE");
+		var v_header = new vector("Class Name", "Class Description", "Slot Name", "Slot Description", "Object Identifier", "Object vlaue (can be multivalued)", "Analyzed value");
+		o_csv_file.writeln(v_header.join(s_delimiter));
+		
+		// Analyze slot usage
+		var slot_usage_analysis = analyze_attributes_slot_usage(slots_list: slots_list, analyzed_values: analyzed_values);
+		for(var usage in slot_usage_analysis)
+		{
+			var slot = usage[0];
+			var object = usage[1];
+			var value = usage[2];
+			var origin_class = slot.DESCRIPTOR.ORIGINCLASS;
+			var origin_class_label = origin_class.COMMENT.multilingual_getCurrentLanguageString();
+			var slot_representation = slot.DESCRIPTOR.REPRESENTATION.multilingual_getCurrentLanguageString();
+			var slot_label = slot.DESCRIPTOR.COMMENT.multilingual_getCurrentLanguageString();
+			
+			// var slot_name = slot.DESCRIPTOR.NAME.tostring();
+			// var slot_representation = slot.DESCRIPTOR.REPRESENTATION.multilingual_getCurrentLanguageString();
+			// var slot_label = slot.DESCRIPTOR.COMMENT.multilingual_getCurrentLanguageString();
+			// var slot_type = slot.DESCRIPTOR.get("TYPE").NAME.multilingual_getCurrentLanguageString();
+			// var slot_type_label = slot.DESCRIPTOR.get("TYPE").COMMENT.multilingual_getCurrentLanguageString();
+			
+			
+			var slot_object_value = object.get(slot_representation) instanceof String ? object.get(slot_representation) : object.get(slot_representation).printattribute();
+			var string_value = value.printattribute();
+			
+			var v_line = new vector(origin_class.NAME, origin_class_label, slot_representation, slot_label, object.printattribute(), slot_object_value, string_value);
+			o_csv_file.writeln(v_line.join(s_delimiter));
+		}
+		// End of treatment
+		o_csv_file.close(); 
+		plw.downloadFileFromServer(s_full_path_name);
+	}
+}
+
+// Function used to generate a CSV file from a given class and a vector vector of identifiers
+function generate_csv_analyze_class_usage(ObjectClass object_class: undefined, vector analyzed_values_id: undefined, boolean parent_class: true, boolean permanent_class: true, boolean shadowed:true, boolean readonly:true)
+{
+	if(object_class!=undefined)
+	{
+		// Get attributes list related to considered class
+		var slots_list = get_slots_inherit_from_type(object_class: object_class, parent_class: parent_class, permanent_class: permanent_class, shadowed:shadowed, readonly:readonly);
+		// Build a vector of objects to analyze
+		var analyzed_values = new vector();
+		if(analyzed_values_id==undefined)
+		{
+			// Fill in with all objects
+			for(var object in object_class)
+			{
+				analyzed_values.push(object);
+			}
+		} else {
+			for(var s_value in analyzed_values_id)
+			{
+				var object = object_class.get(s_value);
+				if(object!=undefined)
+				{
+					analyzed_values.push(object);
+				} else {
+					plw.alert("Value '"+s_value+"' not found");
+				}
+			}
+		}
+		generate_csv_analyze_attributes_slot_usage(slots_list: slots_list, analyzed_values: analyzed_values);
+	}
+}
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// Specific functions for UNKNOWN analysis
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+// Function used to return the list of UNKNOWN objects from a given class
+function _get_unknown_objects_from_class(ObjectClass object_class)
+{
+	var v_unknown = new vector();
+	if(object_class instanceof objectclass)
+	{
+		for(var obj in object_class where obj.printattribute().search("UNKNOWN"))
+		{
+			v_unknown.push(obj.printattribute());
+		}
+	}
+	return v_unknown;
+}
+
+function _generate_csv_analyze_class_unknown(object_class)
+{
+	if(object_class instanceof objectclass)
+	{
+		var v_unknown = _get_unknown_objects_from_class(object_class);
+		if(v_unknown.length>0)
+		{
+			generate_csv_analyze_class_usage(object_class: object_class, analyzed_values_id: v_unknown);
+			
+			plw.alert("Analysis done for "+v_unknown.length.tostring("####")+" UNKNOWN objects on class "+object_class.COMMENT.multilingual_getCurrentLanguageString());
+		}
+	}
+}
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// Function call
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+// generate_csv_analyze_attributes_slot_model(object_class: plc.OBS_NODE);
+
+// generate_csv_analyze_class_usage(object_class: plc.OBS_NODE); // Analyze all objects of table
+
+// generate_csv_analyze_class_usage(object_class: plc.OBS_NODE, analyzed_values_id: new vector("All", "Direction A"));
+
+// _generate_csv_analyze_class_unknown(object_class: plc.OBS_NODE);
+
+ 
+namespace _aci;
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// Objective: Provide an overview of the objects instantiated in a Planisware model, classified by DATASET, and export these statistics to a CSV file for analysis or reporting.
+// Use Cases :
+// - Data Audit and Governance: Identify object volumes by class and dataset to streamline or clean up the database
+// - Identify which classes are most used and how they are functionally distributed
+// - Functional Coverage Analysis: Link business objects to processes or configuration files in Planisware
+// - Configuration Diagnostics: Detect orphaned or poorly defined datasets via undefined variables
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 
+// Return true if 'attribute_name' is defined on the given Object class
+method _has_attribute on Objectclass(String attribute_name)
+{
+	return this.getslotbyid(attribute_name) instanceof ObjectAttribute;
+}
+
+// Method to count objects of a given class, group by attribute
+method _count_class_objects on Objectclass(String grouping_attribute: "")
+{
+	var h_counter = new hashtable("object");
+	for(var obj in this)
+	{
+		var attribute = this._has_attribute(grouping_attribute) ? obj.get(grouping_attribute) : undefined;
+		if(h_counter.get(attribute)==undefined)
+		{
+			h_counter.set(attribute, 1);
+		} else {
+			h_counter.set(attribute, h_counter.get(attribute)+1);
+		}
+	}
+	return h_counter;
+}
+
+function count_object_class_object_to_csv()
+{
+	var s_full_path_name = context._BA_NF_S_LOG_PATH + "/" +"count_object_class_object.csv";
+	var o_file_path = new PathName(s_full_path_name); 
+	var s_delimiter = ";";
+
+	var o_csv_file = new plw.fileoutputstream(s_full_path_name,"OVERWRITE");
+	var v_header = new vector("Class Name","Class Description","File Name", "File Description", "File Planisware processes module", "File Hot start", "File Customization data file", "File Customization environment object file", "# Objects");
+	o_csv_file.writeln(v_header.join(s_delimiter));
+	
+	// Get the list of analyzed classed
+	var h_classes = new hashtable("object");
+	for(var class_name in plc.class_object)
+	{
+		var object_class = class_name.NAME.class_getObjectClass();
+		// Restrict analysis to leaf classes
+		if(object_class instanceof ObjectClass)
+		{
+			h_classes.set(object_class, 0);
+		}
+	}
+	
+	// Count objects
+	var String s_title = "Count objects";
+	var Number n_steps = h_classes.CountHash();
+	with(plw.monitoring(title: s_title, steps: n_steps))
+	{
+		for(var obj_class in h_classes)
+		{
+			// Initialize class properties
+			var result_class = new vector(obj_class.NAME, obj_class.COMMENT.multilingual_getCurrentLanguageString());
+			// Count objectz on the given class, groupy by FILE
+			var h_counter = obj_class._count_class_objects(grouping_attribute: "DATASET");
+			for(var file in h_counter)
+			{
+				var result_dataset = new vector();
+				if(file instanceof plc.COMMON_DATASET)
+				{
+					result_dataset = new vector(file.NAME, file.DESC, file.PROCESSES, file.HOTSTART, file._INF_AA_B_CUSTO_FILE, file._INF_AA_B_FILE_FOR_ENV);
+				} else {
+					result_dataset = new vector("undefined", "undefined", "", "", "", "");
+				}
+				result_dataset.push(h_counter.get(file).tostring("####"));
+				var v_line = result_class+result_dataset;
+				o_csv_file.writeln(v_line.join(s_delimiter));
+			}
+			var s_class_title = s_title+" "+obj_class.COMMENT.multilingual_getCurrentLanguageString();
+			s_class_title.monitor(n_steps);
+		}
+	}
+
+	// Close File
+	o_csv_file.close();
+	plw.downloadFileFromServer(s_full_path_name);
+
+}
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// Function used to export the list of class slots
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+function export_csv_class_slots(ObjectClass analyzed_class: undefined, delimiter: ";")
+{
+	if(analyzed_class!=undefined)
+	{
+		// Initialize file
+		var s_analyzed_class_representation = analyzed_class.REPRESENTATION.multilingual_getCurrentLanguageString();
+		var s_analyzed_class_comment = analyzed_class.COMMENT.multilingual_getCurrentLanguageString();
+		var s_full_path_name = context._BA_NF_S_LOG_PATH + "/" + "export_"+s_analyzed_class_representation.tolowercase()+"_slots.csv";
+		
+		// Build a hashtable of available slots
+		var exported_slots = new hashtable("object");
+		for(var o_slot in plc.ordo_project.listslots())
+		{
+			exported_slots.set(o_slot, o_slot);
+		}
+		
+		// Generate export file
+		var o_file_path = new PathName(s_full_path_name);
+		if (o_file_path instanceof PathName)
+		{
+			var o_csv_file = new plw.fileoutputstream(s_full_path_name, "OVERWRITE");
+			
+			var v_header = new vector("Class Representation", "Class Comment", "Representation", "Comment", "Documentation",  "Type", "Syntax Type", "Length", "Shadowed", "ReadOnly");
+			o_csv_file.writeln(v_header.join(delimiter));
+			
+			// Monitoring
+			var s_title = "Exporting slots "+s_analyzed_class_comment;
+			with (plw.monitoring(title: s_title, steps: exported_slots.counthash()))
+			{
+					// Limit loop to non-internal attributes 
+					for(var slot in exported_slots where slot.INTERNAL===false)
+					{
+						var slot_representation = slot.REPRESENTATION.multilingual_getCurrentLanguageString();
+						var slot_comment = slot.COMMENT.multilingual_getCurrentLanguageString();
+						var slot_documentation = slot.DOCUMENTATION.multilingual_getCurrentLanguageString().replaceregexp("\r\n"," ").replaceregexp("\r"," ").replaceregexp("\n"," ").replaceregexp("  "," ").replaceregexp(delimiter,"");
+						
+						var slot_Type = slot.slot_getSlotAttributeType()!=undefined ? slot.slot_getSlotAttributeType().name.toString() : "";
+						// var slot_LispType = slot.slot_getLispType();
+						var slot_SyntaxType = slot.slot_getSyntaxType();
+						var slot_length = slot.LENGTH.toString("####");
+						// slot.slot_getAttributeDefaultValueParameter()
+						// slot.slot_getAttributeDefaultFormatParameter()
+						
+						var v_line = new vector(s_analyzed_class_representation, s_analyzed_class_comment, slot_representation, slot_comment, slot_documentation, slot_Type, slot_SyntaxType, slot_length, slot.SHADOWED, slot.slot_isAttributeReadOnly());	
+						
+						// Print slot value
+						o_csv_file.writeln(v_line.join(delimiter));
+						s_title.monitor(exported_slots.counthash());
+					}
+					
+			}
+			o_csv_file.close();
+			plw.downloadFileFromServer(s_full_path_name);
+			plw.alert(s_title+" done !");
+		}
+	}
+}
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// Function call
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+// count_object_class_object_to_csv();
+
+// export_csv_class_slots(analyzed_class: plc.work_structure); 
+namespace _aci_performance;
+
+// Function to measure duration
+function measure_duration(f, arg) {
+	var t_start = new Date().getElapsedTime();
+	f(arg);
+	var t_end = new Date().getElapsedTime();
+	var t_duration = t_end-t_start;
+	return t_duration;
+}
+
+// Function to measure duration
+// Perform several tests to measure average performance
+function measure_average_performance(f, arg, cycle) {
+	var performance = [];
+	if(cycle instanceof Number && cycle>1)
+	{
+		var monitoring_msg = "Evaluate performance "+f.CODE.tostring();
+		with(plw.monitoring(title: monitoring_msg, steps: cycle))
+		{
+			for (var i = 1; i < cycle; i++) {
+				performance.push(measure_duration(f, arg));
+				monitoring_msg.monitor(cycle);
+			}
+		}
+	}
+	return performance;
+}
+
+// Function to print duration measurement
+function print_measure_duration(f, arg) {
+	var t_duration = measure_duration(f,arg);
+	plw.alert(f.CODE.tostring()+"("+arg+") -> "+t_duration.tostring("####")+"ms");
+}
+
+// Fibonacci sequence
+function fibonacci(n) {
+    if (n <= 0) {
+        return [];
+    } else if (n === 1) {
+        return [0];
+    } else if (n === 2) {
+        return [0, 1];
+    } else {
+        var suite = [0, 1];
+        for (var i = 2; i < n; i++) {
+            suite.push(suite[i - 1] + suite[i - 2]);
+        }
+        return suite;
+    }
+}
+
+// Prime Numbers
+function PrimeNumbers(limit) {
+    var PrimeNumberList = [];
+    for (var num = 2; num <= limit; num++) {
+        var isPrime = true;
+        for (var i = 2; i <= Math.sqrt(num); i++) {
+            if (num % i === 0) {
+                isPrime = false;
+                break;
+            }
+        }
+        if (isPrime) {
+            PrimeNumberList.push(num);
+        }
+    }
+    return PrimeNumberList;
+}
+
+function get_cpu_performance(limit, cycle)
+{
+	// Parameters -> list of performance functions
+	var h_function = new hashtable();
+	h_function.set(fibonacci, limit);
+	h_function.set(PrimeNumbers, math.floor(limit/2));
+	if(limit instanceof Number && cycle instanceof Number)
+	{
+		var db_name = context.callstringformula("$DATABASE_NAME");
+		var is_server = "http-utils::*intranet-server-name*".getvalue();
+		var is_port = "http::*default-opx2-http-port*".getvalue();
+		var server_info = new vector(db_name, is_server, is_port).join("_");
+		// CSV file variables
+		var s_full_path_name = context._BA_NF_S_LOG_PATH + "/" +server_info+"_cpu_performance.csv";
+		var o_file_path = new PathName(s_full_path_name); 
+		var s_delimiter = ";";
+		if (o_file_path instanceof PathName)
+		{
+			var o_csv_file = new plw.fileoutputstream(s_full_path_name,"OVERWRITE");
+			var v_header = new vector("Fonction","Fonction input value","Performance (ms)");
+			o_csv_file.writeln(v_header.join(s_delimiter));
+			
+			// Loop on performance functions
+			for(var func in h_function)
+			{
+				var n = h_function.get(func);
+				var perf = measure_average_performance(func, n, cycle);
+				// Loop on each performance
+				for(var m in perf)
+				{
+					var v_line = new vector(func.CODE.tostring(), n.tostring("####"), m.tostring("####"));
+					o_csv_file.writeln(v_line.join(s_delimiter));
+				}
+			}
+			
+			o_csv_file.close(); 
+			plw.downloadFileFromServer(s_full_path_name);
+		}
+	}
+}
+
+// call example
+// get_cpu_performance(100000, 10);
+ 
+namespace _aci;
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// Function to reccurcively explore filepath with directories & sub-directories
+// Option: 'ext_filter' to filter on a specific file extension
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+function explore_filepath(dirpath : undefined, String ext_filter: "", Boolean reccursive : false)
+{
+	var v_return = new vector();
+	
+	// Convert String to PathName
+	if(dirpath instanceof String && dirpath!="")
+	{
+		dirpath = new PathName(dirpath);
+	}
+	
+	if(dirpath instanceof pathname && dirpath!=undefined && dirpath.probedirectory())
+	{
+		// Format pathname to have "/" in the end	
+		var s_dirpath = dirpath.tostring();
+		if(s_dirpath.substring(s_dirpath.length-1,s_dirpath.length)!="/")
+		{
+			s_dirpath+="/";
+			dirpath = new pathname(s_dirpath);
+		}
+		
+		// Loop on dirpath items: files & sub directories
+		for(var path in dirpath)
+		{
+			// If if is a directory, reccurcive call
+			if(path.isdirectory())
+			{
+				if(reccursive)
+				{
+					var sub_path = new pathname(path.tostring()+"/");
+					// plw.alert("Reccursive call to:"+sub_path.tostring());
+					var v_sub = explore_filepath(dirpath : sub_path, ext_filter: ext_filter);
+					v_return.vector_add(v_sub);
+				}
+			} else {
+				// If it is a file, push to vector
+				if(path.probefile() && (ext_filter=="" || path.type==ext_filter))
+				{
+					v_return.push(path);
+				}
+			}
+		}
+	} else {
+		plw.alert("dirpath '"+dirpath+"' is not a Directory");
+	}
+	return v_return;
+}
+
+// // Exemple #1: get files in /tmp
+// plw.alert(explore_filepath(dirpath: "/tmp", reccursive: true));
+
+// // Exemple #2: get Planisware logs
+// plw.alert(explore_filepath(dirpath: context._BA_NF_S_LOG_PATH, ext_filter: "log", reccursive: true));
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// ~~ Function to explore & download filepath with directories & sub-directories
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+function explore_and_download_filepath(dirpath : undefined, String ext_filter: "", Boolean reccursive : false)
+{
+	// Get files to zip and download
+	var v_files = explore_filepath(dirpath : dirpath, ext_filter: ext_filter, reccursive : reccursive);
+	if(v_files.length>0)
+	{		
+		// var export_dir = "/tmp/";
+		var export_dir = context.callStringFormula("$TEMPORARY_FILES_DIRECTORY");
+		// Zip all scripts in a file
+		var dirpath = dirpath instanceof String && dirpath!="" ? new PathName(dirpath) : dirpath;
+		// var zipfilename = dirpath.NAME + "_"+(new date().toString("YYYYMMDDTHHMMSSZ")) + ".zip";
+		var zipfilename = new date().toString("YYYYMMDDTHHMMSSZ") + ".zip";
+		var zipfilepath = new PathName(export_dir + "/" + zipfilename);
+		var zipfile = new plw.zipfile(zipfilepath.tostring());
+		
+		// Monitoring on zip file creation
+		var s_title = "Generate zip file "+zipfilename;
+		with(plw.monitoring(title: s_title, steps: v_files.length))
+		{
+			for(var filepath in v_files)
+			{
+				zipfile.append(filepath, filepath.name + "." + filepath.type);
+				s_title.monitor(v_files.length,1,1);
+			}
+		}
+		
+		// Dowload result
+		plw.downloadFileFromServer(zipfilepath, zipfilename);
+		return zipfilepath;
+	} else {
+		plw.alert("No files to download in "+dirpath.tostring());
+	}
+}
+
+// Exemple #1: Generate a zip file of logs
+// explore_and_download_filepath(dirpath : context._BA_NF_S_LOG_PATH, ext_filter: "log", reccursive : false);
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// Function to explore & delete files in filepath
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+function explore_and_remove_filepath(dirpath : undefined, String ext_filter: "", Boolean reccursive : false)
+{
+	// Get files to zip and download
+	var v_files = explore_filepath(dirpath : dirpath, ext_filter: ext_filter, reccursive : reccursive);
+	if(v_files.length>0)
+	{		
+		if(plw.question("Do you want to DELETE the following files: "+v_files.join(",")+" ?"))
+		{
+			for(var filepath in v_files)
+			{
+				filepath.deletefile();
+			}
+		}
+	} else {
+		plw.alert("No files to DELETE in "+dirpath.tostring());
+	}
+}
+
+// Exemple #1: Delete zip files in /tmp/
+// explore_and_remove_filepath(dirpath : "/tmp", ext_filter: "zip", reccursive : false);
+ 
+namespace _aci;
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// Functions for CSV Export
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 
+// Function used to manage CSV String Export to manage Carriage Return
+function aci_csv_tostring(value)
+{
+	if(value instanceof plc.OBJECT)
+	{
+		return value.printattribute().replaceregexp(";",",");
+	} else {
+		// Manage carriage return
+		if(value instanceof String)
+		{
+			return value.replaceregexp("\r\n"," ").replaceregexp("\r"," ").replaceregexp("\n"," ").replaceregexp("  "," ").replaceregexp(";",",");
+		} else if(value instanceof Number)
+		{
+			return value.tostring(context.NUMBER_FORMAT1);
+		} else if(value instanceof Date)
+		{
+			return value.tostring(context.DATE_FORMAT1);
+		} else {
+			return value.toString("####");
+		}
+	}
+}
+
+// Function for exporting an Object class to CSV file. List of fields (slots) are defined in the vector variable 'exported_slots'.
+function export_csv_class_object(ObjectClass analyzed_class: undefined, vector exported_slots: undefined, String class_filter: "", boolean export_header: true, boolean export_header_slot_label: true, delimiter: ";")
+{
+	// Build Slots DESCRIPTOR vector
+	var slots_desc = new vector();
+	for(var s_slot in exported_slots)
+	{
+		if(export_header_slot_label)
+		{
+			var o_slot = analyzed_class.getslot(s_slot);
+			if(o_slot!=undefined)
+			{
+				var s_desc = o_slot.DESCRIPTOR.COMMENT.multilingual_getCurrentLanguageString();
+				slots_desc.push(s_desc);
+			} else {
+				slots_desc.push(s_slot);
+			}
+		} else {
+			slots_desc.push(s_slot);
+		}
+	}
+	
+	// Initialize file
+	var s_analyzed_class_representation = analyzed_class.REPRESENTATION.multilingual_getCurrentLanguageString().tolowercase();
+	var s_analyzed_class_comment = analyzed_class.COMMENT.multilingual_getCurrentLanguageString();
+	var s_full_path_name = context._BA_NF_S_LOG_PATH + "/" + "export_"+s_analyzed_class_representation+".csv";
+	
+	// Build a hashtable of Analyzed objects
+	var h_objects = new hashtable("object");
+	var s_scope_title = "Collecting "+s_analyzed_class_comment+" objects";
+	with(plw.monitoring(title : s_scope_title))
+	{
+		with(plw.map_shadowed_objects)
+		{
+			for(var o_obj in analyzed_class)
+			{
+				if(class_filter=="" || o_obj.callBooleanFormula(class_filter))
+				{
+					h_objects.set(o_obj, 0);
+					s_scope_title.monitor(true);
+				}
+			}
+		}
+	}
+	var n_loop_size = h_objects.count;
+	
+	// Generate export file
+    var o_file_path = new PathName(s_full_path_name);
+    if (o_file_path instanceof PathName)
+	{
+        var o_csv_file = new plw.fileoutputstream(s_full_path_name, "OVERWRITE");
+		// Header
+		if(export_header)
+		{
+			o_csv_file.writeln(slots_desc.join(delimiter));
+		}
+		
+		var s_title = "Exporting "+s_analyzed_class_comment;
+		// Monitoring
+		with (plw.monitoring(title: s_title, steps: n_loop_size))
+		{
+			// Loop on Portfolios
+			for (var o_obj in h_objects)
+			{
+				var v_line = new vector();
+				for(var s_slot in exported_slots)
+				{
+					// Print slot value
+
+					// Manage case where slot is coming from another class -> replace value = o_obj.get(s_slot);
+					var value = o_obj;
+					for(var slot in s_slot.split("."))
+					{
+						if(value instanceof plc.object)
+						{
+							value = value.get(slot);
+						}
+					}
+					v_line.push(aci_csv_tostring(value));
+				}
+				o_csv_file.writeln(v_line.join(delimiter));
+				s_title.monitor(n_loop_size);
+			}
+        }
+        o_csv_file.close();
+        plw.downloadFileFromServer(s_full_path_name);
+        plw.alert(s_title+" done.");
+    }
+}
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// Functions to analyze Performance of defined object class: TABLE_STYLE, _FF_PT_FAVOR_FILTERS
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+// Method to measure Object performance on Table Style
+method measure_performance on plc.TABLE_STYLE()
+{
+	// Define the list of exluded class
+	var hashtable h_excluded_class = new hashtable("object");
+	h_excluded_class.set(plc.COST_TABLE_ITEM, 0); // Query line
+	h_excluded_class.set(plc.CURVE, 0); // Load array
+	
+	var n_performance = undefined;
+	try {
+		var o_class = this.getinternalvalue("ON-CLASS").findclass();
+		var s_filter = this.get("FILTER");
+		if(o_class instanceof ObjectClass && s_filter!="" && h_excluded_class.get(o_class)==undefined)
+		{
+			var t_start = new Date().getElapsedTime();
+			for(var o_obj in o_class where o_obj.callBooleanFormula(s_filter))
+			{
+				// DO NOTHING
+			}
+			var t_end = new Date().getElapsedTime();
+			n_performance = t_end-t_start;
+		} else {
+			n_performance = 0;
+		}
+	} catch (e) {
+		// nothing to do
+		plw.alert("Issue with method measure_performance() on TABLE_STYLE "+this.printattribute());
+	}
+	return n_performance;
+}
+
+// Method to measure Object performance on User-defined Portfolio
+method measure_performance on plc._FF_PT_FAVOR_FILTERS()
+{
+	var n_performance = undefined;
+	var t_start = new Date().getElapsedTime();
+	with(this.fromobject())
+	{
+		for(var o_project in plc.ordo_project)
+		{
+			// DO NOTHING
+		}
+	}
+	var t_end = new Date().getElapsedTime();
+	n_performance = t_end-t_start;
+	return n_performance;
+}
+
+// Function used for Dynamic slot creation -> call to 'measure_performance' method on considered class
+function func_measure_performance()
+{
+	return this.measure_performance();
+}
+
+// Function used for 'ACI_DA_MEASURE_PERFORMANCE' Dynamic slot creation
+function aci_create_dynamic_measure_performance_attribute(ObjectClass analyzed_class: undefined)
+{
+	if(analyzed_class!=undefined)
+	{
+		try{
+			var slot = new objectAttribute(analyzed_class,"ACI_DA_MEASURE_PERFORMANCE","NUMBER");
+			slot.Comment = "Performance (ms)";
+			slot.Reader = func_measure_performance;
+			slot.Modifier = false;
+			slot.Locker = true;
+			slot.hiddenInIntranetServer = false;
+			slot.connecting = false;
+		}
+		catch(error e){
+			plw.alert("Could not create slot due to error: " + e);
+		}
+	}
+}
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// Function call
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+// // Export User
+// export_csv_class_object(analyzed_class: plc.OPX2_USER, exported_slots: new vector("INACTIVE","NAME","DESC","EMAIL_ADDRESS","_MOB_AA_S_PHONE","_DMP_AA_S_PSEUDO","_SOC_AA_S_ABOUT","LOGIN","?ADMIN","POWER_USER","OPX2_INTRANET_ACCESS","EXPLORER_ACCESS","READ_ONLY_ACCESS","OPX2_TIMECARD_ACCESS","ACTIVETAB_ACCESS","BACKUP_OPX2_USER","LANGUAGE","_PRF_DA_USER_GROUPS","_PRF_DA_PROFILE_NAME","GROUPS_LIST","_INF_NF_B_TEMPLATE_USER","EID","LDAP_UID","EXTERNAL_ID"));
+
+// // Export User Group
+// export_csv_class_object(analyzed_class: plc.USER_GROUP, exported_slots: new vector("INACTIVE","NAME","DESC","COMMON_FILES","_PRF_AA_B_PROFILE","PAC","BM","ADM","PORT","PM","RM","TM","EID"), export_header: false);
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+// // Audit Portfolio Performance
+// // STEP 1: Create Dynamic attribute 'ACI_DA_MEASURE_PERFORMANCE'
+// aci_create_dynamic_measure_performance_attribute(analyzed_class: plc._FF_PT_FAVOR_FILTERS);
+// // STEP 2: Export CSV
+// export_csv_class_object(analyzed_class: plc._FF_PT_FAVOR_FILTERS, exported_slots: new vector("ID", "NAME", "_FF_AA_S_GROUP_READ", "_FF_AA_S_GROUP_WRITE", "_FF_RA_USER_FF", "ACI_DA_MEASURE_PERFORMANCE", "FILE"));
+
+// // Audit Table Style performance
+// // STEP 1: Create Dynamic attribute 'ACI_DA_MEASURE_PERFORMANCE'
+// aci_create_dynamic_measure_performance_attribute(analyzed_class: plc.TABLE_STYLE);
+// // STEP 2: Export CSV
+// export_csv_class_object(analyzed_class: plc.TABLE_STYLE, exported_slots: new vector("ID", "NAME", "ON_CLASS", "EXPORTED", "OWNER", "GROUP_READ_WRITE", "GROUP_READ_ONLY", "FILTER", "ACI_DA_MEASURE_PERFORMANCE", "FILE"), class_filter: "FILE<>\"\"", export_header_slot_label: false);
+ 

@@ -1,0 +1,5884 @@
+version: 1
+dialect: postgres
+tables:
+  budget_line:
+    aliases: []
+    columns:
+      modify_version:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 333.0
+      dataset:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 46.0
+      unit:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 3.0
+      cbs:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 7.0
+      type:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 19.0
+      opx2_resource:
+        type: numeric
+        nullable: true
+        null_frac: 0.2845
+        n_distinct~: 57.0
+      opx2__pm_aa_s_created_by:
+        type: character varying
+        nullable: true
+        null_frac: 0.3097
+        n_distinct~: 2.0
+      opx2_update:
+        type: timestamp without time zone
+        nullable: true
+        null_frac: 0.3097
+        n_distinct~: 129.0
+      primary_skill:
+        type: numeric
+        nullable: true
+        null_frac: 0.4373
+        n_distinct~: 3.0
+      basic_type:
+        type: character varying
+        nullable: true
+        null_frac: 0.446
+        n_distinct~: 2.0
+      rate_reference:
+        type: numeric
+        nullable: true
+        null_frac: 0.762
+        n_distinct~: 16.0
+      opx2__rm_review_ra_compact:
+        type: numeric
+        nullable: true
+        null_frac: 0.984
+        n_distinct~: 13.0
+      opx2__rm_review_ra_scenario:
+        type: numeric
+        nullable: true
+        null_frac: 0.999
+        n_distinct~: 1.0
+      onb:
+        type: numeric
+        nullable: false
+        null_frac: 0.0
+        n_distinct~: -1.0
+      work_structure:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.40528858
+    pk:
+    - onb
+  buser_value:
+    aliases: []
+    columns:
+      attname:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 2.0
+      onb:
+        type: numeric
+        nullable: false
+        null_frac: 0.0
+        n_distinct~: -1.0
+      modify_version:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -1.0
+      dataset:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.98039216
+      object_reference:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.98039216
+      opx2_value:
+        type: boolean
+        nullable: true
+        null_frac: 0.9804
+        n_distinct~: -0.019607842
+      ptypes:
+        type: character varying
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      source_dcr_sync_objects:
+        type: numeric
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      class_reference:
+        type: character varying
+        nullable: true
+    pk:
+    - onb
+  common_dataset:
+    aliases: []
+    columns:
+      locking_time:
+        type: timestamp without time zone
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      rights:
+        type: character varying
+        nullable: true
+        null_frac: 0.0017
+        n_distinct~: 3.0
+      owner:
+        type: character varying
+        nullable: true
+        null_frac: 0.0017
+        n_distinct~: 1.0
+      current_version_number:
+        type: numeric
+        nullable: true
+        null_frac: 0.0051
+        n_distinct~: 1.0
+      group_read_write:
+        type: text
+        nullable: true
+        null_frac: 0.0728
+        n_distinct~: 4.0
+      processes:
+        type: boolean
+        nullable: true
+        null_frac: 0.1252
+        n_distinct~: 1.0
+      opx2__inf_aa_b_custo_file:
+        type: boolean
+        nullable: true
+        null_frac: 0.1777
+        n_distinct~: 2.0
+      contains_sd:
+        type: boolean
+        nullable: true
+        null_frac: 0.2047
+        n_distinct~: 1.0
+      hotstart:
+        type: boolean
+        nullable: true
+        null_frac: 0.2132
+        n_distinct~: 1.0
+      rs_version:
+        type: numeric
+        nullable: true
+        null_frac: 0.401
+        n_distinct~: 23.0
+      opx2__inf_aa_b_file_for_env:
+        type: boolean
+        nullable: true
+        null_frac: 0.4535
+        n_distinct~: 2.0
+      opx2__inf_aa_b_dev_data:
+        type: boolean
+        nullable: true
+        null_frac: 0.7919
+        n_distinct~: 1.0
+      iup_product:
+        type: numeric
+        nullable: true
+        null_frac: 0.8494
+        n_distinct~: 2.0
+      group_read_only:
+        type: text
+        nullable: true
+        null_frac: 0.9205
+        n_distinct~: 3.0
+      shared_access:
+        type: text
+        nullable: true
+        null_frac: 0.9594
+        n_distinct~: 1.0
+    pk:
+    - onb
+  database_update:
+    aliases: []
+    columns:
+      update_key:
+        type: character varying
+        nullable: false
+        null_frac: 0.0
+        n_distinct~: -1.0
+      last_update:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.8
+  dataset_rte_element:
+    aliases: []
+    columns:
+      opx2_offset:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      attribute:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 5.0
+      onb:
+        type: numeric
+        nullable: false
+        null_frac: 0.0
+        n_distinct~: -1.0
+      modify_version:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.79452056
+      dataset:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.72602737
+      opx2_data:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.7671233
+      equation_number:
+        type: numeric
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      creator_object_number:
+        type: numeric
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      equation_override:
+        type: boolean
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      ptypes:
+        type: character varying
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      source_dcr_sync_objects:
+        type: numeric
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+    pk:
+    - onb
+  datuser_value:
+    aliases: []
+    columns:
+      dataset:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 105.0
+      object_reference:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 105.0
+      attname:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 44.0
+      opx2_value:
+        type: timestamp without time zone
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 134.0
+      onb:
+        type: numeric
+        nullable: false
+        null_frac: 0.0
+        n_distinct~: -1.0
+      modify_version:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.14053187
+      ptypes:
+        type: character varying
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      source_dcr_sync_objects:
+        type: numeric
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      class_reference:
+        type: character varying
+        nullable: true
+    pk:
+    - onb
+  doc_item:
+    aliases: []
+    columns:
+      dataset:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 2.0
+      anchor_position:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      draw_anchor:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      modify_version:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1503.0
+      color_border:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      background:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      report_width:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2__hyp_aa_n_replace_item:
+        type: numeric
+        nullable: true
+        null_frac: 0.0001
+        n_distinct~: 1.0
+      category:
+        type: character varying
+        nullable: true
+        null_frac: 0.0094
+        n_distinct~: 12.0
+      ptypes:
+        type: character varying
+        nullable: true
+        null_frac: 0.9832
+        n_distinct~: 14.0
+      opx2__hyp_aa_b_obsolete:
+        type: boolean
+        nullable: true
+        null_frac: 0.9859
+        n_distinct~: 1.0
+      onb:
+        type: numeric
+        nullable: false
+        null_frac: 0.0
+        n_distinct~: -1.0
+      anchor:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.99763036
+      name:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.9997796
+      tag:
+        type: character varying
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+    pk:
+    - onb
+  document:
+    aliases: []
+    columns:
+      dataset:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 199.0
+      type:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 11.0
+      last_update_user:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 40.0
+      version:
+        type: numeric
+        nullable: true
+        null_frac: 0.0025
+        n_distinct~: 19.0
+      connected_field:
+        type: character varying
+        nullable: true
+        null_frac: 0.0227
+        n_distinct~: 26.0
+      opx2__cms_connector:
+        type: character varying
+        nullable: true
+        null_frac: 0.0269
+        n_distinct~: 2.0
+      thumbnail_pages:
+        type: numeric
+        nullable: true
+        null_frac: 0.4962
+        n_distinct~: 8.0
+      connected_class:
+        type: character varying
+        nullable: true
+        null_frac: 0.8164
+        n_distinct~: 9.0
+      lock_token:
+        type: character varying
+        nullable: true
+        null_frac: 0.9975
+        n_distinct~: 4.0
+      onb:
+        type: numeric
+        nullable: false
+        null_frac: 0.0
+        n_distinct~: -1.0
+      modify_version:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.25042018
+      name:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.555042
+      last_update_date:
+        type: timestamp without time zone
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.60336137
+      last_update_path:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.5605042
+      data_length:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.5117647
+    pk:
+    - onb
+  document_keywords:
+    aliases: []
+    columns:
+      dataset:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      document:
+        type: numeric
+        nullable: false
+        null_frac: 0.0
+        n_distinct~: 97.0
+      opx2_offset:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 32.0
+      opx2_data:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.7238586
+      source_dcr_sync_objects:
+        type: numeric
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+  e_learning_management:
+    aliases: []
+    columns:
+      object_class:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 2.0
+      type:
+        type: character varying
+        nullable: true
+        null_frac: 0.1818
+        n_distinct~: 1.0
+      played:
+        type: boolean
+        nullable: true
+        null_frac: 0.5428
+        n_distinct~: 1.0
+      onb:
+        type: numeric
+        nullable: false
+        null_frac: 0.0
+        n_distinct~: -1.0
+      dataset:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.24064171
+      modify_version:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.9946524
+      opx2_user:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.2433155
+      object_onb:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.28074867
+      opx2__elearn_aa_s_sub_onb:
+        type: character varying
+        nullable: true
+        null_frac: 0.4358
+        n_distinct~: -0.3342246
+      opx2_position:
+        type: numeric
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      ptypes:
+        type: character varying
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      source_dcr_sync_objects:
+        type: numeric
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+    pk:
+    - onb
+  environment_dataset:
+    aliases: []
+    columns:
+      locking_time:
+        type: timestamp without time zone
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      long_signature:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 11.0
+      rights:
+        type: character varying
+        nullable: true
+        null_frac: 0.0451
+        n_distinct~: 1.0
+      number_of_objects:
+        type: numeric
+        nullable: true
+        null_frac: 0.0451
+        n_distinct~: 8.0
+      transaction_counter:
+        type: numeric
+        nullable: true
+        null_frac: 0.0451
+        n_distinct~: 6.0
+      opx2__inf_aa_b_dev_data:
+        type: boolean
+        nullable: true
+        null_frac: 0.8271
+        n_distinct~: 1.0
+      onb:
+        type: numeric
+        nullable: false
+        null_frac: 0.0
+        n_distinct~: -1.0
+      name:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -1.0
+      owner:
+        type: character varying
+        nullable: true
+        null_frac: 0.0451
+        n_distinct~: -0.8947368
+      creation_date:
+        type: timestamp without time zone
+        nullable: true
+        null_frac: 0.0451
+        n_distinct~: -0.94736844
+      modify_version:
+        type: numeric
+        nullable: true
+        null_frac: 0.0602
+        n_distinct~: -0.9398496
+      update_date:
+        type: timestamp without time zone
+        nullable: true
+        null_frac: 0.0602
+        n_distinct~: -0.9398496
+      version_id:
+        type: character varying
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      opx2_comment:
+        type: character varying
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      shared_access:
+        type: text
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+    pk:
+    - onb
+  environment_object:
+    aliases: []
+    columns:
+      dataset:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 336.0
+      format_description:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 252.0
+      modify_version:
+        type: numeric
+        nullable: true
+        null_frac: 0.0002
+        n_distinct~: 4409.0
+      root:
+        type: numeric
+        nullable: true
+        null_frac: 0.2325
+        n_distinct~: 5383.0
+      onb:
+        type: numeric
+        nullable: false
+        null_frac: 0.0
+        n_distinct~: -1.0
+      content:
+        type: text
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.99750054
+      replacement:
+        type: character varying
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: -3.3318996e-05
+      eclass:
+        type: character varying
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      eid:
+        type: character varying
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      locked:
+        type: boolean
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+    pk:
+    - onb
+  expenditure:
+    aliases: []
+    columns:
+      dataset:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 50.0
+      unit:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      cbs:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 6.0
+      duration_mode:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 3.0
+      opx2__fin_aa_b_pnl_output:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      type:
+        type: character varying
+        nullable: true
+        null_frac: 0.121
+        n_distinct~: 6.0
+      fixed_start:
+        type: timestamp without time zone
+        nullable: true
+        null_frac: 0.1284
+        n_distinct~: 11.0
+      fixed_end:
+        type: timestamp without time zone
+        nullable: true
+        null_frac: 0.1284
+        n_distinct~: 11.0
+      opx2__fin_ra_volume_unit:
+        type: numeric
+        nullable: true
+        null_frac: 0.1886
+        n_distinct~: 1.0
+      opx2__fin_ra_monetary_unit:
+        type: numeric
+        nullable: true
+        null_frac: 0.1886
+        n_distinct~: 1.0
+      end_delay:
+        type: bigint
+        nullable: true
+        null_frac: 0.3422
+        n_distinct~: 102.0
+      delay:
+        type: bigint
+        nullable: true
+        null_frac: 0.4627
+        n_distinct~: 57.0
+      opx2__wf_ra_risk:
+        type: numeric
+        nullable: true
+        null_frac: 0.9926
+        n_distinct~: 11.0
+      onb:
+        type: numeric
+        nullable: false
+        null_frac: 0.0
+        n_distinct~: -1.0
+      modify_version:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.15209876
+    pk:
+    - onb
+  formula_cache:
+    aliases: []
+    columns:
+      return_type:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 4.0
+      follow_subclasses:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      formula:
+        type: character varying
+        nullable: false
+        null_frac: 0.0
+        n_distinct~: -0.4964871
+      opx2_class:
+        type: character varying
+        nullable: false
+        null_frac: 0.0
+        n_distinct~: -0.17002343
+  llm_bot_engine_file:
+    aliases: []
+    columns:
+      dataset:
+        type: numeric
+        nullable: true
+      engine:
+        type: numeric
+        nullable: true
+      file_id:
+        type: character varying
+        nullable: true
+      modify_version:
+        type: numeric
+        nullable: true
+      onb:
+        type: numeric
+        nullable: false
+      opx2_file:
+        type: character varying
+        nullable: true
+    pk:
+    - onb
+  llm_function:
+    aliases: []
+    columns:
+      connector:
+        type: numeric
+        nullable: true
+      dataset:
+        type: numeric
+        nullable: true
+      modify_version:
+        type: numeric
+        nullable: true
+      name:
+        type: character varying
+        nullable: true
+      onb:
+        type: numeric
+        nullable: false
+      opx2_comment:
+        type: character varying
+        nullable: true
+      script:
+        type: character varying
+        nullable: true
+    pk:
+    - onb
+  llm_function_param:
+    aliases: []
+    columns:
+      dataset:
+        type: numeric
+        nullable: true
+      func:
+        type: numeric
+        nullable: true
+      modify_version:
+        type: numeric
+        nullable: true
+      name:
+        type: character varying
+        nullable: true
+      onb:
+        type: numeric
+        nullable: false
+      opx2_comment:
+        type: character varying
+        nullable: true
+      type:
+        type: character varying
+        nullable: true
+    pk:
+    - onb
+  long_string_object:
+    aliases: []
+    columns:
+      id:
+        type: numeric
+        nullable: true
+      opx2_offset:
+        type: numeric
+        nullable: true
+      opx2_data:
+        type: text
+        nullable: true
+  network:
+    aliases: []
+    columns:
+      dataset:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 106.0
+      phasis:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 102.0
+      priority:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      streching:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      i_status:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      etcc:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      bcwp_consolidation:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 4.0
+      cbs:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      tc_closed:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      need_wl_update:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      port_pjt_roi:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2__wpm_aa_b_wf_wpm_ok:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2__srv_aa_n_rate:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2__sc_aa_n_custom_rate:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2__roa_aa_n_gantt_nb_lines:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 5.0
+    pk:
+    - onb
+  nuser_value:
+    aliases: []
+    columns:
+      dataset:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 105.0
+      object_reference:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 107.0
+      attname:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 78.0
+      opx2_value:
+        type: numeric
+        nullable: true
+        null_frac: 0.0128
+        n_distinct~: 502.0
+      onb:
+        type: numeric
+        nullable: false
+        null_frac: 0.0
+        n_distinct~: -1.0
+      modify_version:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.15018496
+      ptypes:
+        type: character varying
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      source_dcr_sync_objects:
+        type: numeric
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      class_reference:
+        type: character varying
+        nullable: true
+    pk:
+    - onb
+  openai_assistant_thread:
+    aliases: []
+    columns:
+      dataset:
+        type: numeric
+        nullable: true
+      modify_version:
+        type: numeric
+        nullable: true
+      onb:
+        type: numeric
+        nullable: false
+      opx2_user:
+        type: numeric
+        nullable: true
+      thread_id:
+        type: character varying
+        nullable: true
+    pk:
+    - onb
+  openai_file:
+    aliases: []
+    columns:
+      dataset:
+        type: numeric
+        nullable: true
+      engine:
+        type: numeric
+        nullable: true
+      file_id:
+        type: character varying
+        nullable: true
+      modify_version:
+        type: numeric
+        nullable: true
+      onb:
+        type: numeric
+        nullable: false
+      opx2_comment:
+        type: character varying
+        nullable: true
+      opx2_file:
+        type: character varying
+        nullable: true
+      purpose:
+        type: character varying
+        nullable: true
+    pk:
+    - onb
+  opx2__adm_pt_data_class:
+    aliases: []
+    columns:
+      opx2__adm_aa_b_add_new_lines:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 2.0
+      opx2__adm_aa_b_disp_po_filter:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 2.0
+      opx2__adm_aa_b_req_po_filter:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 2.0
+      opx2__adm_aa_b_display_cfg:
+        type: boolean
+        nullable: true
+        null_frac: 0.0028
+        n_distinct~: 2.0
+      opx2__adm_data_b_init_trad:
+        type: boolean
+        nullable: true
+        null_frac: 0.0791
+        n_distinct~: 2.0
+      opx2__adm_aa_b_crea_default:
+        type: boolean
+        nullable: true
+        null_frac: 0.5791
+        n_distinct~: 2.0
+      opx2__elastic_aa_b_use_class:
+        type: boolean
+        nullable: true
+        null_frac: 0.6497
+        n_distinct~: 2.0
+      opx2__elastic_aa_n_weight:
+        type: numeric
+        nullable: true
+        null_frac: 0.6497
+        n_distinct~: 19.0
+      opx2__adm_aa_b_disp_data_mgt:
+        type: boolean
+        nullable: true
+        null_frac: 0.7825
+        n_distinct~: 2.0
+      opx2__adm_aa_n_prio_for_diff:
+        type: numeric
+        nullable: true
+        null_frac: 0.9294
+        n_distinct~: 1.0
+      dataset:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.2457627
+      modify_version:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.35875705
+      name:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.99435025
+      onb:
+        type: numeric
+        nullable: false
+        null_frac: 0.0
+        n_distinct~: -1.0
+      opx2__adm_aa_s_class:
+        type: character varying
+        nullable: true
+        null_frac: 0.0028
+        n_distinct~: -0.9463277
+  opx2__ba_pt_batch:
+    aliases: []
+    columns:
+      dataset:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2__ba_aa_b_baseline_batch:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2__ba_aa_b_baseline_bulk:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2__ba_aa_b_batch_on_dataset:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2__ba_aa_b_do_not_reload:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2__ba_aa_b_error_block:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2__ba_aa_b_only_match_key:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2__ba_aa_b_run_batch:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2__ba_aa_b_stopped:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2__ba_aa_b_traces_active:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2__ba_aa_n_batch_nb_dataset:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2__ba_aa_n_batch_nb_error:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2__ba_aa_n_batch_type:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2__ba_aa_n_batch_version:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2__ba_aa_n_macro_onb:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+  opx2__bar_pt_indic_bar:
+    aliases: []
+    columns:
+      dataset:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      onum:
+        type: numeric
+        nullable: true
+        null_frac: 0.2268
+        n_distinct~: 7.0
+      opx2__bar_aa_b_cursor:
+        type: boolean
+        nullable: true
+        null_frac: 0.4639
+        n_distinct~: 2.0
+      opx2__bar_aa_b_hide_unit:
+        type: boolean
+        nullable: true
+        null_frac: 0.6289
+        n_distinct~: 1.0
+      opx2__bar_aa_s_class:
+        type: character varying
+        nullable: true
+        null_frac: 0.7526
+        n_distinct~: 3.0
+      opx2__ind_aa_b_is_active:
+        type: boolean
+        nullable: true
+        null_frac: 0.9175
+        n_distinct~: 1.0
+      opx2__bar_ra_reporting:
+        type: numeric
+        nullable: true
+        null_frac: 0.9794
+        n_distinct~: 1.0
+      modify_version:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.3298969
+      name:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.72164947
+      onb:
+        type: numeric
+        nullable: false
+        null_frac: 0.0
+        n_distinct~: -1.0
+      opx2__bar_ra_indicator:
+        type: numeric
+        nullable: true
+        null_frac: 0.2474
+        n_distinct~: -0.46391752
+      parent:
+        type: numeric
+        nullable: true
+        null_frac: 0.2474
+        n_distinct~: -0.2371134
+      opx2_comment:
+        type: character varying
+        nullable: true
+        null_frac: 0.7526
+        n_distinct~: -0.22680412
+      opx2__bar_aa_s_values:
+        type: character varying
+        nullable: true
+        null_frac: 0.9897
+        n_distinct~: -0.010309279
+      creator_object_number:
+        type: numeric
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+  opx2__bm_pt_opti_results:
+    aliases: []
+    columns:
+      creator_object_number:
+        type: numeric
+        nullable: true
+      dataset:
+        type: numeric
+        nullable: true
+      equation_number:
+        type: numeric
+        nullable: true
+      equation_override:
+        type: boolean
+        nullable: true
+      inactive:
+        type: boolean
+        nullable: true
+      modify_version:
+        type: numeric
+        nullable: true
+      name:
+        type: character varying
+        nullable: true
+      onb:
+        type: numeric
+        nullable: false
+      opx2_comment:
+        type: character varying
+        nullable: true
+      opx2__bm_res_aa_nt_info:
+        type: character varying
+        nullable: true
+      opx2__bm_res_aa_s_rep:
+        type: numeric
+        nullable: true
+      opx2__bm_res_ra_optimization:
+        type: numeric
+        nullable: true
+      origin_number:
+        type: numeric
+        nullable: true
+      origin_project:
+        type: numeric
+        nullable: true
+      ptypes:
+        type: character varying
+        nullable: true
+  opx2__bm_pt_roadmap_properties:
+    aliases: []
+    columns:
+      dataset:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 42.0
+      opx2__bm_aa_b_default:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 2.0
+      opx2__bm_aa_b_icon_or_symb:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 3.0
+      opx2__bm_aa_b_template:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 2.0
+      opx2__bm_aa_d_duration:
+        type: bigint
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 17.0
+      opx2__bm_aa_n_label_angle:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2__bm_aa_n_priority:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 5.0
+      opx2__bm_aa_n_sfont:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 12.0
+      opx2__bm_aa_n_sfont_bot:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 3.0
+      opx2__bm_aa_n_sfont_left:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 2.0
+      opx2__bm_aa_n_sfont_right:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 3.0
+      opx2__bm_aa_n_sfont_top:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 4.0
+      opx2__bm_aa_s_label_position:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2__bm_aa_s_time_unit:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 3.0
+      opx2__roa_aa_b_disp_in_legend:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 2.0
+  opx2__col_pt_document_table:
+    aliases: []
+    columns:
+      dataset:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 65.0
+      name:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 126.0
+      opx2__col_aa_b_approved_doc:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 2.0
+      opx2__col_aa_b_is_deliverable:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2__col_aa_b_is_mandatory:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 2.0
+      opx2__col_aa_b_tool_bar:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 2.0
+      opx2__col_aa_s_document_type:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 2.0
+      opx2__col_aa_s_version_commit:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2__col_a_is_deletion_choice:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2__del_aa_b_prod_or_cons:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2__del_aa_b_published:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2__del_aa_n_importance:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2__del_aa_n_requester_onb:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2__pm_aa_b_deleg_accepted:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 2.0
+      type:
+        type: character varying
+        nullable: true
+        null_frac: 0.0008
+        n_distinct~: 2.0
+  opx2__elearn_pt_languages:
+    aliases: []
+    columns:
+      dataset:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      modify_version:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 10.0
+      opx2__elearn_aa_s_language:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 4.0
+      opx2__elearn_aa_s_lang_version:
+        type: character varying
+        nullable: true
+        null_frac: 0.5362
+        n_distinct~: 30.0
+      name:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -1.0
+      onb:
+        type: numeric
+        nullable: false
+        null_frac: 0.0
+        n_distinct~: -1.0
+      opx2_comment:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.915942
+      opx2__elearn_ra_subject:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.42028984
+      opx2__elearn_aa_s_lang_keyw:
+        type: character varying
+        nullable: true
+        null_frac: 0.2802
+        n_distinct~: -0.46666667
+      opx2__elearn_aa_s_lang_detmult:
+        type: character varying
+        nullable: true
+        null_frac: 0.5333
+        n_distinct~: -0.4589372
+      opx2__elearn_aa_s_lang_details:
+        type: character varying
+        nullable: true
+        null_frac: 0.7082
+        n_distinct~: -0.2888889
+      creator_object_number:
+        type: numeric
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      equation_number:
+        type: numeric
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      equation_override:
+        type: boolean
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      inactive:
+        type: boolean
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+  opx2__ff_pt_favor_filters_type:
+    aliases: []
+    columns:
+      creator_object_number:
+        type: numeric
+        nullable: true
+      dataset:
+        type: numeric
+        nullable: true
+      equation_number:
+        type: numeric
+        nullable: true
+      equation_override:
+        type: boolean
+        nullable: true
+      external_id:
+        type: numeric
+        nullable: true
+      inactive:
+        type: boolean
+        nullable: true
+      modify_version:
+        type: numeric
+        nullable: true
+      name:
+        type: character varying
+        nullable: true
+      note_pad:
+        type: character varying
+        nullable: true
+      onb:
+        type: numeric
+        nullable: false
+      onum:
+        type: numeric
+        nullable: true
+      opx2_comment:
+        type: character varying
+        nullable: true
+      origin_number:
+        type: numeric
+        nullable: true
+      origin_project:
+        type: numeric
+        nullable: true
+      parent:
+        type: numeric
+        nullable: true
+  opx2__fr_pt_flash_report:
+    aliases: []
+    columns:
+      creator_object_number:
+        type: numeric
+        nullable: true
+      dataset:
+        type: numeric
+        nullable: true
+      equation_number:
+        type: numeric
+        nullable: true
+      equation_override:
+        type: boolean
+        nullable: true
+      inactive:
+        type: boolean
+        nullable: true
+      modify_version:
+        type: numeric
+        nullable: true
+      name:
+        type: character varying
+        nullable: true
+      onb:
+        type: numeric
+        nullable: false
+      opx2_comment:
+        type: character varying
+        nullable: true
+      opx2__fr_aa_class:
+        type: character varying
+        nullable: true
+      opx2__fr_aa_d_date:
+        type: timestamp without time zone
+        nullable: true
+      opx2__fr_aa_obj_onb:
+        type: numeric
+        nullable: true
+      opx2__fr_aa_s_summary:
+        type: character varying
+        nullable: true
+      opx2__fr_aa_s_title:
+        type: character varying
+        nullable: true
+      opx2__fr_ra_author:
+        type: numeric
+        nullable: true
+  opx2__ihm_tb_pt_model:
+    aliases: []
+    columns:
+      opx2__ihm_aa_b_tb_unfolded:
+        type: boolean
+        nullable: true
+        null_frac: 0.513
+        n_distinct~: 2.0
+      opx2__ihm_aa_b_tb_conf_tool:
+        type: boolean
+        nullable: true
+        null_frac: 0.9951
+        n_distinct~: 2.0
+      dataset:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.17207792
+      modify_version:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.37337664
+      name:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.97077924
+      onb:
+        type: numeric
+        nullable: false
+        null_frac: 0.0
+        n_distinct~: -1.0
+      opx2_comment:
+        type: character varying
+        nullable: true
+        null_frac: 0.0114
+        n_distinct~: -0.7581169
+      creator_object_number:
+        type: numeric
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      equation_number:
+        type: numeric
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      equation_override:
+        type: boolean
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      inactive:
+        type: boolean
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      opx2__ihm_tb_aa_s_filter:
+        type: character varying
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      origin_number:
+        type: numeric
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      origin_project:
+        type: numeric
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      ptypes:
+        type: character varying
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+  opx2__ihm_tb_pt_tool_model_nn:
+    aliases: []
+    columns:
+      dataset:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 112.0
+      opx2__ihm_aa_n_order:
+        type: numeric
+        nullable: true
+        null_frac: 0.0253
+        n_distinct~: 41.0
+      opx2__ihm_aa_b_folded:
+        type: boolean
+        nullable: true
+        null_frac: 0.22
+        n_distinct~: 2.0
+      opx2__ihm_aa_b_unfolded:
+        type: boolean
+        nullable: true
+        null_frac: 0.2747
+        n_distinct~: 2.0
+      opx2__ihm_tb_aa_s_need_policy:
+        type: character varying
+        nullable: true
+        null_frac: 0.3411
+        n_distinct~: 3.0
+      opx2__ihm_aa_b_ctx:
+        type: boolean
+        nullable: true
+        null_frac: 0.3489
+        n_distinct~: 2.0
+      opx2__ihm_tb_aa_b_hide_border:
+        type: boolean
+        nullable: true
+        null_frac: 0.357
+        n_distinct~: 2.0
+      opx2__ihm_aa_b_rpt:
+        type: boolean
+        nullable: true
+        null_frac: 0.367
+        n_distinct~: 2.0
+      opx2__ihm_tb_aa_s_rel_elm_onb:
+        type: character varying
+        nullable: true
+        null_frac: 0.4768
+        n_distinct~: 276.0
+      onb:
+        type: numeric
+        nullable: false
+        null_frac: 0.0
+        n_distinct~: -1.0
+      opx2__ihm_tb_ra_tool:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.44509232
+      opx2__ihm_tb_ra_tool_model:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.19015226
+      modify_version:
+        type: numeric
+        nullable: true
+        null_frac: 0.0016
+        n_distinct~: -0.15387107
+      creator_object_number:
+        type: numeric
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      equation_number:
+        type: numeric
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+  opx2__ihm_tb_pt_tools:
+    aliases: []
+    columns:
+      dataset:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 112.0
+      opx2__ihm_tb_aa_b_chk_val_list:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 2.0
+      opx2__ihm_tb_aa_b_list_input:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 2.0
+      opx2__ihm_tb_aa_b_needs_check:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 2.0
+      opx2__ihm_tb_aa_b_only_visible:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 2.0
+      opx2__ihm_tb_aa_s_type:
+        type: character varying
+        nullable: true
+        null_frac: 0.0035
+        n_distinct~: 4.0
+      opx2__ihm_tb_aa_b_select_input:
+        type: boolean
+        nullable: true
+        null_frac: 0.2226
+        n_distinct~: 2.0
+      opx2__ihm_tb_aa_s_need_type:
+        type: character varying
+        nullable: true
+        null_frac: 0.465
+        n_distinct~: 3.0
+      opx2__ihm_tb_aa_b_lom:
+        type: boolean
+        nullable: true
+        null_frac: 0.5885
+        n_distinct~: 2.0
+      opx2__ihm_aa_n_tool_version:
+        type: numeric
+        nullable: true
+        null_frac: 0.6757
+        n_distinct~: 3.0
+      opx2__ihm_tb_aa_s_rel_elem_onb:
+        type: character varying
+        nullable: true
+        null_frac: 0.8065
+        n_distinct~: 312.0
+      opx2__ihm_tb_aa_b_hide_both_f:
+        type: boolean
+        nullable: true
+        null_frac: 0.8126
+        n_distinct~: 2.0
+      opx2__ihm_aa_b_main_tool:
+        type: boolean
+        nullable: true
+        null_frac: 0.8649
+        n_distinct~: 2.0
+      opx2__ihm_aa_b_highlight_tool:
+        type: boolean
+        nullable: true
+        null_frac: 0.8651
+        n_distinct~: 2.0
+      opx2__ihm_tb_aa_s_filter2:
+        type: character varying
+        nullable: true
+        null_frac: 0.8765
+        n_distinct~: 260.0
+  opx2__ind_pt_indicator_value:
+    aliases: []
+    columns:
+      opx2__ind_aa_b_value:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2__ind_aa_du_value:
+        type: bigint
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2__ind_ra_indicator:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 16.0
+      opx2__ind_aa_d_value:
+        type: timestamp without time zone
+        nullable: true
+        null_frac: 0.8633
+        n_distinct~: 27.0
+      origin_number:
+        type: numeric
+        nullable: true
+        null_frac: 0.8848
+        n_distinct~: 34.0
+      dataset:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.16601562
+      modify_version:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.70703125
+      name:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.8808594
+      onb:
+        type: numeric
+        nullable: false
+        null_frac: 0.0
+        n_distinct~: -1.0
+      opx2__ind_aa_n_connected_to:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.15820312
+      opx2__ind_aa_n_ovn:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.5839844
+      opx2__ind_aa_n_value:
+        type: numeric
+        nullable: true
+        null_frac: 0.5742
+        n_distinct~: -0.21679688
+      creator_object_number:
+        type: numeric
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      equation_number:
+        type: numeric
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      equation_override:
+        type: boolean
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+  opx2__ind_pt_rule:
+    aliases: []
+    columns:
+      dataset:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 3.0
+      opx2__ba_aa_b_stopped:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 2.0
+      opx2__ba_aa_n_macro_onb:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2__ba_aa_n_timeout:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 5.0
+      opx2__ba_aa_n_when_pb:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 3.0
+      opx2__ba_aa_s_status:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2__ind_aa_at_formula_type:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 3.0
+      opx2__ind_aa_s_class:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 4.0
+      opx2__inf_aa_at_batch_hour:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 4.0
+      opx2__inf_aa_at_end_at:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2__inf_aa_at_freq:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 4.0
+      opx2__inf_aa_at_rec_the:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 2.0
+      opx2__inf_aa_at_repeat_until:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2__inf_aa_at_repeat_until_m:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2__inf_aa_at_repeat_until_w:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+  opx2__kb_pt_kanban_style:
+    aliases: []
+    columns:
+      owner:
+        type: numeric
+        nullable: true
+        null_frac: 0.037
+        n_distinct~: 7.0
+      opx2__ihm_aa_b_bypass_adv_st:
+        type: boolean
+        nullable: true
+        null_frac: 0.358
+        n_distinct~: 1.0
+      opx2__ihm_p6_aa_n_order:
+        type: numeric
+        nullable: true
+        null_frac: 0.358
+        n_distinct~: 1.0
+      group_read_write:
+        type: text
+        nullable: true
+        null_frac: 0.4568
+        n_distinct~: 4.0
+      ignored_dependencies:
+        type: text
+        nullable: true
+        null_frac: 0.6296
+        n_distinct~: 1.0
+      documentation:
+        type: character varying
+        nullable: true
+        null_frac: 0.6914
+        n_distinct~: 1.0
+      opx2__kb_da_origin_cell_onb:
+        type: numeric
+        nullable: true
+        null_frac: 0.9383
+        n_distinct~: 3.0
+      group_read_only:
+        type: text
+        nullable: true
+        null_frac: 0.963
+        n_distinct~: 2.0
+      additional_data:
+        type: text
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.9876543
+      dataset:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.27160493
+      modify_version:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.54320985
+      name:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.8518519
+      onb:
+        type: numeric
+        nullable: false
+        null_frac: 0.0
+        n_distinct~: -1.0
+      on_class:
+        type: character varying
+        nullable: true
+        null_frac: 0.0123
+        n_distinct~: -0.16049382
+      other_data:
+        type: text
+        nullable: true
+        null_frac: 0.0494
+        n_distinct~: -0.83950615
+  opx2__mc_pt_consolidation_da:
+    aliases: []
+    columns:
+      creator_object_number:
+        type: numeric
+        nullable: true
+      dataset:
+        type: numeric
+        nullable: true
+      equation_number:
+        type: numeric
+        nullable: true
+      equation_override:
+        type: boolean
+        nullable: true
+      inactive:
+        type: boolean
+        nullable: true
+      modify_version:
+        type: numeric
+        nullable: true
+      onb:
+        type: numeric
+        nullable: false
+      opx2__mc_aa_analysedval_onb:
+        type: numeric
+        nullable: true
+      opx2__mc_aa_project_onb:
+        type: numeric
+        nullable: true
+      opx2__mc_aa_simulation_onb:
+        type: numeric
+        nullable: true
+      opx2__mc_aa_sim_ovn:
+        type: numeric
+        nullable: true
+      opx2__mc_aa_s_stat:
+        type: character varying
+        nullable: true
+      opx2__mc_aa_s_value_other:
+        type: character varying
+        nullable: true
+      opx2__mc_aa_s_value_type:
+        type: character varying
+        nullable: true
+      opx2__mc_aa_value_date:
+        type: timestamp without time zone
+        nullable: true
+  opx2__mc_pt_simu_sasv_params:
+    aliases: []
+    columns:
+      creator_object_number:
+        type: numeric
+        nullable: true
+      dataset:
+        type: numeric
+        nullable: true
+      equation_number:
+        type: numeric
+        nullable: true
+      equation_override:
+        type: boolean
+        nullable: true
+      inactive:
+        type: boolean
+        nullable: true
+      modify_version:
+        type: numeric
+        nullable: true
+      onb:
+        type: numeric
+        nullable: false
+      opx2__mc_aa_after_step_num:
+        type: character varying
+        nullable: true
+      opx2__mc_aa_bef_step_num:
+        type: character varying
+        nullable: true
+      opx2__mc_aa_sasv_onb:
+        type: numeric
+        nullable: true
+      opx2__mc_aa_simulation_onb:
+        type: numeric
+        nullable: true
+      opx2__mc_aa_start:
+        type: character varying
+        nullable: true
+      opx2__mc_aa_step:
+        type: character varying
+        nullable: true
+      origin_number:
+        type: numeric
+        nullable: true
+      origin_project:
+        type: numeric
+        nullable: true
+  opx2__monday_pt_global_mapping:
+    aliases: []
+    columns:
+      creator_object_number:
+        type: numeric
+        nullable: true
+      dataset:
+        type: numeric
+        nullable: true
+      equation_number:
+        type: numeric
+        nullable: true
+      equation_override:
+        type: boolean
+        nullable: true
+      inactive:
+        type: boolean
+        nullable: true
+      modify_version:
+        type: numeric
+        nullable: true
+      mond_aa_s_item:
+        type: character varying
+        nullable: true
+      mond_aa_s_subitem:
+        type: character varying
+        nullable: true
+      name:
+        type: character varying
+        nullable: true
+      onb:
+        type: numeric
+        nullable: false
+      opx2_comment:
+        type: character varying
+        nullable: true
+      opx2__mond_aa_s_workspace:
+        type: character varying
+        nullable: true
+      origin_number:
+        type: numeric
+        nullable: true
+      origin_project:
+        type: numeric
+        nullable: true
+      ptypes:
+        type: character varying
+        nullable: true
+  opx2__monday_pt_mapping_table:
+    aliases: []
+    columns:
+      creator_object_number:
+        type: numeric
+        nullable: true
+      dataset:
+        type: numeric
+        nullable: true
+      equation_number:
+        type: numeric
+        nullable: true
+      equation_override:
+        type: boolean
+        nullable: true
+      inactive:
+        type: boolean
+        nullable: true
+      modify_version:
+        type: numeric
+        nullable: true
+      mond_aa_b_isuseratt:
+        type: boolean
+        nullable: true
+      name:
+        type: character varying
+        nullable: true
+      onb:
+        type: numeric
+        nullable: false
+      opx2_comment:
+        type: character varying
+        nullable: true
+      opx2__monday_aa_n_board_id:
+        type: numeric
+        nullable: true
+      opx2__monday_aa_s_board_name:
+        type: character varying
+        nullable: true
+      opx2__monday_aa_s_external:
+        type: character varying
+        nullable: true
+      opx2__monday_aa_s_external_id:
+        type: character varying
+        nullable: true
+      opx2__monday_aa_s_local:
+        type: character varying
+        nullable: true
+  opx2__orch_pt_port_status_nn:
+    aliases: []
+    columns:
+      creator_object_number:
+        type: numeric
+        nullable: true
+      dataset:
+        type: numeric
+        nullable: true
+      equation_number:
+        type: numeric
+        nullable: true
+      equation_override:
+        type: boolean
+        nullable: true
+      inactive:
+        type: boolean
+        nullable: true
+      modify_version:
+        type: numeric
+        nullable: true
+      onb:
+        type: numeric
+        nullable: false
+      opx2__orch_ra_portfolio:
+        type: numeric
+        nullable: true
+      opx2__orch_ra_status:
+        type: numeric
+        nullable: true
+      origin_number:
+        type: numeric
+        nullable: true
+      origin_project:
+        type: numeric
+        nullable: true
+      ptypes:
+        type: character varying
+        nullable: true
+      shared_object:
+        type: boolean
+        nullable: true
+      source_dcr_sync_objects:
+        type: numeric
+        nullable: true
+  opx2__orch_pt_prj_status_nn:
+    aliases: []
+    columns:
+      creator_object_number:
+        type: numeric
+        nullable: true
+      dataset:
+        type: numeric
+        nullable: true
+      equation_number:
+        type: numeric
+        nullable: true
+      equation_override:
+        type: boolean
+        nullable: true
+      inactive:
+        type: boolean
+        nullable: true
+      modify_version:
+        type: numeric
+        nullable: true
+      onb:
+        type: numeric
+        nullable: false
+      opx2__orch_ra_status:
+        type: numeric
+        nullable: true
+      origin_number:
+        type: numeric
+        nullable: true
+      origin_project:
+        type: numeric
+        nullable: true
+      ptypes:
+        type: character varying
+        nullable: true
+      shared_object:
+        type: boolean
+        nullable: true
+      source_dcr_sync_objects:
+        type: numeric
+        nullable: true
+  opx2__pex_pt_dispset_col_order:
+    aliases: []
+    columns:
+      dataset:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 19.0
+      opx2__pex_aa_b_hide:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 2.0
+      opx2__pex_aa_b_permanent:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 2.0
+      opx2__pex_aa_n_fixed_width:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 3.0
+      opx2__pex_aa_n_order:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 20.0
+      opx2__pex_aa_n_origin_onum:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2__pex_aa_n_split_info:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2__pex_aa_n_width:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 27.0
+      opx2__pex_ra_query:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 57.0
+      opx2__pex_aa_n_ite_number:
+        type: numeric
+        nullable: true
+        null_frac: 0.3948
+        n_distinct~: 10.0
+      opx2__pex_aa_n_tu_number:
+        type: numeric
+        nullable: true
+        null_frac: 0.3948
+        n_distinct~: 22.0
+      opx2__pex_aa_b_order_from_end:
+        type: boolean
+        nullable: true
+        null_frac: 0.4749
+        n_distinct~: 1.0
+      opx2__pex_aa_b_split:
+        type: boolean
+        nullable: true
+        null_frac: 0.4749
+        n_distinct~: 1.0
+      opx2__pex_aa_b_tu_slot:
+        type: boolean
+        nullable: true
+        null_frac: 0.4871
+        n_distinct~: 2.0
+      opx2__pex_aa_b_user_attribute:
+        type: boolean
+        nullable: true
+        null_frac: 0.4871
+        n_distinct~: 2.0
+  opx2__pex_pt_menu_dim:
+    aliases: []
+    columns:
+      dataset:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 33.0
+      opx2__pex_aa_s_encoded_object:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 38.0
+      opx2__pex_ra_owner:
+        type: numeric
+        nullable: true
+        null_frac: 0.1289
+        n_distinct~: 9.0
+      opx2__dbb_ra_dim_dashboard:
+        type: numeric
+        nullable: true
+        null_frac: 0.783
+        n_distinct~: 45.0
+      opx2__pex_aa_s_dim_fields:
+        type: character varying
+        nullable: true
+        null_frac: 0.8668
+        n_distinct~: 51.0
+      modify_version:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.21160042
+      name:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.8743287
+      onb:
+        type: numeric
+        nullable: false
+        null_frac: 0.0
+        n_distinct~: -1.0
+      opx2__pex_ra_query:
+        type: numeric
+        nullable: true
+        null_frac: 0.5961
+        n_distinct~: -0.107411385
+      creator_object_number:
+        type: numeric
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      equation_number:
+        type: numeric
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      equation_override:
+        type: boolean
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      external_id:
+        type: numeric
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      inactive:
+        type: boolean
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      note_pad:
+        type: character varying
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+  opx2__pex_pt_menu_measure:
+    aliases: []
+    columns:
+      dataset:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 32.0
+      opx2__pex_aa_b_cumulative:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 2.0
+      opx2__pex_aa_b_do_not_conso:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 2.0
+      opx2__pex_aa_b_empty_lines:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 2.0
+      opx2__pex_aa_b_input_after_act:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 2.0
+      opx2__pex_aa_b_input_befor_act:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 2.0
+      opx2__pex_aa_b_input_fixed_d:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 2.0
+      opx2__pex_aa_b_input_possible:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 2.0
+      opx2__pex_aa_b_use_context_fte:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 2.0
+      opx2__pex_aa_s_formula_type:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 3.0
+      opx2__pex_aa_s_measure_type:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 3.0
+      opx2__pex_aa_b_startattimewins:
+        type: boolean
+        nullable: true
+        null_frac: 0.0057
+        n_distinct~: 2.0
+      opx2__pex_aa_s_unit_type:
+        type: character varying
+        nullable: true
+        null_frac: 0.1149
+        n_distinct~: 3.0
+      opx2__pex_aa_b_value:
+        type: boolean
+        nullable: true
+        null_frac: 0.166
+        n_distinct~: 1.0
+      opx2__pex_ra_owner:
+        type: numeric
+        nullable: true
+        null_frac: 0.1759
+        n_distinct~: 7.0
+  opx2__pex_pt_query:
+    aliases: []
+    columns:
+      opx2__pex_aa_b_3d:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2__pex_aa_b_axis_quad:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2__pex_aa_b_bb_label_color:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 2.0
+      opx2__pex_aa_b_bb_label_framed:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2__pex_aa_b_bb_label_underl:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2__pex_aa_b_bb_x_label_set:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 2.0
+      opx2__pex_aa_b_bb_y_label_set:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 2.0
+      opx2__pex_aa_b_bold:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2__pex_aa_b_bold_bb:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 2.0
+      opx2__pex_aa_b_bubble_link:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 2.0
+      opx2__pex_aa_b_colorize_all:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2__pex_aa_b_color_3_legend:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2__pex_aa_b_color_4_legend:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2__pex_aa_b_color_5_legend:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2__pex_aa_b_context_dates:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 2.0
+  opx2__pex_pt_query_measure:
+    aliases: []
+    columns:
+      dataset:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 29.0
+      opx2__pex_aa_b_bb_not_label:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2__pex_aa_b_bb_show_unit:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2__pex_aa_b_bb_tooltip:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2__pex_aa_b_colorize:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2__pex_aa_b_column_order:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2__pex_aa_b_disabled_obj:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2__pex_aa_b_group_timescale:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2__pex_aa_b_impacted_hist:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2__pex_aa_b_left_scale:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2__pex_aa_b_overlay_filters:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2__pex_aa_b_pie_iterate:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2__pex_aa_b_sort_by_formula:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2__pex_aa_b_sort_by_measure:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2__pex_aa_b_sort_meas_desc:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+  opx2__plm_pt_rel_info_change:
+    aliases: []
+    columns:
+      agl_ra_user:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 8.0
+      dataset:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 20.0
+      opx2__plm_aa_n_change_type:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 2.0
+      opx2__plm_ra_rel_info_status:
+        type: numeric
+        nullable: true
+        null_frac: 0.0049
+        n_distinct~: 4.0
+      agl_aa_b_archived:
+        type: boolean
+        nullable: true
+        null_frac: 0.1866
+        n_distinct~: 2.0
+      origin_number:
+        type: numeric
+        nullable: true
+        null_frac: 0.8817
+        n_distinct~: 70.0
+      modify_version:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.27682927
+      onb:
+        type: numeric
+        nullable: false
+        null_frac: 0.0
+        n_distinct~: -1.0
+      opx2__plm_aa_d_date:
+        type: timestamp without time zone
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.14512195
+      opx2__plm_ra_rel_info:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.5707317
+      creator_object_number:
+        type: numeric
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      equation_number:
+        type: numeric
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      equation_override:
+        type: boolean
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      inactive:
+        type: boolean
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      origin_project:
+        type: numeric
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+  opx2__plm_pt_release_info:
+    aliases: []
+    columns:
+      dataset:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 20.0
+      opx2__plm_aa_b_achieved:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2__plm_aa_b_is_rel_active:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 2.0
+      opx2__plm_aa_b_rel_selected:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 2.0
+      opx2__plm_ra_rel_activity:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 35.0
+      opx2__plm_ra_rel_progress:
+        type: numeric
+        nullable: true
+        null_frac: 0.1407
+        n_distinct~: 4.0
+      opx2__plm_aa_d_selected_date:
+        type: timestamp without time zone
+        nullable: true
+        null_frac: 0.5759
+        n_distinct~: 21.0
+      modify_version:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.3425926
+      onb:
+        type: numeric
+        nullable: false
+        null_frac: 0.0
+        n_distinct~: -1.0
+      opx2__plm_ra_rel_object:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.71666664
+      origin_number:
+        type: numeric
+        nullable: true
+        null_frac: 0.7741
+        n_distinct~: -0.18518518
+      creator_object_number:
+        type: numeric
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      equation_number:
+        type: numeric
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      equation_override:
+        type: boolean
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      inactive:
+        type: boolean
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+  opx2__plm_pt_requirement:
+    aliases: []
+    columns:
+      agl_aa_b_blocked:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 2.0
+      agl_aa_n_priority:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 8.0
+      dataset:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 23.0
+      opx2__dm_ra_user:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 5.0
+      opx2__plm_aa_b_is_req_node:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2__plm_ra_req_type:
+        type: numeric
+        nullable: true
+        null_frac: 0.05
+        n_distinct~: 5.0
+      opx2__agl_ra_template:
+        type: numeric
+        nullable: true
+        null_frac: 0.2259
+        n_distinct~: 2.0
+      opx2__agl_aa_b_use_template:
+        type: boolean
+        nullable: true
+        null_frac: 0.4276
+        n_distinct~: 1.0
+      opx2__agl_aa_b_isasubstory:
+        type: boolean
+        nullable: true
+        null_frac: 0.431
+        n_distinct~: 2.0
+      opx2__plm_aa_n_req_cost:
+        type: numeric
+        nullable: true
+        null_frac: 0.5103
+        n_distinct~: 1.0
+      opx2__plm_aa_n_req_prio:
+        type: numeric
+        nullable: true
+        null_frac: 0.5103
+        n_distinct~: 1.0
+      opx2__plm_aa_s_req_dropped:
+        type: boolean
+        nullable: true
+        null_frac: 0.5655
+        n_distinct~: 1.0
+      opx2__plm_aa_s_agl_role:
+        type: character varying
+        nullable: true
+        null_frac: 0.9276
+        n_distinct~: 2.0
+      opx2__plm_aa_t_agl_action:
+        type: character varying
+        nullable: true
+        null_frac: 0.9276
+        n_distinct~: 41.0
+      opx2__plm_ra_req_status:
+        type: numeric
+        nullable: true
+        null_frac: 0.9586
+        n_distinct~: 2.0
+  opx2__re_pt_dates_style:
+    aliases: []
+    columns:
+      dataset:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 28.0
+      opx2__inf_aa_s_export_ds:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 2.0
+      opx2__re_aa_b_rate:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 2.0
+      opx2__re_aa_b_rate_aft:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 2.0
+      opx2__re_aa_b_rate_color:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2__re_aa_b_use_adv_options:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 2.0
+      opx2__re_aa_n_nb_period_after:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 11.0
+      opx2__re_aa_n_nb_period_aft_e:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2__re_aa_n_nb_period_before:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 5.0
+      opx2__re_aa_n_nb_period_bef_b:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2__re_aa_n_rate:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2__re_aa_s_rate_pos:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2__re_aa_s_time_forms:
+        type: character varying
+        nullable: true
+        null_frac: 0.0008
+        n_distinct~: 16.0
+      opx2__re_aa_s_chart_end:
+        type: character varying
+        nullable: true
+        null_frac: 0.0031
+        n_distinct~: 37.0
+      opx2__re_aa_s_chart_start:
+        type: character varying
+        nullable: true
+        null_frac: 0.0031
+        n_distinct~: 30.0
+  opx2__rm_review_pt_role:
+    aliases: []
+    columns:
+      name:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 12.0
+      opx2_comment:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 12.0
+      dataset:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.14933333
+      modify_version:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.14933333
+      onb:
+        type: numeric
+        nullable: false
+        null_frac: 0.0
+        n_distinct~: -1.0
+      onum:
+        type: numeric
+        nullable: true
+        null_frac: 0.0027
+        n_distinct~: -0.16533333
+      origin_number:
+        type: numeric
+        nullable: true
+        null_frac: 0.4827
+        n_distinct~: -0.33333334
+      opx2__rm_review_aa_s_code:
+        type: character varying
+        nullable: true
+        null_frac: 0.9973
+        n_distinct~: -0.0026666522
+      opx2__rm_review_ra_res:
+        type: numeric
+        nullable: true
+        null_frac: 0.9973
+        n_distinct~: -0.0026666522
+      creator_object_number:
+        type: numeric
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      equation_number:
+        type: numeric
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      equation_override:
+        type: boolean
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      external_id:
+        type: numeric
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      inactive:
+        type: boolean
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      note_pad:
+        type: character varying
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+  opx2__roa_pt_roadmap_position:
+    aliases: []
+    columns:
+      dataset:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 33.0
+      opx2__roa_aa_b_rps_align:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2__roa_aa_b_rps_force_dis:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 2.0
+      opx2__roa_aa_b_rps_hide:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 2.0
+      opx2__roa_aa_n_rps_nb_lines:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 3.0
+      opx2__roa_aa_n_rps_onum:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 27.0
+      opx2__roa_aa_n_rps_sfont:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2__roa_aa_n_rps_voffset:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 26.0
+      opx2__roa_aa_n_rps_vsize:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2__roa_aa_s_rps_group:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 6.0
+      opx2__roa_aa_n_sort_wbs:
+        type: numeric
+        nullable: true
+        null_frac: 0.9168
+        n_distinct~: 1.0
+      opx2__roa_aa_s_rps_fgroup:
+        type: character varying
+        nullable: true
+        null_frac: 0.9955
+        n_distinct~: 1.0
+      modify_version:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.29271916
+      onb:
+        type: numeric
+        nullable: false
+        null_frac: 0.0
+        n_distinct~: -1.0
+      opx2__roa_ra_rps_activity:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.81575036
+  opx2__sc_pt_reporting:
+    aliases: []
+    columns:
+      dataset:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 119.0
+      opx2__re_aa_s_module:
+        type: character varying
+        nullable: true
+        null_frac: 0.0024
+        n_distinct~: 54.0
+      onum:
+        type: numeric
+        nullable: true
+        null_frac: 0.0048
+        n_distinct~: 66.0
+      opx2__re_aa_b_to_lock:
+        type: boolean
+        nullable: true
+        null_frac: 0.0297
+        n_distinct~: 2.0
+      opx2__re_aa_b_folder:
+        type: boolean
+        nullable: true
+        null_frac: 0.0586
+        n_distinct~: 2.0
+      opx2__re_aa_s_type:
+        type: character varying
+        nullable: true
+        null_frac: 0.0867
+        n_distinct~: 4.0
+      opx2__re_ra_reporting_user:
+        type: numeric
+        nullable: true
+        null_frac: 0.0884
+        n_distinct~: 1.0
+      opx2__re_aa_b_default:
+        type: boolean
+        nullable: true
+        null_frac: 0.09
+        n_distinct~: 2.0
+      opx2__re_aa_n_pop_count:
+        type: numeric
+        nullable: true
+        null_frac: 0.09
+        n_distinct~: 32.0
+      opx2__re_aa_b_is_a_module:
+        type: boolean
+        nullable: true
+        null_frac: 0.0924
+        n_distinct~: 2.0
+      opx2__re_aa_b_tree_view:
+        type: boolean
+        nullable: true
+        null_frac: 0.1189
+        n_distinct~: 2.0
+      opx2__re_aa_b_dont_menu_disp:
+        type: boolean
+        nullable: true
+        null_frac: 0.1406
+        n_distinct~: 2.0
+      opx2__re_aa_b_export_style:
+        type: boolean
+        nullable: true
+        null_frac: 0.1566
+        n_distinct~: 1.0
+      opx2__re_aa_b_display_fav_box:
+        type: boolean
+        nullable: true
+        null_frac: 0.1711
+        n_distinct~: 2.0
+      opx2__re_aa_b_navigation_panel:
+        type: boolean
+        nullable: true
+        null_frac: 0.196
+        n_distinct~: 2.0
+  opx2__sca_pt_sco:
+    aliases: []
+    columns:
+      dataset:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 65.0
+      opx2__sca_aa_n_value:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 14.0
+      opx2__sca_ra_sco_sct:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 67.0
+      opx2__sca_ra_sco_user:
+        type: numeric
+        nullable: true
+        null_frac: 0.0842
+        n_distinct~: 3.0
+      opx2__sca_aa_t_comment:
+        type: character varying
+        nullable: true
+        null_frac: 0.9726
+        n_distinct~: 39.0
+      modify_version:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.1463016
+      onb:
+        type: numeric
+        nullable: false
+        null_frac: 0.0
+        n_distinct~: -1.0
+      opx2__sca_ra_sco_sca:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.11851247
+      opx2__sca_aa_d_update_comment:
+        type: timestamp without time zone
+        nullable: true
+        null_frac: 0.376
+        n_distinct~: -0.1225991
+      origin_number:
+        type: numeric
+        nullable: true
+        null_frac: 0.6878
+        n_distinct~: -0.24683286
+      creator_object_number:
+        type: numeric
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      equation_number:
+        type: numeric
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      equation_override:
+        type: boolean
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      inactive:
+        type: boolean
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      opx2_comment:
+        type: character varying
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+  opx2_constraint:
+    aliases: []
+    columns:
+      dataset:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 69.0
+      left_dataset:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 69.0
+      opx2__pri_aa_n_lag:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2__pm_aa_b_synchronous_link:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      calendar:
+        type: numeric
+        nullable: true
+        null_frac: 0.0155
+        n_distinct~: 1.0
+      ignored:
+        type: boolean
+        nullable: true
+        null_frac: 0.9971
+        n_distinct~: 1.0
+      onb:
+        type: numeric
+        nullable: false
+        null_frac: 0.0
+        n_distinct~: -1.0
+      modify_version:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.18507752
+      opx2_left:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.872093
+      opx2_right:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.8246124
+      origin_number:
+        type: numeric
+        nullable: true
+        null_frac: 0.5107
+        n_distinct~: -0.3619186
+      opx2__syn_aa_d_last_syn_date:
+        type: timestamp without time zone
+        nullable: true
+        null_frac: 0.999
+        n_distinct~: -0.0009689927
+      type:
+        type: character varying
+        nullable: true
+        null_frac: 0.9995
+        n_distinct~: -0.00048446655
+      duration:
+        type: bigint
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      category:
+        type: numeric
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+    pk:
+    - onb
+  opx2_output:
+    aliases: []
+    columns:
+      modify_version:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 239.0
+      dataset:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 73.0
+      start_date:
+        type: timestamp without time zone
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 21.0
+      end_date:
+        type: timestamp without time zone
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 22.0
+      unit:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 2.0
+      def:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 34.0
+      wbs:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 137.0
+      rbs:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      cbs:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      obs:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 6.0
+      origin_project_onb:
+        type: numeric
+        nullable: true
+        null_frac: 0.8016
+        n_distinct~: 19.0
+      bs0:
+        type: numeric
+        nullable: true
+        null_frac: 0.9979
+        n_distinct~: 2.0
+      onb:
+        type: numeric
+        nullable: false
+        null_frac: 0.0
+        n_distinct~: -1.0
+      opx2_value:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.3700726
+      opx2_data:
+        type: character varying
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+    pk:
+    - onb
+  opx2_registry:
+    aliases: []
+    columns:
+      opx2_key:
+        type: character varying
+        nullable: false
+        null_frac: 0.0
+        n_distinct~: 7.0
+      name:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -1.0
+      opx2_value:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.9837838
+  opx2_sequence:
+    aliases: []
+    columns:
+      seq_name:
+        type: character varying
+        nullable: false
+        null_frac: 0.0
+        n_distinct~: -1.0
+      seq_value:
+        type: numeric
+        nullable: false
+        null_frac: 0.0
+        n_distinct~: -0.5952381
+  opx2_transaction:
+    aliases: []
+    columns:
+      dataset:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 299.0
+      origin:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 2.0
+      version:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 189.0
+      opx2_user:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 89.0
+      integrated:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      session_id:
+        type: numeric
+        nullable: true
+        null_frac: 0.0063
+        n_distinct~: 2445.0
+      modify_version:
+        type: numeric
+        nullable: true
+        null_frac: 0.9821
+        n_distinct~: 213.0
+      onb:
+        type: numeric
+        nullable: false
+        null_frac: 0.0
+        n_distinct~: -1.0
+      opx2_date:
+        type: timestamp without time zone
+        nullable: true
+        null_frac: 0.0002
+        n_distinct~: -0.44189164
+      equation_number:
+        type: numeric
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      creator_object_number:
+        type: numeric
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      equation_override:
+        type: boolean
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+    pk:
+    - onb
+  opx2_user:
+    aliases: []
+    columns:
+      dataset:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2__kp_aa_b_scorer:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      a_opro:
+        type: boolean
+        nullable: true
+        null_frac: 0.013
+        n_distinct~: 2.0
+      a_otimecard:
+        type: boolean
+        nullable: true
+        null_frac: 0.013
+        n_distinct~: 1.0
+      a_ointranet:
+        type: boolean
+        nullable: true
+        null_frac: 0.013
+        n_distinct~: 2.0
+      power_user:
+        type: boolean
+        nullable: true
+        null_frac: 0.013
+        n_distinct~: 1.0
+      replay_allowed:
+        type: boolean
+        nullable: true
+        null_frac: 0.013
+        n_distinct~: 1.0
+      explorer_access:
+        type: boolean
+        nullable: true
+        null_frac: 0.013
+        n_distinct~: 2.0
+      odata_read_only:
+        type: boolean
+        nullable: true
+        null_frac: 0.013
+        n_distinct~: 1.0
+      odata_read_write:
+        type: boolean
+        nullable: true
+        null_frac: 0.013
+        n_distinct~: 1.0
+      opx2__soc_aa_b_accept_follower:
+        type: boolean
+        nullable: true
+        null_frac: 0.013
+        n_distinct~: 2.0
+      ldap_uid:
+        type: numeric
+        nullable: true
+        null_frac: 0.013
+        n_distinct~: 7.0
+      opx2_password:
+        type: character varying
+        nullable: true
+        null_frac: 0.1818
+        n_distinct~: 2.0
+      bp_user_source:
+        type: character varying
+        nullable: true
+        null_frac: 0.513
+        n_distinct~: 2.0
+      opx2_admin:
+        type: boolean
+        nullable: true
+        null_frac: 0.6753
+        n_distinct~: 1.0
+    pk:
+    - onb
+  ordo_project:
+    aliases: []
+    columns:
+      opx2__mig_aa_n_version_nb:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2__agl_aa_n_version:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 2.0
+      rights:
+        type: character varying
+        nullable: true
+        null_frac: 0.1783
+        n_distinct~: 3.0
+      nbperiods:
+        type: numeric
+        nullable: true
+        null_frac: 0.1783
+        n_distinct~: 1.0
+      current_version_number:
+        type: numeric
+        nullable: true
+        null_frac: 0.1783
+        n_distinct~: 1.0
+      status:
+        type: character varying
+        nullable: true
+        null_frac: 0.1783
+        n_distinct~: 4.0
+      dependences_management:
+        type: character varying
+        nullable: true
+        null_frac: 0.1783
+        n_distinct~: 1.0
+      weight:
+        type: numeric
+        nullable: true
+        null_frac: 0.1783
+        n_distinct~: 1.0
+      transaction_counter:
+        type: numeric
+        nullable: true
+        null_frac: 0.1783
+        n_distinct~: 7.0
+      budget_update_mode:
+        type: character varying
+        nullable: true
+        null_frac: 0.1783
+        n_distinct~: 2.0
+      opx2__wzd_aa_b_permanent:
+        type: boolean
+        nullable: true
+        null_frac: 0.1783
+        n_distinct~: 2.0
+      opx2__wf_aa_b_wf_processed:
+        type: boolean
+        nullable: true
+        null_frac: 0.1783
+        n_distinct~: 1.0
+      opx2__wf_aa_b_to_be_reviewed:
+        type: boolean
+        nullable: true
+        null_frac: 0.1783
+        n_distinct~: 1.0
+      opx2__sup_aa_b_supervision_prj:
+        type: boolean
+        nullable: true
+        null_frac: 0.1783
+        n_distinct~: 1.0
+      opx2__sc_aa_n_custom_rate:
+        type: numeric
+        nullable: true
+        null_frac: 0.1783
+        n_distinct~: 1.0
+    pk:
+    - onb
+  ordo_rte_element:
+    aliases: []
+    columns:
+      modify_version:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 2760.0
+      dataset:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 72.0
+      opx2_offset:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 4.0
+      attribute:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 24.0
+      onb:
+        type: numeric
+        nullable: false
+        null_frac: 0.0
+        n_distinct~: -1.0
+      opx2_object:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.999243
+      opx2_data:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.6255551
+      equation_number:
+        type: numeric
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      creator_object_number:
+        type: numeric
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      equation_override:
+        type: boolean
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      ptypes:
+        type: character varying
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      source_dcr_sync_objects:
+        type: numeric
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+    pk:
+    - onb
+  ov_dataset:
+    aliases: []
+    columns:
+      opx2_user:
+        type: numeric
+        nullable: true
+      machine_id:
+        type: character varying
+        nullable: true
+      dataset:
+        type: numeric
+        nullable: true
+      locked:
+        type: boolean
+        nullable: true
+  pnlvalue:
+    aliases: []
+    columns:
+      dataset:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 66.0
+      work_structure:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 124.0
+      start_date:
+        type: timestamp without time zone
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 19.0
+      time_unit:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      model:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 6.0
+      equation:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 37.0
+      munit:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 2.0
+      origin_number:
+        type: numeric
+        nullable: true
+        null_frac: 0.9822
+        n_distinct~: 37.0
+      onb:
+        type: numeric
+        nullable: false
+        null_frac: 0.0
+        n_distinct~: -1.0
+      modify_version:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.12583183
+      opx2_value:
+        type: numeric
+        nullable: true
+        null_frac: 0.4044
+        n_distinct~: -0.120084696
+      onb0:
+        type: numeric
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      onb1:
+        type: numeric
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      onb2:
+        type: numeric
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      onb3:
+        type: numeric
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+    pk:
+    - onb
+  prediction_category:
+    aliases: []
+    columns:
+      dataset:
+        type: numeric
+        nullable: true
+      has_lower_bound:
+        type: boolean
+        nullable: true
+      has_upper_bound:
+        type: boolean
+        nullable: true
+      is_a_range:
+        type: boolean
+        nullable: true
+      lower_bound:
+        type: numeric
+        nullable: true
+      model:
+        type: numeric
+        nullable: true
+      modify_version:
+        type: numeric
+        nullable: true
+      name:
+        type: character varying
+        nullable: true
+      opx2_offset:
+        type: numeric
+        nullable: true
+      onb:
+        type: numeric
+        nullable: false
+      opx2_comment:
+        type: character varying
+        nullable: true
+      opx2__inf_aa_s_user_color:
+        type: character varying
+        nullable: true
+      upper_bound:
+        type: numeric
+        nullable: true
+    pk:
+    - onb
+  process_transaction:
+    aliases: []
+    columns:
+      dataset:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 34.0
+      instance_id:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 2.0
+      opx2_offset:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 7.0
+      process_id:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 13.0
+      task_id:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 32.0
+      process_version:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2_timestamp:
+        type: numeric
+        nullable: true
+        null_frac: 0.1721
+        n_distinct~: 51.0
+      user_id:
+        type: character varying
+        nullable: true
+        null_frac: 0.3397
+        n_distinct~: 51.0
+      action_counter:
+        type: numeric
+        nullable: true
+        null_frac: 0.4718
+        n_distinct~: 5.0
+      closed:
+        type: boolean
+        nullable: true
+        null_frac: 0.5372
+        n_distinct~: 1.0
+      locked_by:
+        type: character varying
+        nullable: true
+        null_frac: 0.6795
+        n_distinct~: 29.0
+      reminder_sent:
+        type: numeric
+        nullable: true
+        null_frac: 0.9729
+        n_distinct~: 1.0
+      last_reminder_sent:
+        type: timestamp without time zone
+        nullable: true
+        null_frac: 0.9729
+        n_distinct~: 19.0
+      token:
+        type: character varying
+        nullable: true
+        null_frac: 0.9797
+        n_distinct~: 1.0
+      onb:
+        type: numeric
+        nullable: false
+        null_frac: 0.0
+        n_distinct~: -1.0
+    pk:
+    - onb
+  progress_increase:
+    aliases: []
+    columns:
+      dataset:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 21.0
+      onb:
+        type: numeric
+        nullable: false
+        null_frac: 0.0
+        n_distinct~: -1.0
+      modify_version:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.1580247
+      work_structure:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.908642
+      end_date:
+        type: timestamp without time zone
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.3037037
+      opx2_value:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.1382716
+      origin_number:
+        type: numeric
+        nullable: true
+        null_frac: 0.6691
+        n_distinct~: -0.23950617
+      tstart:
+        type: timestamp without time zone
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      equation_number:
+        type: numeric
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      creator_object_number:
+        type: numeric
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      equation_override:
+        type: boolean
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      ptypes:
+        type: character varying
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      source_dcr_sync_objects:
+        type: numeric
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+    pk:
+    - onb
+  release_note:
+    aliases: []
+    columns:
+      opx2_user:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 8.0
+      onb:
+        type: numeric
+        nullable: false
+        null_frac: 0.0
+        n_distinct~: -1.0
+      modify_version:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.6554935
+      dataset:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.22718808
+      opx2_date:
+        type: timestamp without time zone
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.6554935
+      version:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.45251396
+      opx2_comment:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.18621974
+      ptypes:
+        type: character varying
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      source_dcr_sync_objects:
+        type: numeric
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+    pk:
+    - onb
+  rest_entity:
+    aliases: []
+    columns:
+      dataset:
+        type: numeric
+        nullable: true
+      entity:
+        type: numeric
+        nullable: true
+      opx2_external:
+        type: character varying
+        nullable: true
+      opx2_local:
+        type: character varying
+        nullable: true
+      modify_version:
+        type: numeric
+        nullable: true
+      onb:
+        type: numeric
+        nullable: false
+      representation:
+        type: numeric
+        nullable: true
+      type:
+        type: character varying
+        nullable: true
+    pk:
+    - onb
+  rest_representation:
+    aliases: []
+    columns:
+      dataset:
+        type: numeric
+        nullable: true
+      description:
+        type: character varying
+        nullable: true
+      modify_version:
+        type: numeric
+        nullable: true
+      name:
+        type: character varying
+        nullable: true
+      onb:
+        type: numeric
+        nullable: false
+    pk:
+    - onb
+  rn_previous_state:
+    aliases: []
+    columns:
+      release_onb:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 145.0
+      op:
+        type: text
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 3.0
+      target_class:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 145.0
+      target_root:
+        type: numeric
+        nullable: true
+        null_frac: 0.0116
+        n_distinct~: 177.0
+      target_root_class:
+        type: character varying
+        nullable: true
+        null_frac: 0.7626
+        n_distinct~: 3.0
+      target_onb:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.87622195
+      target_ovn:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.1585433
+      target_index:
+        type: character varying
+        nullable: true
+        null_frac: 0.5173
+        n_distinct~: -0.36906236
+      doc:
+        type: character varying
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+  role_assigned:
+    aliases: []
+    columns:
+      dataset:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 67.0
+      opx2_role:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 23.0
+      uog:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 59.0
+      opx2_initial:
+        type: boolean
+        nullable: true
+        null_frac: 0.5331
+        n_distinct~: 1.0
+      onb:
+        type: numeric
+        nullable: false
+        null_frac: 0.0
+        n_distinct~: -1.0
+      modify_version:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.22649573
+      opx2_object:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.52831197
+      equation_number:
+        type: numeric
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      creator_object_number:
+        type: numeric
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      equation_override:
+        type: boolean
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      ptypes:
+        type: character varying
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      source_dcr_sync_objects:
+        type: numeric
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      opx2__role_aa_d_sd:
+        type: timestamp without time zone
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      opx2__role_aa_d_ed:
+        type: timestamp without time zone
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+    pk:
+    - onb
+  select_optimizer:
+    aliases: []
+    columns:
+      opx2_key:
+        type: character varying
+        nullable: false
+        null_frac: 0.0
+        n_distinct~: 17.0
+      object_id:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.38057095
+  sensitivity_analysis_plan:
+    aliases: []
+    columns:
+      cumulative:
+        type: boolean
+        nullable: true
+      dataset:
+        type: numeric
+        nullable: true
+      date_format:
+        type: character varying
+        nullable: true
+      dmasd:
+        type: boolean
+        nullable: true
+      duration_format:
+        type: character varying
+        nullable: true
+      lalert:
+        type: character varying
+        nullable: true
+      macro_after_drawing:
+        type: character varying
+        nullable: true
+      macro_before_drawing:
+        type: character varying
+        nullable: true
+      macro_before_simulation:
+        type: character varying
+        nullable: true
+      modify_version:
+        type: numeric
+        nullable: true
+      name:
+        type: character varying
+        nullable: true
+      nohid:
+        type: numeric
+        nullable: true
+      novid:
+        type: numeric
+        nullable: true
+      number_format:
+        type: character varying
+        nullable: true
+      onb:
+        type: numeric
+        nullable: false
+    pk:
+    - onb
+  sensitivity_analysis_sim:
+    aliases: []
+    columns:
+      aa_s_project:
+        type: character varying
+        nullable: true
+      awaiting_launch:
+        type: boolean
+        nullable: true
+      creator_object_number:
+        type: numeric
+        nullable: true
+      dataset:
+        type: numeric
+        nullable: true
+      equation_number:
+        type: numeric
+        nullable: true
+      equation_override:
+        type: boolean
+        nullable: true
+      last_launch_user:
+        type: numeric
+        nullable: true
+      mcn_aa_s_name:
+        type: character varying
+        nullable: true
+      mcn_aa_s_seed_simu_id:
+        type: character varying
+        nullable: true
+      mc_aa_b_all_share:
+        type: boolean
+        nullable: true
+      mc_aa_b_run_bck_grnd_proc:
+        type: boolean
+        nullable: true
+      mc_aa_b_selected:
+        type: boolean
+        nullable: true
+      mc_aa_s_group_share:
+        type: character varying
+        nullable: true
+      mc_aa_s_seed_simulation:
+        type: character varying
+        nullable: true
+      mc_ra_sim_owner:
+        type: numeric
+        nullable: true
+    pk:
+    - onb
+  sensitivity_analysis_sv:
+    aliases: []
+    columns:
+      after_steps_num:
+        type: character varying
+        nullable: true
+      attribute:
+        type: character varying
+        nullable: true
+      before_steps_num:
+        type: character varying
+        nullable: true
+      computation_formula:
+        type: character varying
+        nullable: true
+      creator_object_number:
+        type: numeric
+        nullable: true
+      dataset:
+        type: numeric
+        nullable: true
+      distribution:
+        type: character varying
+        nullable: true
+      equation_number:
+        type: numeric
+        nullable: true
+      equation_override:
+        type: boolean
+        nullable: true
+      filter:
+        type: character varying
+        nullable: true
+      max_value:
+        type: character varying
+        nullable: true
+      mean:
+        type: character varying
+        nullable: true
+      min_value:
+        type: character varying
+        nullable: true
+      modify_version:
+        type: numeric
+        nullable: true
+      opx2_offset:
+        type: numeric
+        nullable: true
+    pk:
+    - onb
+  server_status:
+    aliases: []
+    columns:
+      onb:
+        type: numeric
+        nullable: false
+        null_frac: 0.0
+        n_distinct~: -1.0
+      server_name:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.11111111
+      server_port:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.44444445
+      service_type:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.22222222
+      start_date:
+        type: timestamp without time zone
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.7777778
+      update_date:
+        type: timestamp without time zone
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.8888889
+      max_load:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.11111111
+      opx2_load:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.33333334
+      load_limit:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.11111111
+      tick_interval:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.11111111
+      pid:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -1.0
+      slaves_lower_port_range:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.22222222
+      slaves_upper_port_range:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.22222222
+      project_filter:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.11111111
+      shutdown_date:
+        type: timestamp without time zone
+        nullable: true
+        null_frac: 0.7778
+        n_distinct~: -0.11111111
+  server_uri:
+    aliases: []
+    columns:
+      session_id:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 2.0
+      webservice:
+        type: boolean
+        nullable: true
+        null_frac: 0.6974
+        n_distinct~: 1.0
+      uri_name:
+        type: character varying
+        nullable: true
+        null_frac: 0.0132
+        n_distinct~: -0.49342105
+  style:
+    aliases: []
+    columns:
+      dataset:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 215.0
+      opx2_default:
+        type: boolean
+        nullable: true
+        null_frac: 0.7883
+        n_distinct~: 1.0
+      onb:
+        type: numeric
+        nullable: false
+        null_frac: 0.0
+        n_distinct~: -1.0
+      modify_version:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.24224178
+      dialog_name:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.34275126
+      dialog_comment:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.4608615
+      opx2_data:
+        type: text
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.99722093
+      update_date:
+        type: timestamp without time zone
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.984252
+      name:
+        type: character varying
+        nullable: true
+        null_frac: 0.0005
+        n_distinct~: -0.85734135
+      folder_label:
+        type: character varying
+        nullable: true
+        null_frac: 0.7726
+        n_distinct~: -0.15562761
+      replacement:
+        type: character varying
+        nullable: true
+        null_frac: 0.9995
+        n_distinct~: -0.0004631877
+    pk:
+    - onb
+  suser_value:
+    aliases: []
+    columns:
+      modify_version:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 8.0
+      dataset:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 6.0
+      attname:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 4.0
+      onb:
+        type: numeric
+        nullable: false
+        null_frac: 0.0
+        n_distinct~: -1.0
+      object_reference:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.3773585
+      opx2_value:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.12264151
+      ptypes:
+        type: character varying
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      source_dcr_sync_objects:
+        type: numeric
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      class_reference:
+        type: character varying
+        nullable: true
+    pk:
+    - onb
+  table_style:
+    aliases: []
+    columns:
+      opx2__ihm_p6_aa_n_order:
+        type: numeric
+        nullable: true
+        null_frac: 0.0263
+        n_distinct~: 1.0
+      advanced_style:
+        type: boolean
+        nullable: true
+        null_frac: 0.1974
+        n_distinct~: 1.0
+      ignored_dependencies:
+        type: text
+        nullable: true
+        null_frac: 0.25
+        n_distinct~: 1.0
+      opx2__ihm_aa_b_bypass_adv_st:
+        type: boolean
+        nullable: true
+        null_frac: 0.3026
+        n_distinct~: 1.0
+      group_read_write:
+        type: text
+        nullable: true
+        null_frac: 0.8553
+        n_distinct~: 4.0
+      group_read_only:
+        type: text
+        nullable: true
+        null_frac: 0.8684
+        n_distinct~: 3.0
+      onb:
+        type: numeric
+        nullable: false
+        null_frac: 0.0
+        n_distinct~: -1.0
+      modify_version:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.21052632
+      dataset:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.13157895
+      owner:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.15789473
+      on_class:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.38157895
+      name:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.36842105
+      other_data:
+        type: text
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -1.0
+      context_dependencies:
+        type: text
+        nullable: true
+        null_frac: 0.6842
+        n_distinct~: -0.31578946
+      filter:
+        type: text
+        nullable: true
+        null_frac: 0.9868
+        n_distinct~: -0.013157904
+    pk:
+    - onb
+  task:
+    aliases: []
+    columns:
+      modify_version:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 213.0
+      dataset:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 92.0
+      name:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 230.0
+      phasis:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 136.0
+      priority:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      streching:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 2.0
+      progress_method:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 3.0
+      cbs:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      tc_closed:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      need_wl_update:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      i_status:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 2.0
+      opx2__srv_aa_n_rate:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2__roa_aa_n_gantt_nb_lines:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 3.0
+      opx2__roa_aa_b_gantt_top_bar:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2__roa_aa_b_gantt_full_line:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+    pk:
+    - onb
+  task_alloc:
+    aliases: []
+    columns:
+      modify_version:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 196.0
+      dataset:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 45.0
+      ratio:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 37.0
+      duration_mode:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 3.0
+      cbs:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 2.0
+      resource_from:
+        type: bigint
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2__tm_aa_b_staus:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 2.0
+      opx2__rm_review_aa_n_mode:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 2.0
+      opx2_resource:
+        type: numeric
+        nullable: true
+        null_frac: 0.001
+        n_distinct~: 67.0
+      qty:
+        type: numeric
+        nullable: true
+        null_frac: 0.002
+        n_distinct~: 9.0
+      rate:
+        type: numeric
+        nullable: true
+        null_frac: 0.002
+        n_distinct~: 54.0
+      during:
+        type: bigint
+        nullable: true
+        null_frac: 0.006
+        n_distinct~: 84.0
+      total_load:
+        type: numeric
+        nullable: true
+        null_frac: 0.006
+        n_distinct~: 143.0
+      fixed_rate:
+        type: boolean
+        nullable: true
+        null_frac: 0.0755
+        n_distinct~: 1.0
+      equation_number:
+        type: numeric
+        nullable: true
+        null_frac: 0.8671
+        n_distinct~: 3.0
+    pk:
+    - onb
+  tc_input_unit:
+    aliases: []
+    columns:
+      unit_number:
+        type: numeric
+        nullable: true
+      dataset_number:
+        type: numeric
+        nullable: true
+      opx2_value:
+        type: character varying
+        nullable: true
+      type:
+        type: character varying
+        nullable: true
+  tc_parameter_item:
+    aliases: []
+    columns:
+      origin:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      name:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -1.0
+      opx2_value:
+        type: text
+        nullable: true
+        null_frac: 0.3942
+        n_distinct~: -0.21991701
+  tour_item_cell_anchor:
+    aliases: []
+    columns:
+      dataset:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 11.0
+      type:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 14.0
+      version_key:
+        type: numeric
+        nullable: true
+        null_frac: 0.0003
+        n_distinct~: 13.0
+      version_key_processes:
+        type: numeric
+        nullable: true
+        null_frac: 0.2193
+        n_distinct~: 3.0
+      object_class:
+        type: character varying
+        nullable: true
+        null_frac: 0.3474
+        n_distinct~: 515.0
+      onb:
+        type: numeric
+        nullable: false
+        null_frac: 0.0
+        n_distinct~: -1.0
+      modify_version:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.7233212
+      opx2_key:
+        type: text
+        nullable: true
+        null_frac: 0.0001
+        n_distinct~: -0.9590838
+      object_attribute:
+        type: character varying
+        nullable: true
+        null_frac: 0.3475
+        n_distinct~: -0.31124413
+      opx2_data:
+        type: character varying
+        nullable: true
+        null_frac: 0.531
+        n_distinct~: -0.381468
+      opx2_object:
+        type: numeric
+        nullable: true
+        null_frac: 0.9998
+        n_distinct~: -0.00020819902
+      x:
+        type: numeric
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      y:
+        type: numeric
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      ptypes:
+        type: character varying
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      source_dcr_sync_objects:
+        type: numeric
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+    pk:
+    - onb
+  tour_sequence_item:
+    aliases: []
+    columns:
+      dataset:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 8.0
+      anchor_position:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 5.0
+      onum:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 23.0
+      visible:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      color_border:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      background:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      report_width:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 4.0
+      opx2__plw_tour_aa_b_delay:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      report_plwt_item:
+        type: numeric
+        nullable: true
+        null_frac: 0.0094
+        n_distinct~: 3.0
+      opx2__plw_tour_aa_s_bord_color:
+        type: character varying
+        nullable: true
+        null_frac: 0.0151
+        n_distinct~: 1.0
+      action_anchor:
+        type: boolean
+        nullable: true
+        null_frac: 0.9605
+        n_distinct~: 1.0
+      onb:
+        type: numeric
+        nullable: false
+        null_frac: 0.0
+        n_distinct~: -1.0
+      modify_version:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.8870056
+      anchor:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -1.0
+      tour_sequence:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.21845575
+    pk:
+    - onb
+  tour_sequence_item_content:
+    aliases: []
+    columns:
+      dataset:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 10.0
+      modify_version:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 4561.0
+      opx2_language:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 13.0
+      opx2__hyp_aa_b_german_val:
+        type: boolean
+        nullable: true
+        null_frac: 0.0192
+        n_distinct~: 2.0
+      opx2__hyp_aa_b_french_val:
+        type: boolean
+        nullable: true
+        null_frac: 0.0192
+        n_distinct~: 2.0
+      opx2__hyp_aa_b_english_val:
+        type: boolean
+        nullable: true
+        null_frac: 0.0192
+        n_distinct~: 2.0
+      item:
+        type: numeric
+        nullable: true
+        null_frac: 0.0808
+        n_distinct~: 18486.0
+      opx2__hyp_aa_b_spanish_val:
+        type: boolean
+        nullable: true
+        null_frac: 0.6127
+        n_distinct~: 2.0
+      opx2__hyp_aa_b_russian_val:
+        type: boolean
+        nullable: true
+        null_frac: 0.7948
+        n_distinct~: 1.0
+      opx2__hyp_aa_b_japanese_val:
+        type: boolean
+        nullable: true
+        null_frac: 0.9071
+        n_distinct~: 2.0
+      opx2__hyp_aa_b_polish_val:
+        type: boolean
+        nullable: true
+        null_frac: 0.976
+        n_distinct~: 1.0
+      opx2__hyp_aa_b_korean_val:
+        type: boolean
+        nullable: true
+        null_frac: 0.976
+        n_distinct~: 1.0
+      onb:
+        type: numeric
+        nullable: false
+        null_frac: 0.0
+        n_distinct~: -1.0
+      string_content:
+        type: character varying
+        nullable: true
+        null_frac: 0.715
+        n_distinct~: -0.10194696
+      replacement:
+        type: character varying
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+    pk:
+    - onb
+  trace_modif:
+    aliases: []
+    columns:
+      dataset:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 17.0
+      trace:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 6.0
+      onb:
+        type: numeric
+        nullable: false
+        null_frac: 0.0
+        n_distinct~: -1.0
+      on_object_number:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.6623537
+      on_object_index:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.5212569
+      info:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.7985213
+      modify_version:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.3284042
+      opx2__plm_aa_s_mod_object:
+        type: character varying
+        nullable: true
+        null_frac: 0.4196
+        n_distinct~: -0.20825632
+      equation_number:
+        type: numeric
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      creator_object_number:
+        type: numeric
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      equation_override:
+        type: boolean
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+    pk:
+    - onb
+  transaction_log:
+    aliases: []
+    columns:
+      session_id:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 3.0
+      modify_version:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 7.0
+      trn_number:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 3.0
+      global_trn_number:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 3.0
+      opx2_table:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 6.0
+      action:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 4.0
+      columns:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 6.0
+      dataset:
+        type: numeric
+        nullable: true
+        null_frac: 0.9545
+        n_distinct~: 3.0
+      line_number:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.50757575
+      opx2_data:
+        type: text
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.54545456
+  transaction_reader:
+    aliases: []
+    columns:
+      dataset:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 28.0
+      user_id:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 33.0
+      status:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 2.0
+      onb:
+        type: numeric
+        nullable: false
+        null_frac: 0.0
+        n_distinct~: -1.0
+      modify_version:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.68302387
+      process_transaction:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.8753316
+      opx2_date:
+        type: timestamp without time zone
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.8965517
+      opx2_comment:
+        type: character varying
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      suppressed:
+        type: boolean
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      equation_number:
+        type: numeric
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      creator_object_number:
+        type: numeric
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      equation_override:
+        type: boolean
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      ptypes:
+        type: character varying
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      proxy_user_id:
+        type: character varying
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      source_dcr_sync_objects:
+        type: numeric
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+    pk:
+    - onb
+  ts_object:
+    aliases: []
+    columns:
+      dataset:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 15.0
+      opx2_resource:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 40.0
+      distribution:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 4.0
+      cbs:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 6.0
+      opx2_0bs:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2_1bs:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2_2bs:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2_3bs:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2_4bs:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2_5bs:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2_6bs:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2_7bs:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2_8bs:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2_9bs:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      type:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 7.0
+    pk:
+    - onb
+  user_dataset_use:
+    aliases: []
+    columns:
+      provider:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.25
+      opx2_user:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.31944445
+      not_visible:
+        type: boolean
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+  user_group:
+    aliases: []
+    columns:
+      onb:
+        type: numeric
+        nullable: false
+        null_frac: 0.0
+        n_distinct~: -1.0
+      name:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -1.0
+      opx2_comment:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -1.0
+      priority:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.125
+      dataset:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.125
+      modify_version:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.875
+      opx2__prf_aa_b_profile:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.25
+      is_mod_rr:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.125
+      is_mod_rk:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.125
+      is_mod_op:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.125
+      is_mod_nt:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.125
+      is_mod_ne:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.125
+      is_mod_na:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.125
+      is_mod_is:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.125
+      is_mod_eu:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.125
+    pk:
+    - onb
+  user_in_group:
+    aliases: []
+    columns:
+      user_group:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 7.0
+      dataset:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 2.0
+      onb:
+        type: numeric
+        nullable: false
+        null_frac: 0.0
+        n_distinct~: -1.0
+      opx2_user:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.89534885
+      modify_version:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.49418604
+      equation_number:
+        type: numeric
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      creator_object_number:
+        type: numeric
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+      equation_override:
+        type: boolean
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+    pk:
+    - onb
+  user_parameter:
+    aliases: []
+    columns:
+      opx2_user:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 80.0
+      origin:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2_value:
+        type: text
+        nullable: true
+        null_frac: 0.2312
+        n_distinct~: 2019.0
+      opx2_key:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.19547696
+      info:
+        type: character varying
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+  user_session:
+    aliases: []
+    columns:
+      username:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -1.0
+      session_id:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -1.0
+      connection_date:
+        type: timestamp without time zone
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -1.0
+      uri_name:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -1.0
+      machine:
+        type: character varying
+        nullable: true
+        null_frac: 1.0
+        n_distinct~: 0.0
+  work_performed:
+    aliases: []
+    columns:
+      dataset:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 13.0
+      total_load:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 34.0
+      opx2_resource:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 37.0
+      cbs:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      alloc_number:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      other_unit:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      origin:
+        type: character varying
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 2.0
+      opx2__tc_aa_b_on_site:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      opx2__tc_aa_b_billable:
+        type: boolean
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: 1.0
+      primary_skill:
+        type: numeric
+        nullable: true
+        null_frac: 0.2224
+        n_distinct~: 3.0
+      opx2__pri_aa_n_ext_id:
+        type: numeric
+        nullable: true
+        null_frac: 0.7067
+        n_distinct~: 1.0
+      opx2__crt_aa_n_neghour_onb:
+        type: numeric
+        nullable: true
+        null_frac: 0.7067
+        n_distinct~: 1.0
+      opx2__rm_review_ra_compact:
+        type: numeric
+        nullable: true
+        null_frac: 0.9646
+        n_distinct~: 7.0
+      onb:
+        type: numeric
+        nullable: false
+        null_frac: 0.0
+        n_distinct~: -1.0
+      modify_version:
+        type: numeric
+        nullable: true
+        null_frac: 0.0
+        n_distinct~: -0.18897638
+    pk:
+    - onb

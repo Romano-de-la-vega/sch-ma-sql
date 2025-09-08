@@ -1,0 +1,1536 @@
+{
+  "source_mpd": "mpd E715 1.html",
+  "tables": [
+    {
+      "name": "ORDO_PROJECT",
+      "description_table": "Project",
+      "columns": [
+        {
+          "name": "AGL_AA_S_CUR_RELEASE",
+          "type": "STRING",
+          "description": "Time now - Heure de référence actuelle du projet ; utilisée pour les calculs d'avancement, les rapports et la synchronisation avec les outils agiles."
+        },
+        {
+          "name": "AGL_AA_S_CUR_SPRINT",
+          "type": "STRING",
+          "description": "Agile project (internal) - Indicateur interne signalant qu'il s'agit d'un projet géré en mode Agile ; sert aux filtres, à la planification en sprints et aux automatisations."
+        },
+        {
+          "name": "AUTOMATIC_BROADCAST",
+          "type": "BINARY",
+          "description": "Project with at least one Agile board - Drapeau binaire indiquant qu'au moins un tableau Agile (kanban/scrum) est associé ; active la diffusion automatique des rapports."
+        },
+        {
+          "name": "BCWP",
+          "type": "NUMBER",
+          "description": "Prevent requirements deletion from Agile projects - Valeur chiffrée (Budgeted Cost of Work Performed) utilisée pour le contrôle coûts ; le texte indique aussi un verrou de suppression des exigences dans les projets Agile."
+        },
+        {
+          "name": "BRI",
+          "type": "STRING",
+          "description": "Agile version number - Numéro de version Agile (release) ; permet de tracer les incréments livrés et la compatibilité des artefacts."
+        },
+        {
+          "name": "BRN",
+          "type": "INTEGER",
+          "description": "Story filter [deprecated] - Filtre d'histoires (deprecated) ; conservé pour compatibilité, ne plus utiliser pour les nouveaux projets."
+        },
+        {
+          "name": "BUDGET",
+          "type": "NUMBER",
+          "description": "Active workbook - Montant budgétaire principal associé au projet ; utilisé comme référence dans le classeur financier actif."
+        },
+        {
+          "name": "BUDGET_FINISH",
+          "type": "DATE",
+          "description": "Activetab template - Date de fin du budget courant ; peut provenir du modèle d'onglet actif pour les prévisions."
+        },
+        {
+          "name": "BUDGET_LOCKED_BY",
+          "type": "STRING",
+          "description": "temporary budget style for simulation - Identifiant de l'utilisateur/verrou posant un gel budgétaire temporaire ; utile pour les simulations sans écraser la base."
+        },
+        {
+          "name": "BUDGET_START",
+          "type": "DATE",
+          "description": "Brand project - Date de début de la période budgétaire ; peut être utilisée pour les projets de marque/produit."
+        },
+        {
+          "name": "BUDGET_UPDATE_MODE",
+          "type": "BINARY",
+          "description": "Is a contract? - Mode de mise à jour du budget ; indicateur binaire pouvant marquer un budget contractuel (gelé) vs évolutif."
+        },
+        {
+          "name": "CALENDAR_INDEX",
+          "type": "STRING",
+          "description": "Time unit - Indice/clé de calendrier ; définit l'unité de temps (jour, semaine, mois) pour l'ordonnancement."
+        },
+        {
+          "name": "CALENDAR_NUMBER",
+          "type": "INTEGER",
+          "description": "Time unit 1 - Numéro de calendrier (instance) associé ; permet de sélectionner une configuration d'horaires/jours fériés spécifique."
+        },
+        {
+          "name": "CBS",
+          "type": "CBS-NODE",
+          "description": "Unit of entry - Nœud de la Cost Breakdown Structure ; unité de saisie pour le suivi des coûts par lot/compte."
+        },
+        {
+          "name": "COMMITMENTS",
+          "type": "NUMBER",
+          "description": "Search... - Montant total des engagements (PO/contrats) ; aide à comparer dépenses engagées vs budget."
+        },
+        {
+          "name": "CONNECTOR_PRIMAVERA",
+          "type": "CONNECTOR-PRIMAVERA",
+          "description": "Notepad - Référence au connecteur Primavera ; champ mémo pour notes d'intégration/paramètres."
+        },
+        {
+          "name": "CONSOLIDATION",
+          "type": "BOOLEAN",
+          "description": "Idea popup displayed attributes - Indique si le projet est consolidé/agrégé dans les rapports ; définit aussi les attributs visibles dans les fenêtres contextuelles d'idées."
+        },
+        {
+          "name": "COST_VERSION",
+          "type": "INTEGER",
+          "description": "Strategy description - Numéro de version des données de coûts ; lié à la description de stratégie de chiffrage et d'évolution."
+        },
+        {
+          "name": "CREATION_DATE",
+          "type": "DATE",
+          "description": "Corporate strategy - Date de création du projet ; utilisée pour la traçabilité et l'alignement avec la stratégie d'entreprise."
+        },
+        {
+          "name": "CURRENT_VERSION_NUMBER",
+          "type": "INTEGER",
+          "description": "Business proposal - Numéro de version courante du projet ; reflète aussi la proposition métier associée."
+        },
+        {
+          "name": "DEFINED_COST_CURRENT_DATE",
+          "type": "DATE",
+          "description": "Customer satisfaction - Date de référence pour les coûts définis ; utile pour mesurer l'impact/cohérence avec la satisfaction client."
+        },
+        {
+          "name": "DELETED",
+          "type": "BOOLEAN",
+          "description": "Idea type - Indicateur de suppression logique ; catégorise aussi le type d'idée/initiative pour l'archivage."
+        },
+        {
+          "name": "DEPENDENCES_MANAGEMENT",
+          "type": "SYMBOL",
+          "description": "Project capacity - Mode/stratégie de gestion des dépendances ; impacte la capacité et le séquencement des tâches."
+        },
+        {
+          "name": "ETC",
+          "type": "NUMBER",
+          "description": "Application - Estimate To Complete ; coût restant estimé pour terminer, agrégé au niveau application/projet."
+        },
+        {
+          "name": "EXTERNAL_ID",
+          "type": "INTEGER",
+          "description": "Business process - Identifiant externe (outil tiers/processus métier) ; permet le rapprochement inter-systèmes."
+        },
+        {
+          "name": "GROUP_READ_ONLY",
+          "type": "BINARY",
+          "description": "Business capability - Groupes en lecture seule ; mappe aux capacités métier pour contrôler l'accès."
+        },
+        {
+          "name": "GROUP_READ_WRITE",
+          "type": "BINARY",
+          "description": "Infrastructure - Groupes en lecture/écriture ; souvent alignés aux équipes infrastructure/delivery autorisées."
+        },
+        {
+          "name": "INACTIVE",
+          "type": "BOOLEAN",
+          "description": "_EA_RA_TECH - Indicateur projet inactif ; peut être lié à l'axe technique d'architecture d'entreprise (_EA_RA_TECH)."
+        },
+        {
+          "name": "INCUR_BUDGET",
+          "type": "NUMBER",
+          "description": "Technology - Budget encouru (consommé) ; suivi par domaine technologique lorsque pertinent."
+        },
+        {
+          "name": "INCUR_EXP",
+          "type": "NUMBER",
+          "description": "_FIN_AA_B_EXP_TYPE_CLEAN - Dépenses encourues ; champ aligné au nettoyage/typologie de dépenses financières (_FIN...)."
+        },
+        {
+          "name": "LOCKED",
+          "type": "STRING",
+          "description": "Edited profit and loss model - État/verrou ; indique si le modèle P&L a été édité et verrouillé pour ce projet."
+        },
+        {
+          "name": "LOCKING_TIME",
+          "type": "DATE",
+          "description": "Project Goal - Horodatage du verrouillage ; associé à l'objectif projet pour la traçabilité des gels."
+        },
+        {
+          "name": "LONG_SIGNATURE",
+          "type": "BINARY",
+          "description": "Dev data file - Signature longue/binaire ; peut contenir un hash ou fichier de données de dev pour vérification."
+        },
+        {
+          "name": "LWP_DATE",
+          "type": "DATE",
+          "description": "Excluded project (this option hides the project in all screens and selection lists) - Date d'exclusion ; masque le projet des écrans et listes de sélection."
+        },
+        {
+          "name": "MC_AA_DU_SLIP_FIH",
+          "type": "DURATION",
+          "description": "Cost account list - Durée glissement FIH ; liée à la liste des comptes de coûts pour le pilotage."
+        },
+        {
+          "name": "MC_AA_DU_SLIP_PHII",
+          "type": "DURATION",
+          "description": "Hide when portfolio selected - Durée de glissement phase II ; peut être masquée en vue portefeuille."
+        },
+        {
+          "name": "MC_AA_DU_SLIP_PHIII",
+          "type": "DURATION",
+          "description": "Cost account user list - Durée de glissement phase III ; associée à la liste utilisateur des comptes de coûts."
+        },
+        {
+          "name": "MC_AA_N_POS_FIH",
+          "type": "NUMBER",
+          "description": "Project indicator bar - Position/indice FIH ; utilisé pour l'affichage de la barre d'indicateurs projet."
+        },
+        {
+          "name": "MC_AA_N_POS_FIL",
+          "type": "NUMBER",
+          "description": "Project user color - Position FIL ; paramètre d'affichage lié à la couleur utilisateur du projet."
+        },
+        {
+          "name": "MC_AA_N_POS_LAUNCH",
+          "type": "NUMBER",
+          "description": "Resource list - Position de lancement ; référence la liste des ressources au démarrage."
+        },
+        {
+          "name": "MC_AA_N_POS_PHII",
+          "type": "NUMBER",
+          "description": "resource user list on project - Position phase II ; gère l'ordre d'affichage de la liste des utilisateurs/ressources."
+        },
+        {
+          "name": "MC_AA_N_POS_PHIII",
+          "type": "NUMBER",
+          "description": "User color - Position phase III ; influe sur le rendu couleur utilisateur."
+        },
+        {
+          "name": "MNOP",
+          "type": "INTEGER",
+          "description": "_JIRA_RA_ORIGIN_SRV-ONB - Compteur/clé numérique liée à l'origine serveur JIRA (onboarding)."
+        },
+        {
+          "name": "MODIFY_VERSION",
+          "type": "INTEGER",
+          "description": "[REST] Connector - Numéro de version de modification ; utilisé par le connecteur REST pour la concurrence."
+        },
+        {
+          "name": "MSP_LOG",
+          "type": "MULTI-LINE-STRING",
+          "description": "Approved proposal? - Journal d'intégration Microsoft Project ; inclut le statut d'approbation de la proposition."
+        },
+        {
+          "name": "NAME",
+          "type": "SYMBOL",
+          "description": "Must do - Nom symbolique du projet ; marqueur 'must do' pour priorisation forte."
+        },
+        {
+          "name": "NBPERIODS",
+          "type": "INTEGER",
+          "description": "Scoring is validated - Nombre de périodes (reporting/planning) ; confirme que la notation a été validée."
+        },
+        {
+          "name": "NUMBER_OF_OBJECTS",
+          "type": "INTEGER",
+          "description": "Corrected proposal score - Nombre d'objets liés ; peut refléter le score corrigé de la proposition."
+        },
+        {
+          "name": "OBJECTIVE",
+          "type": "DATE",
+          "description": "Corrected risk score - Date d'objectif ; souvent utilisée conjointement avec un score de risque corrigé."
+        },
+        {
+          "name": "OBS",
+          "type": "OBS-NODE",
+          "description": "Number of scorers - Nœud d'Organizational Breakdown Structure ; inclut éventuellement le nombre d'évaluateurs."
+        },
+        {
+          "name": "ONB",
+          "type": "INTEGER",
+          "description": "Related goal - Clé numérique d'onboarding/liaison ; pointe vers l'objectif associé."
+        },
+        {
+          "name": "OPX2_0BS",
+          "type": "0BS",
+          "description": "Migration version number - Valeur BS0 ; identifie la version de migration des structures."
+        },
+        {
+          "name": "OPX2_1BS",
+          "type": "1BS",
+          "description": "Contains OKRs - Valeur BS1 ; indique si des OKR sont présents au périmètre."
+        },
+        {
+          "name": "OPX2_2BS",
+          "type": "2BS",
+          "description": "Sort by Planned start - Stage & gate - Valeur BS2 ; contrôle le tri par début planifié dans le cadre Stage & Gate."
+        },
+        {
+          "name": "OPX2_3BS",
+          "type": "3BS",
+          "description": "Submit next gate - Valeur BS3 ; suivi de la soumission vers la prochaine étape (gate)."
+        },
+        {
+          "name": "OPX2_4BS",
+          "type": "4BS",
+          "description": "Priority - Valeur BS4 ; stocke la priorité pour arbitrages."
+        },
+        {
+          "name": "OPX2_5BS",
+          "type": "5BS",
+          "description": "Gate status - Valeur BS5 ; état du gate courant (ouverture, validé, rejeté)."
+        },
+        {
+          "name": "OPX2_6BS",
+          "type": "6BS",
+          "description": "Gate - Valeur BS6 ; identifiant du gate."
+        },
+        {
+          "name": "OPX2_7BS",
+          "type": "7BS",
+          "description": "Current stage - Valeur BS7 ; étape/stade courant du projet."
+        },
+        {
+          "name": "OPX2_8BS",
+          "type": "8BS",
+          "description": "S&G notepad - Valeur BS8 ; bloc-notes stage & gate pour remarques."
+        },
+        {
+          "name": "OPX2_9BS",
+          "type": "9BS",
+          "description": "Comments - Valeur BS9 ; commentaires généraux liés au cycle S&G."
+        },
+        {
+          "name": "OPX2_COMMENT",
+          "type": "STRING",
+          "description": "Next gate - Commentaire libre ; peut préciser les attentes du prochain gate."
+        },
+        {
+          "name": "OPX2_CURRENT_DATE",
+          "type": "DATE",
+          "description": "Is a program? - Date courante de référence ; peut aussi marquer l'appartenance à un programme."
+        },
+        {
+          "name": "OPX2__AGL_AA_B_AGILE_PROJECT",
+          "type": "BOOLEAN",
+          "description": "Approach - Indicateur booléen signalant la démarche Agile ; pilote l'approche méthodologique."
+        },
+        {
+          "name": "OPX2__AGL_AA_B_BOARD_PROJECT",
+          "type": "BOOLEAN",
+          "description": "Benefits - Indique si le projet est piloté par tableaux (boards) ; peut servir à tracer les bénéfices attendus."
+        },
+        {
+          "name": "OPX2__AGL_AA_B_PREVENT_DEL",
+          "type": "BOOLEAN",
+          "description": "Competition - Verrou de suppression des éléments Agile ; protège les objets face aux conflits/compétition de flux."
+        },
+        {
+          "name": "OPX2__AGL_AA_N_VERSION",
+          "type": "NUMBER",
+          "description": "Needs - Numéro de version Agile ; aide à aligner besoins et versions."
+        },
+        {
+          "name": "OPX2__AGL_AA_S_STORY_FILTER",
+          "type": "STRING",
+          "description": "Is a product? - Filtre d'histoires ; peut marquer si l'entité est gérée comme produit."
+        },
+        {
+          "name": "OPX2__ATB_RA_ACTIVE_WORKBOOK",
+          "type": "EXCEL-WORKBOOK",
+          "description": "Product competitor - Lien vers le classeur Excel actif ; peut contenir l'analyse des concurrents produit."
+        },
+        {
+          "name": "OPX2__ATB_RA_ATB_TEMPLATE",
+          "type": "EXCEL-WORKBOOK",
+          "description": "product components (backup) - Modèle de classeur ; peut stocker la liste des composants produit (sauvegarde)."
+        },
+        {
+          "name": "OPX2__BM_AA_S_BUDGET_STYLE",
+          "type": "STRING",
+          "description": "_PLM_DA_ACT_CUR_REL-ONB - Style budgétaire ; aligné aux données PLM d'activation release (onboarding)."
+        },
+        {
+          "name": "OPX2__BRA_AA_B_BRAND_PRJ",
+          "type": "BOOLEAN",
+          "description": "_PLM_DA_ACT_CUR_SPR-ONB - Indique un projet de marque ; reflète l'activation de sprint côté PLM (onboarding)."
+        },
+        {
+          "name": "OPX2__CRT_AA_B_IS_CONTRACT",
+          "type": "BOOLEAN",
+          "description": "Current macro configuration - Indique si le projet est contractuel ; s'appuie sur la configuration macro courante."
+        },
+        {
+          "name": "OPX2__CRT_AA_S_ESC_TIME_UNIT",
+          "type": "STRING",
+          "description": "Product family - Unité de temps d'escalade ; peut être paramétrée par famille de produit."
+        },
+        {
+          "name": "OPX2__CRT_AA_S_ESC_TIME_UNIT1",
+          "type": "BINARY",
+          "description": "Product type - Variante/unité complémentaire ; dépend du type de produit."
+        },
+        {
+          "name": "OPX2__CRT_AA_S_ESC_UNIT_ENTRY",
+          "type": "STRING",
+          "description": "The BAC is locked - Unité d'entrée pour l'escalade ; permet aussi d'indiquer que le BAC est verrouillé."
+        },
+        {
+          "name": "OPX2__CRT_AA_S_SEARCH_FILE",
+          "type": "STRING",
+          "description": "Deleted? - Mot-clé/fichier de recherche ; peut noter l'état supprimé."
+        },
+        {
+          "name": "OPX2__DM_AA_DESC",
+          "type": "MULTI-LINE-STRING",
+          "description": "Is a library - Description détaillée ; indique si le projet sert de bibliothèque/référentiel."
+        },
+        {
+          "name": "OPX2__DM_AA_S_IDEA_POPUP_ATTR",
+          "type": "STRING",
+          "description": "Project BAC update date - Liste d'attributs affichés dans l'info-bulle d'idée ; inclut la date de mise à jour du BAC."
+        },
+        {
+          "name": "OPX2__DM_AA_T_CS_DESC",
+          "type": "MULTI-LINE-STRING",
+          "description": "Closure date - Description du cas métier/CS ; inclut la date de clôture."
+        },
+        {
+          "name": "OPX2__DM_AA_X_CS",
+          "type": "BINARY",
+          "description": "Delay threshold - Indicateur binaire concernant CS ; utilise un seuil de retard pour les alertes."
+        },
+        {
+          "name": "OPX2__DM_AA_X_PRIORITY",
+          "type": "BINARY",
+          "description": "Release vehicle type - Indicateur de priorité ; peut référencer le type de véhicule de release."
+        },
+        {
+          "name": "OPX2__DM_AA_X_SATISFACTION",
+          "type": "BINARY",
+          "description": "Gate completion score - Indicateur de satisfaction ; contribue au score de complétude du gate."
+        },
+        {
+          "name": "OPX2__DM_AA_X_TYPE",
+          "type": "BINARY",
+          "description": "Time now (External) - Type de dossier/objet ; inclut le temps de référence externe."
+        },
+        {
+          "name": "OPX2__DM_RV_CAPACITY",
+          "type": "NUMBER",
+          "description": "Version status - Capacité réservée/planifiée ; dépend de l'état de version."
+        },
+        {
+          "name": "OPX2__EA_RA_APP_AXIS",
+          "type": "_EA_PT_APP_AXIS",
+          "description": "Compact forecast on all activities - Axe application (EA) ; permet une prévision compacte sur toutes les activités."
+        },
+        {
+          "name": "OPX2__EA_RA_BP_AXIS",
+          "type": "_STRAT_PT_BUS_PROCESS",
+          "description": "# - Axe processus métier (stratégie) ; champ technique/placeholder (#)."
+        },
+        {
+          "name": "OPX2__EA_RA_CAP_AXIS",
+          "type": "_STRAT_PT_BUS_CAP",
+          "description": "Compare using the same vertical position - Axe capacité ; utilisé pour comparer avec une position verticale cohérente."
+        },
+        {
+          "name": "OPX2__EA_RA_INFRA_AXIS",
+          "type": "_EA_PT_AXIS_INFRA",
+          "description": "Use value(s) of current activity (and not those of synchronized activity) - Axe infrastructure ; privilégie les valeurs de l'activité courante."
+        },
+        {
+          "name": "OPX2__EA_RA_TECH",
+          "type": "_EA_PT_TECH_AXIS",
+          "description": "Hide left panel - Axe technologie ; peut masquer le panneau gauche dans certaines vues."
+        },
+        {
+          "name": "OPX2__EA_RA_TECH_AXIS",
+          "type": "_EA_PT_TECH_AXIS",
+          "description": "Date - Axe technique ; lié à une date de référence d'analyse."
+        },
+        {
+          "name": "OPX2__FIN_AA_B_EXP_TYPE_CLEAN",
+          "type": "BOOLEAN",
+          "description": "Page number - Nettoyage des types de dépenses (booléen) ; le texte mentionne aussi un numéro de page pour reporting."
+        },
+        {
+          "name": "OPX2__FIN_AA_S_SELECTED_PNL",
+          "type": "STRING",
+          "description": "Total number of pages - P&L sélectionné ; le texte évoque le total de pages, utile pour export PDF."
+        },
+        {
+          "name": "OPX2__INC_PROJ_OBJECTIVES",
+          "type": "MULTI-LINE-STRING",
+          "description": "Bold - Objectifs de projet inclus ; rendu en gras possible dans les exports."
+        },
+        {
+          "name": "OPX2__INF_AA_B_DEV_DATA",
+          "type": "BOOLEAN",
+          "description": "Display groups in Gantt - Marqueur données de dev ; permet l'affichage de groupes dans le Gantt."
+        },
+        {
+          "name": "OPX2__INF_AA_B_EXCLUDED_PRJ",
+          "type": "BOOLEAN",
+          "description": "Italic - Indique projet exclu ; le style italique peut s'appliquer dans certains rendus."
+        },
+        {
+          "name": "OPX2__INF_AA_B_EXPENSES_LIST",
+          "type": "STRING",
+          "description": "Date - Liste/identifiant des dépenses ; associée à une date de référence."
+        },
+        {
+          "name": "OPX2__INF_AA_B_HIDE_PRJ",
+          "type": "BOOLEAN",
+          "description": "Page number - Masquer ce projet dans certaines vues ; info sur pagination des rapports."
+        },
+        {
+          "name": "OPX2__INF_AA_S_EXP_USER_LIST",
+          "type": "STRING",
+          "description": "Total number of pages - Liste d'utilisateurs autorisés à saisir des dépenses ; total utile pour impression."
+        },
+        {
+          "name": "OPX2__INF_AA_S_PRJ_IND_BAR",
+          "type": "STRING",
+          "description": "Hide comparison links - Configuration de la barre d'indicateurs projet ; peut masquer les liens de comparaison."
+        },
+        {
+          "name": "OPX2__INF_AA_S_PRJ_USER_COLOR",
+          "type": "STRING",
+          "description": "Hide in roadmap is not based on \"Group by\" - Couleur utilisateur du projet ; règle de masquage non basée sur 'Grouper par'."
+        },
+        {
+          "name": "OPX2__INF_AA_S_RES_CF_LIST",
+          "type": "STRING",
+          "description": "Ignore on layout use - Liste des champs personnalisés ressource ; ignorés selon certains layouts."
+        },
+        {
+          "name": "OPX2__INF_AA_S_RES_USER_LIST",
+          "type": "STRING",
+          "description": "Available as PEX layout - Liste d'utilisateurs ressource ; disponible comme mise en page PEX."
+        },
+        {
+          "name": "OPX2__INF_AA_S_USER_COLOR",
+          "type": "STRING",
+          "description": "Available in portfolio timeline - Couleur personnalisée utilisateur ; s'affiche aussi dans la frise portefeuille."
+        },
+        {
+          "name": "OPX2__JIRA_RA_ORIGIN_SRV_ONB",
+          "type": "INTEGER",
+          "description": "Available in project timeline - Identifiant serveur d'origine JIRA (onboarding) ; visible dans la frise projet."
+        },
+        {
+          "name": "OPX2__JIRA_RA_SERVER_URI",
+          "type": "_JIRA_URI",
+          "description": "Display legend in footer - URI du serveur JIRA ; possibilité d'afficher une légende en pied de page."
+        },
+        {
+          "name": "OPX2__KP_AA_B_INITIATIVE_OK",
+          "type": "BOOLEAN",
+          "description": "New roadmap algorhithms - Indique que l'initiative est validée ; active les nouveaux algorithmes de roadmap."
+        },
+        {
+          "name": "OPX2__KP_AA_B_MANDATORY",
+          "type": "BOOLEAN",
+          "description": "Available in PEX? - Marqueur d'obligation (mandatory) ; indique aussi la disponibilité dans PEX."
+        },
+        {
+          "name": "OPX2__KP_AA_B_VALIDATED",
+          "type": "BOOLEAN",
+          "description": "Do not publish fixed dates - Statut validé ; peut empêcher la publication de dates figées."
+        },
+        {
+          "name": "OPX2__KP_AA_N_COR_OPP",
+          "type": "NUMBER",
+          "description": "Roadmap project - Score d'opportunité corrigé ; utilisé pour prioriser dans la roadmap."
+        },
+        {
+          "name": "OPX2__KP_AA_N_COR_RISK",
+          "type": "NUMBER",
+          "description": "Draw - Score de risque corrigé ; influe sur les arbitrages (diagrammes)."
+        },
+        {
+          "name": "OPX2__KP_AA_N_SCORERS",
+          "type": "NUMBER",
+          "description": "Roadmap layout - Nombre d'évaluateurs ; peut piloter la mise en page de la roadmap."
+        },
+        {
+          "name": "OPX2__KP_AA_S_RELATED_GOAL",
+          "type": "STRING",
+          "description": "Bold - Objectif associé (texte) ; peut être rendu en gras dans les exports."
+        },
+        {
+          "name": "OPX2__MIG_AA_N_VERSION_NB",
+          "type": "NUMBER",
+          "description": "Dotted vertical lines - Numéro de version de migration ; utile pour tracer les lots (lignes verticales pointillées)."
+        },
+        {
+          "name": "OPX2__OKR_B_AA_PRJ_HAS_OKR",
+          "type": "BOOLEAN",
+          "description": "Italic - Indique si le projet contient des OKR ; peut déclencher un style italique dans certains contextes."
+        },
+        {
+          "name": "OPX2__PAC_AA_B_SG_BY_PS",
+          "type": "BOOLEAN",
+          "description": "Bold - Stage & Gate trié par Planned Start ; le rendu peut forcer le gras."
+        },
+        {
+          "name": "OPX2__PAC_AA_B_SUBMIT_TO_PAC",
+          "type": "BOOLEAN",
+          "description": "Italic - Indique la soumission au PAC ; style italique possible dans la trace."
+        },
+        {
+          "name": "OPX2__PAC_AA_N_PRIO",
+          "type": "NUMBER",
+          "description": "Publish date - Priorité numérique ; associée à une date de publication."
+        },
+        {
+          "name": "OPX2__PAC_AA_S_APPROB_PRJ",
+          "type": "BINARY",
+          "description": "Dash size - Données d'approbation projet ; inclut des paramètres d'affichage (taille des tirets)."
+        },
+        {
+          "name": "OPX2__PAC_AA_S_APPROVED_UNTIL",
+          "type": "STRING",
+          "description": "Dash thickness - Date/texte 'approuvé jusqu'à' ; avec réglage d'épaisseur de tiret pour rendu."
+        },
+        {
+          "name": "OPX2__PAC_AA_S_CURRENT_OK_PHA",
+          "type": "STRING",
+          "description": "Size - Phase OK actuelle ; taille/poids visuel configurable."
+        },
+        {
+          "name": "OPX2__PAC_AA_S_PAC_NOTEPAD",
+          "type": "STRING",
+          "description": "Number of lines - Bloc-notes PAC ; nombre de lignes maximum affichées."
+        },
+        {
+          "name": "OPX2__PAC_AA_S_REMARKS",
+          "type": "MULTI-LINE-STRING",
+          "description": "FontSize - Remarques textuelles ; taille de police configurable lors des exports."
+        },
+        {
+          "name": "OPX2__PAC_AA_S_TEMP_NEXT_PHASE",
+          "type": "STRING",
+          "description": "Line height - Prochaine phase temporaire ; hauteur de ligne ajustable."
+        },
+        {
+          "name": "OPX2__PGM_MNGT_AA_B_IS_PGM",
+          "type": "BOOLEAN",
+          "description": "Height - Indique si l'entité est un programme ; peut impacter la hauteur/rendu de cartes."
+        },
+        {
+          "name": "OPX2__PGM_MNGT_AA_T_APPROACH",
+          "type": "MULTI-LINE-STRING",
+          "description": "FontSize - Description de l'approche programme ; taille de police paramétrable."
+        },
+        {
+          "name": "OPX2__PGM_MNGT_AA_T_BENEFIT",
+          "type": "MULTI-LINE-STRING",
+          "description": "FontSize - Bénéfices attendus ; champs riche avec contrôle de la taille de police."
+        },
+        {
+          "name": "OPX2__PGM_MNGT_AA_T_COMPET",
+          "type": "MULTI-LINE-STRING",
+          "description": "Dates displayed in Gantt - Concurrence/compétiteurs ; et configuration des dates affichées dans le Gantt."
+        },
+        {
+          "name": "OPX2__PGM_MNGT_AA_T_NEED",
+          "type": "MULTI-LINE-STRING",
+          "description": "Default layout - Besoins ; s'affichent selon la mise en page par défaut."
+        },
+        {
+          "name": "OPX2__PLM_AA_B_IS_A_PRODUCT",
+          "type": "BOOLEAN",
+          "description": "Arrange in lines by - Indique si l'entité est un produit ; organisation en lignes via un critère choisi."
+        },
+        {
+          "name": "OPX2__PLM_AA_S_CI_PRODUCT",
+          "type": "STRING",
+          "description": "Matching criteria - Identifiant de configuration item produit ; sert aux critères de rapprochement."
+        },
+        {
+          "name": "OPX2__PLM_AA_S_CPNTS_BCK",
+          "type": "STRING",
+          "description": "(internal) Group by attributes accessible in read-only - Composants produit (sauvegarde) ; attributs 'Grouper par' disponibles en lecture seule."
+        },
+        {
+          "name": "OPX2__PLM_DA_ACT_CUR_REL_ONB",
+          "type": "INTEGER",
+          "description": "Font - Activation release (onboarding) ; paramètre de police pour rendu."
+        },
+        {
+          "name": "OPX2__PLM_DA_ACT_CUR_SPR_ONB",
+          "type": "INTEGER",
+          "description": "Color - Activation sprint (onboarding) ; paramètre de couleur associé."
+        },
+        {
+          "name": "OPX2__PLM_RA_BOM_CUR_MCONF",
+          "type": "_PLM_PT_BOM_MACRO_CONF",
+          "description": "Font - Configuration macro de nomenclature (BOM) ; inclut réglages de police pour export."
+        },
+        {
+          "name": "OPX2__PLM_RA_PRODUCT_FAMILY",
+          "type": "_PLM_PT_PRODUCT_FAMILY",
+          "description": "Background color - Référence famille produit dans PLM ; impacte couleur d'arrière-plan."
+        },
+        {
+          "name": "OPX2__PLM_RA_PRODUCT_TYPE",
+          "type": "_PLM_PT_PRODUCT_TYPE",
+          "description": "Color - Type de produit PLM ; définit couleur d'accent."
+        },
+        {
+          "name": "OPX2__PM_AA_B_BUDGET_LOCKED",
+          "type": "BOOLEAN",
+          "description": "Background color - Marqueur budget verrouillé ; peut déclencher une couleur d'arrière-plan spécifique."
+        },
+        {
+          "name": "OPX2__PM_AA_B_DELETED",
+          "type": "BOOLEAN",
+          "description": "Color - Indicateur supprimé ; coloration associée dans les listes."
+        },
+        {
+          "name": "OPX2__PM_AA_B_IS_A_LIBRARY",
+          "type": "BOOLEAN",
+          "description": "Background color - Indique un projet bibliothèque ; fond distinct en UI."
+        },
+        {
+          "name": "OPX2__PM_AA_D_BUD_UPDATE_DATE",
+          "type": "DATE",
+          "description": "Color - Date de mise à jour du budget ; peut influer sur un code couleur."
+        },
+        {
+          "name": "OPX2__PM_AA_D_CLOSURE_DATE",
+          "type": "DATE",
+          "description": "Background color - Date de clôture ; arrière-plan modifié dans les rapports."
+        },
+        {
+          "name": "OPX2__PM_AA_N_DELAY_PRJ_THRESH",
+          "type": "NUMBER",
+          "description": "Color - Seuil de retard projet (en jours/%) ; code couleur pour alertes."
+        },
+        {
+          "name": "OPX2__PM_AA_RV_TYPE",
+          "type": "BINARY",
+          "description": "Background color - Type de revue ; personnalise le fond des sections concernées."
+        },
+        {
+          "name": "OPX2__PO_AA_N_GATE_COMP_SCORE",
+          "type": "NUMBER",
+          "description": "Color - Score de complétion du gate ; représentation colorimétrique possible."
+        },
+        {
+          "name": "OPX2__PRI_AA_D_TIMENOW_EXT",
+          "type": "DATE",
+          "description": "Paper format - Date 'Time now' externe ; prise en compte lors du format papier."
+        },
+        {
+          "name": "OPX2__PV_AA_S_STATUS",
+          "type": "BINARY",
+          "description": "Paper orientation - Statut de version ; utilisé aussi pour l'orientation papier des exports."
+        },
+        {
+          "name": "OPX2__RM_REVIEW_AA_B_COMP_ALL",
+          "type": "BOOLEAN",
+          "description": "Activity pre-filter - Revue de risques : compléter tout ; s'applique avec un préfiltre d'activités."
+        },
+        {
+          "name": "OPX2__RM_REVIEW_AA_N_CODE",
+          "type": "NUMBER",
+          "description": "Published by: - Code de revue/risque ; traçabilité de l'éditeur."
+        },
+        {
+          "name": "OPX2__ROA_AA_B_COMP_ON_SAME",
+          "type": "BOOLEAN",
+          "description": "Published data - Comparer sur la même ligne ; inclut métadonnées de publication."
+        },
+        {
+          "name": "OPX2__ROA_AA_B_CUR_VS_SYNCH",
+          "type": "BOOLEAN",
+          "description": "Color - Comparer courant vs synchronisé ; couleur dédiée."
+        },
+        {
+          "name": "OPX2__ROA_AA_B_DISP_LEFT_PANEL",
+          "type": "BOOLEAN",
+          "description": "'Group by' attribute at the moment of publishing - Afficher le panneau gauche ; fige l'attribut 'Grouper par' lors de la publication."
+        },
+        {
+          "name": "OPX2__ROA_AA_B_FOOTER_DATE",
+          "type": "BOOLEAN",
+          "description": "Sort arrange in lines by - Afficher la date en pied ; s'aligne avec le tri 'organiser en lignes par'."
+        },
+        {
+          "name": "OPX2__ROA_AA_B_FOOTER_PNB",
+          "type": "BOOLEAN",
+          "description": "Swimlane color - Afficher le nombre de pages en pied ; couleur de couloir configurable."
+        },
+        {
+          "name": "OPX2__ROA_AA_B_FOOTER_TPNB",
+          "type": "BOOLEAN",
+          "description": "Background color - Afficher le nombre total de pages en pied ; fond paramétrable."
+        },
+        {
+          "name": "OPX2__ROA_AA_B_GRP_BOLD",
+          "type": "BOOLEAN",
+          "description": "Color - Groupes en gras ; couleur spécifique."
+        },
+        {
+          "name": "OPX2__ROA_AA_B_GRP_IN_GANTT",
+          "type": "BOOLEAN",
+          "description": "Font - Afficher les groupes dans le Gantt ; police paramétrable."
+        },
+        {
+          "name": "OPX2__ROA_AA_B_GRP_ITA",
+          "type": "BOOLEAN",
+          "description": "Title - Groupes en italique ; affecte aussi les titres."
+        },
+        {
+          "name": "OPX2__ROA_AA_B_HEADER_DATE",
+          "type": "BOOLEAN",
+          "description": "Color - Afficher la date en en-tête ; teinte ajustable."
+        },
+        {
+          "name": "OPX2__ROA_AA_B_HEADER_PNB",
+          "type": "BOOLEAN",
+          "description": "Font - Afficher le nombre de pages en en-tête ; choix de police."
+        },
+        {
+          "name": "OPX2__ROA_AA_B_HEADER_TPNB",
+          "type": "BOOLEAN",
+          "description": "Date style - Afficher le total de pages en en-tête ; style de date paramétré."
+        },
+        {
+          "name": "OPX2__ROA_AA_B_HIDE_COMP_LINKS",
+          "type": "BOOLEAN",
+          "description": "Is an epic? - Masquer les liens de comparaison ; champ également utilisé pour marquer un epic."
+        },
+        {
+          "name": "OPX2__ROA_AA_B_HIDE_NOT_GRP",
+          "type": "BOOLEAN",
+          "description": "Enabler? - Masquer les éléments non groupés ; peut indiquer un enabler."
+        },
+        {
+          "name": "OPX2__ROA_AA_B_IGN_GRP_HEIGHT",
+          "type": "BOOLEAN",
+          "description": "Funnel entry date - Ignorer la hauteur des groupes ; stocke aussi la date d'entrée dans le funnel."
+        },
+        {
+          "name": "OPX2__ROA_AA_B_LAYOUT_PEX",
+          "type": "BOOLEAN",
+          "description": "Business outcomes - Utiliser la mise en page PEX ; rattache les issues/outcomes métier."
+        },
+        {
+          "name": "OPX2__ROA_AA_B_LAYOUT_PORT",
+          "type": "BOOLEAN",
+          "description": "Epic description - Utiliser la mise en page portefeuille ; description d'epic incluse."
+        },
+        {
+          "name": "OPX2__ROA_AA_B_LAYOUT_PROJECT",
+          "type": "BOOLEAN",
+          "description": "Leading indicators - Utiliser la mise en page projet ; inclut des indicateurs avancés."
+        },
+        {
+          "name": "OPX2__ROA_AA_B_LEGD_IN_FOOTER",
+          "type": "BOOLEAN",
+          "description": "Non-functional requirements (NFRs) - Afficher la légende en pied ; peut lister des NFR."
+        },
+        {
+          "name": "OPX2__ROA_AA_B_NEW_ROADMAP",
+          "type": "BOOLEAN",
+          "description": "_SAFE_DA_ART-ONB - Activer le nouveau moteur de roadmap ; référence ART (onboarding SAFe)."
+        },
+        {
+          "name": "OPX2__ROA_AA_B_PUBLISHED",
+          "type": "BOOLEAN",
+          "description": "_SAFE_DA_TEAM-ONB - Indique que la roadmap est publiée ; référence équipe SAFe onboarding."
+        },
+        {
+          "name": "OPX2__ROA_AA_B_PUB_NOFIXDATES",
+          "type": "BOOLEAN",
+          "description": "_SAFE_RA_REQ_EPIC-ONB - Publication sans dates figées ; lien vers exigences epics SAFe (onboarding)."
+        },
+        {
+          "name": "OPX2__ROA_AA_B_ROADMAP_PROJECT",
+          "type": "BOOLEAN",
+          "description": "T-shirt size - Marqueur 'projet roadmap' ; peut utiliser une estimation en tailles T-shirt."
+        },
+        {
+          "name": "OPX2__ROA_AA_B_SWIMLINE",
+          "type": "BOOLEAN",
+          "description": "Is a proposal - Active les couloirs (swimlanes) ; peut marquer l'état 'proposition'."
+        },
+        {
+          "name": "OPX2__ROA_AA_B_TEMPLATE_EXT",
+          "type": "BOOLEAN",
+          "description": "Custom discount rate - Utilisation d'un modèle externe ; permet un taux d'actualisation personnalisé."
+        },
+        {
+          "name": "OPX2__ROA_AA_B_TIMESC_BOLD",
+          "type": "BOOLEAN",
+          "description": "Proposal group - Échelle de temps en gras ; groupe de propositions mis en avant."
+        },
+        {
+          "name": "OPX2__ROA_AA_B_TIMESC_DOTTED",
+          "type": "BOOLEAN",
+          "description": "Required projects - Échelle de temps en pointillés ; indique des projets requis/dépendants."
+        },
+        {
+          "name": "OPX2__ROA_AA_B_TIMESC_ITA",
+          "type": "BOOLEAN",
+          "description": "_SOC_AA_S_SHAREPOINT_NAME - Échelle de temps en italique ; intègre nom SharePoint."
+        },
+        {
+          "name": "OPX2__ROA_AA_B_TITLE_BOLD",
+          "type": "BOOLEAN",
+          "description": "_SOC_AA_S_SHAREPOINT_UID - Titre en gras ; inclut UID SharePoint."
+        },
+        {
+          "name": "OPX2__ROA_AA_B_TITLE_ITA",
+          "type": "BOOLEAN",
+          "description": "_SOC_AA_S_SHAREPOINT_URL - Titre en italique ; inclut URL SharePoint."
+        },
+        {
+          "name": "OPX2__ROA_AA_D_PUBLISH",
+          "type": "DATE",
+          "description": "Business project status - Date de publication de la roadmap ; reflète aussi le statut business du projet."
+        },
+        {
+          "name": "OPX2__ROA_AA_N_DASH_SWIMLINE",
+          "type": "NUMBER",
+          "description": "Use for strategic theme project - Taille des tirets des couloirs ; utiliser pour projets à thème stratégique."
+        },
+        {
+          "name": "OPX2__ROA_AA_N_DASH_THICKNESS",
+          "type": "NUMBER",
+          "description": "End date - Épaisseur des tirets ; souvent paramétrée par date de fin."
+        },
+        {
+          "name": "OPX2__ROA_AA_N_GRP_SFONT",
+          "type": "NUMBER",
+          "description": "Start date - Taille de police des groupes ; associée à la date de début de période."
+        },
+        {
+          "name": "OPX2__ROA_AA_N_LEG_NBLINE",
+          "type": "NUMBER",
+          "description": "Time unit - Nombre de lignes de légende ; sensible à l'unité de temps."
+        },
+        {
+          "name": "OPX2__ROA_AA_N_LEG_SFONT",
+          "type": "NUMBER",
+          "description": "Strategic theme - Taille de police de légende ; peut dépendre du thème stratégique."
+        },
+        {
+          "name": "OPX2__ROA_AA_N_LINE_HEIGHT",
+          "type": "NUMBER",
+          "description": "Unknown message supervision_module.supervision_status - Hauteur de ligne ; message inconnu éventuel du module de supervision."
+        },
+        {
+          "name": "OPX2__ROA_AA_N_TIMESC_HEIGHT",
+          "type": "NUMBER",
+          "description": "[Azure DevOps] Project - Hauteur de l'échelle de temps ; utilisé pour les projets Azure DevOps également."
+        },
+        {
+          "name": "OPX2__ROA_AA_N_TIMESC_SFONT",
+          "type": "NUMBER",
+          "description": "Initiative to be reviewed - Taille de police de l'échelle de temps ; l'initiative doit être revue."
+        },
+        {
+          "name": "OPX2__ROA_AA_N_TITLE_SFONT",
+          "type": "NUMBER",
+          "description": "Processed? - Taille de police du titre ; suivi de l'état 'traité ?'."
+        },
+        {
+          "name": "OPX2__ROA_AA_S_DATE_DISPLAYED",
+          "type": "STRING",
+          "description": "Is a permanent project in TimeCard - Format/texte de dates affichées ; indique si le projet est permanent dans TimeCard."
+        },
+        {
+          "name": "OPX2__ROA_AA_S_DEFAULT_LAYOUT",
+          "type": "STRING",
+          "description": "Origin date - Nom de la mise en page par défaut ; peut référencer une date d'origine."
+        },
+        {
+          "name": "OPX2__ROA_AA_S_EXTRACTOR_GROUP",
+          "type": "STRING",
+          "description": "Origin project - Groupe d'extraction ; référence le projet d'origine des données."
+        },
+        {
+          "name": "OPX2__ROA_AA_S_EXTRACT_MAPPER",
+          "type": "STRING",
+          "description": "Owner - Mapper d'extraction ; propriétaire/responsable associé."
+        },
+        {
+          "name": "OPX2__ROA_AA_S_GRP_ATT_RO_DISP",
+          "type": "STRING",
+          "description": "Parent project - Attributs de groupe à afficher ; inclut le lien vers le projet parent."
+        },
+        {
+          "name": "OPX2__ROA_AA_S_GRP_FONT",
+          "type": "STRING",
+          "description": "Permanent lock - Police utilisée pour les groupes ; peut refléter un verrou permanent."
+        },
+        {
+          "name": "OPX2__ROA_AA_S_LEG_CFONT",
+          "type": "STRING",
+          "description": "SharePoint Online UID - Police de légende (couleur) ; inclut l'UID SPO pour intégrations."
+        },
+        {
+          "name": "OPX2__ROA_AA_S_LEG_FONT",
+          "type": "STRING",
+          "description": "Start date PM - Police de légende ; peut rappeler la date de début PM."
+        },
+        {
+          "name": "OPX2__ROA_AA_S_LVL1_COLOR",
+          "type": "STRING",
+          "description": "End date PM - Couleur niveau 1 ; associée à la date de fin PM."
+        },
+        {
+          "name": "OPX2__ROA_AA_S_LVL1_FT_COLOR",
+          "type": "STRING",
+          "description": "Template description - Couleur de police niveau 1 ; documentation du modèle."
+        },
+        {
+          "name": "OPX2__ROA_AA_S_LVL2_COLOR",
+          "type": "STRING",
+          "description": "PNL-EXTERNAL-DEPENDENCES - Couleur niveau 2 ; liée au panneau dépendances externes."
+        },
+        {
+          "name": "OPX2__ROA_AA_S_LVL2_FT_COLOR",
+          "type": "STRING",
+          "description": "PNL-MIGRATED - Couleur police niveau 2 ; indique état 'migré'."
+        },
+        {
+          "name": "OPX2__ROA_AA_S_LVL3_COLOR",
+          "type": "STRING",
+          "description": "PNL-VERSION - Couleur niveau 3 ; reflète la version de panneau."
+        },
+        {
+          "name": "OPX2__ROA_AA_S_LVL3_FT_COLOR",
+          "type": "STRING",
+          "description": "Project portfolio - Couleur police niveau 3 ; utilisé en vue portefeuille projet."
+        },
+        {
+          "name": "OPX2__ROA_AA_S_LVL4_COLOR",
+          "type": "STRING",
+          "description": "PREDEFINED_ORGANIZATION - Couleur niveau 4 ; organisation prédéfinie."
+        },
+        {
+          "name": "OPX2__ROA_AA_S_LVL4_FT_COLOR",
+          "type": "STRING",
+          "description": "Estimate at completion (EAC) - Couleur police niveau 4 ; rappelle l'EAC."
+        },
+        {
+          "name": "OPX2__ROA_AA_S_LVL5_COLOR",
+          "type": "STRING",
+          "description": "PRODUCT_COMPETITOR_OBJECT-ONB - Couleur niveau 5 ; objet concurrent produit (onb)."
+        },
+        {
+          "name": "OPX2__ROA_AA_S_LVL5_FT_COLOR",
+          "type": "STRING",
+          "description": "Project (Primavera) - Couleur police niveau 5 ; projet Primavera associé."
+        },
+        {
+          "name": "OPX2__ROA_AA_S_PAPER_FORMAT",
+          "type": "BINARY",
+          "description": "Dataset class - Format papier (A4/A3...) ; classe de dataset pour rendu."
+        },
+        {
+          "name": "OPX2__ROA_AA_S_PAPER_ORIENT",
+          "type": "BINARY",
+          "description": "Planned finish - Orientation papier (Portrait/Paysage) ; peut s'aligner sur la fin planifiée."
+        },
+        {
+          "name": "OPX2__ROA_AA_S_PREFILTER",
+          "type": "STRING",
+          "description": "Planned start - Préfiltre d'activités/objets ; ancré sur le début planifié."
+        },
+        {
+          "name": "OPX2__ROA_AA_S_PUBLISHED_BY",
+          "type": "STRING",
+          "description": "Report broadcast date - Identité de l'éditeur ; couplée à la date de diffusion du rapport."
+        },
+        {
+          "name": "OPX2__ROA_AA_S_PUB_DATA",
+          "type": "STRING",
+          "description": "Rights - Données publiées ; liste des droits et métadonnées associées."
+        },
+        {
+          "name": "OPX2__ROA_AA_S_RATE_COLOR",
+          "type": "STRING",
+          "description": "RT-EXTERNAL-DEPENDENCES - Couleur de taux/notation ; pour dépendances externes en temps réel."
+        },
+        {
+          "name": "OPX2__ROA_AA_S_REGROUP_ATT",
+          "type": "STRING",
+          "description": "Rttable external version - Attribut de regroupement ; version externe rattachée."
+        },
+        {
+          "name": "OPX2__ROA_AA_S_SORT_ON_FIELD",
+          "type": "STRING",
+          "description": "SANDBOX-FOR-PROJECT - Champ de tri ; utilisé aussi en bac à sable projet."
+        },
+        {
+          "name": "OPX2__ROA_AA_S_SWIMLINE_COLOR",
+          "type": "STRING",
+          "description": "SANDBOX-FOR-USER - Couleur des couloirs ; sandbox par utilisateur."
+        },
+        {
+          "name": "OPX2__ROA_AA_S_TIMESC_BCGCOLOR",
+          "type": "STRING",
+          "description": "Work load broadcast date - Couleur de fond de l'échelle de temps ; liée à la diffusion de charge."
+        },
+        {
+          "name": "OPX2__ROA_AA_S_TIMESC_CFONT",
+          "type": "STRING",
+          "description": "Save activity dates - Couleur de police de l'échelle ; prise en compte lors de la sauvegarde des dates d'activités."
+        },
+        {
+          "name": "OPX2__ROA_AA_S_TIMESC_FONT",
+          "type": "STRING",
+          "description": "User groups with shared access in write mode - Police de l'échelle de temps ; groupes autorisés en écriture."
+        },
+        {
+          "name": "OPX2__ROA_AA_S_TITLE",
+          "type": "STRING",
+          "description": "SHARED-MILESTONES - Titre de la roadmap/extract ; peut lister les jalons partagés."
+        },
+        {
+          "name": "OPX2__ROA_AA_S_TITLE_CFONT",
+          "type": "STRING",
+          "description": "SOURCE-DCR-SYNC-DATASETS - Couleur de police du titre ; source DCR des datasets synchronisés."
+        },
+        {
+          "name": "OPX2__ROA_AA_S_TITLE_FONT",
+          "type": "STRING",
+          "description": "State - Police du titre ; reflète l'état courant."
+        },
+        {
+          "name": "OPX2__ROA_RA_PRJ_DATE_STYLE",
+          "type": "_RE_PT_DATES_STYLE",
+          "description": "Save cost informations on actitivies - Style de date pour le projet ; contrôle la sauvegarde d'infos coûts sur activités."
+        },
+        {
+          "name": "OPX2__SAFE_AA_B_IS_AN_EPIC",
+          "type": "BOOLEAN",
+          "description": "TC-END-DATE - Indique si c'est un epic ; peut être couplé à la date de fin TimeCard."
+        },
+        {
+          "name": "OPX2__SAFE_AA_B_SAFE_ENABLER",
+          "type": "BOOLEAN",
+          "description": "TC-START-DATE - Indique un enabler SAFe ; couplé à la date de début TimeCard."
+        },
+        {
+          "name": "OPX2__SAFE_AA_D_FUNNEL_ENTRY",
+          "type": "DATE",
+          "description": "TEMPLATE-NAME - Date d'entrée dans le funnel ; liée au nom de modèle."
+        },
+        {
+          "name": "OPX2__SAFE_AA_S_BUSI_OUTCOMES",
+          "type": "MULTI-LINE-STRING",
+          "description": "Time sheet broadcast date - Résultats métiers attendus ; date de diffusion de feuille de temps associée."
+        },
+        {
+          "name": "OPX2__SAFE_AA_S_EPIC_DESC",
+          "type": "MULTI-LINE-STRING",
+          "description": "Time card identifier - Description de l'epic ; inclut l'identifiant de time card."
+        },
+        {
+          "name": "OPX2__SAFE_AA_S_LEAD_INDIC",
+          "type": "MULTI-LINE-STRING",
+          "description": "Time now computation method - Indicateurs avancés (leading) ; précisent la méthode de calcul du 'Time now'."
+        },
+        {
+          "name": "OPX2__SAFE_AA_S_NFR",
+          "type": "MULTI-LINE-STRING",
+          "description": "Track objects changes - Exigences non fonctionnelles ; utilisé pour suivre les changements d'objets."
+        },
+        {
+          "name": "OPX2__SAFE_DA_ART_ONB",
+          "type": "INTEGER",
+          "description": "Transaction counter - Référence ART (onboarding) ; utilisé comme compteur de transactions."
+        },
+        {
+          "name": "OPX2__SAFE_DA_TEAM_ONB",
+          "type": "INTEGER",
+          "description": "Modification date - Équipe SAFe (onboarding) ; mémorise la date de modification."
+        },
+        {
+          "name": "OPX2__SAFE_RA_REQ_EPIC_ONB",
+          "type": "INTEGER",
+          "description": "Current version - Référence exigence epic (onboarding) ; version courante stockée."
+        },
+        {
+          "name": "OPX2__SAFE_RA_SHIRT_SIZE",
+          "type": "_SAFE_PT_T_SHIRT_SIZES",
+          "description": "Allow modification of any project data in the version - Taille T-shirt ; peut s'appliquer aux autorisations de modification de version."
+        },
+        {
+          "name": "OPX2__SC_AA_B_INITIATIVE",
+          "type": "BOOLEAN",
+          "description": "Version documentation - Indique que c'est une initiative ; documente la version le cas échéant."
+        },
+        {
+          "name": "OPX2__SC_AA_N_CUSTOM_RATE",
+          "type": "NUMBER",
+          "description": "VERSION_ID - Taux personnalisé (actualisation/financier) ; lié à l'identifiant de version."
+        },
+        {
+          "name": "OPX2__SC_AA_S_INIT_GROUP",
+          "type": "STRING",
+          "description": "Project version number - Groupe d'initiatives ; associé au numéro de version projet."
+        },
+        {
+          "name": "OPX2__SC_AA_S_PROJ_DEP",
+          "type": "STRING",
+          "description": "Version transaction number - Dépendances projet (texte) ; renvoie le numéro de transaction de version."
+        },
+        {
+          "name": "OPX2__SOC_AA_S_SHAREPOINT_NAME",
+          "type": "STRING",
+          "description": "Version creation transaction number - Nom SharePoint ; trace le n° de transaction de création de version."
+        },
+        {
+          "name": "OPX2__SOC_AA_S_SHAREPOINT_UID",
+          "type": "STRING",
+          "description": "Resource visibility rule - UID SharePoint ; utilisé pour les règles de visibilité des ressources."
+        },
+        {
+          "name": "OPX2__SOC_AA_S_SHAREPOINT_URL",
+          "type": "STRING",
+          "description": "Create a WBS element by default - URL SharePoint ; peut déclencher la création d'un élément WBS par défaut."
+        },
+        {
+          "name": "OPX2__STA_RA_PRJ_STATUS",
+          "type": "_STA_PT_PRJ_STATUS",
+          "description": "Weighting - Statut du projet ; sert aussi au pondérage dans les synthèses."
+        },
+        {
+          "name": "OPX2__STRAT_AA_B_STRAT_AXIS",
+          "type": "BOOLEAN",
+          "description": "WS-VERSION - Axe stratégique activé ; version de workspace associée."
+        },
+        {
+          "name": "OPX2__STRAT_AA_D_OKR_ED",
+          "type": "DATE",
+          "description": "OKR end date - Date de fin de la période OKR (objectifs et résultats clés) ; utilisée pour clôturer l'évaluation et figer les indicateurs."
+        },
+        {
+          "name": "OPX2__STRAT_AA_D_OKR_SD",
+          "type": "DATE",
+          "description": "OKR start date - Date de début de la période OKR ; point de départ pour le suivi et les calculs de performance."
+        },
+        {
+          "name": "OPX2__STRAT_AA_S_OKR_PERIOD",
+          "type": "STRING",
+          "description": "OKR period label - Libellé de période OKR (ex. Q1 2025, H2) ; facilite l'agrégation et le reporting."
+        },
+        {
+          "name": "OPX2__STRAT_RA_STRAT_AXIS",
+          "type": "_STRAT_PT_STRAT_AXIS",
+          "description": "Strategic axis reference - Référence d'axe stratégique ; permet l'alignement aux thèmes/axes d'entreprise."
+        },
+        {
+          "name": "OPX2__SUP_AA_B_SUPERVISION_PRJ",
+          "type": "BOOLEAN",
+          "description": "Project under supervision - Indique que le projet est sous supervision (contrôles renforcés/alertes actives)."
+        },
+        {
+          "name": "OPX2__TFS_AA_S_PROJECT",
+          "type": "STRING",
+          "description": "TFS/Azure DevOps project - Nom ou clé du projet côté Azure DevOps/TFS pour la synchronisation."
+        },
+        {
+          "name": "OPX2__WF_AA_B_TO_BE_REVIEWED",
+          "type": "BOOLEAN",
+          "description": "To be reviewed - À revoir/valider dans le workflow avant passage à l'étape suivante."
+        },
+        {
+          "name": "OPX2__WF_AA_B_WF_PROCESSED",
+          "type": "BOOLEAN",
+          "description": "Workflow processed - Workflow traité/terminé ; toutes les étapes prévues ont été exécutées."
+        },
+        {
+          "name": "OPX2__WZD_AA_B_PERMANENT",
+          "type": "BOOLEAN",
+          "description": "Permanent (wizard) - Paramétrage permanent appliqué par l'assistant (wizard) et conservé entre versions."
+        },
+        {
+          "name": "ORIGIN_DATE",
+          "type": "DATE",
+          "description": "Origin date - Date d'origine/de création initiale de l'enregistrement projet."
+        },
+        {
+          "name": "ORIGIN_PROJECT",
+          "type": "ORDO-PROJECT",
+          "description": "Origin project - Projet d'origine/référence depuis lequel cet enregistrement provient."
+        },
+        {
+          "name": "OWNER",
+          "type": "STRING",
+          "description": "Owner - Propriétaire/responsable du projet (personne ou entité)."
+        },
+        {
+          "name": "PARENT",
+          "type": "ORDO-PROJECT",
+          "description": "Parent project - Projet parent dans la hiérarchie (agrégation/portefeuille)."
+        },
+        {
+          "name": "PERMANENT_LOCK",
+          "type": "BOOLEAN",
+          "description": "Permanent lock - Verrou permanent empêchant toute modification de l'objet projet."
+        },
+        {
+          "name": "PM_AA_S_PROJECT_UID",
+          "type": "STRING",
+          "description": "Project UID - Identifiant unique du projet côté gestion de projet (PM)."
+        },
+        {
+          "name": "PM_DD_PROJECT",
+          "type": "DATE",
+          "description": "Project start date (PM) - Date de début du projet dans le module PM."
+        },
+        {
+          "name": "PM_DF_PROJET",
+          "type": "DATE",
+          "description": "Project finish date (PM) - Date de fin du projet dans le module PM."
+        },
+        {
+          "name": "PM_TEMPLATE_DESC",
+          "type": "MULTI-LINE-STRING",
+          "description": "PM template description - Description du modèle de gestion de projet (PM)."
+        },
+        {
+          "name": "PNL_EXTERNAL_DEPENDENCES",
+          "type": "BINARY",
+          "description": "Panel: external dependencies - Indicateur/activation du panneau recensant les dépendances externes."
+        },
+        {
+          "name": "PNL_MIGRATED",
+          "type": "BINARY",
+          "description": "Panel migrated - Indique que le panneau/la configuration a été migré(e) vers un nouveau format."
+        },
+        {
+          "name": "PNL_VERSION",
+          "type": "INTEGER",
+          "description": "Panel version - Version du panneau/de la configuration d'affichage utilisée."
+        },
+        {
+          "name": "PORTFOLIO",
+          "type": "PORTFOLIO",
+          "description": "Portfolio - Portefeuille auquel le projet est rattaché pour le pilotage et la priorisation."
+        },
+        {
+          "name": "PREDEFINED_ORG",
+          "type": "BINARY",
+          "description": "Predefined organization - Organisation prédéfinie appliquée à ce projet (structures, règles, rôles)."
+        },
+        {
+          "name": "PREDICTED_COST",
+          "type": "NUMBER",
+          "description": "Predicted cost - Coût prévisionnel estimé (forecast) basé sur tendances/hypothèses."
+        },
+        {
+          "name": "PRODUCT_COMPETITOR_OBJECT_ONB",
+          "type": "INTEGER",
+          "description": "Product competitor object (onboarding) - Référence à l'objet concurrent produit pendant l'onboarding."
+        },
+        {
+          "name": "PROJECT_PRIMAVERA",
+          "type": "PROJECT-PRIMAVERA",
+          "description": "Project (Primavera) - Lien/référence vers l'entité projet dans Oracle Primavera."
+        },
+        {
+          "name": "PROJECT_TYPE",
+          "type": "PROJECT-TYPE",
+          "description": "Project type - Catégorie de projet (programme, produit, opération, etc.)."
+        },
+        {
+          "name": "REAL_FINISH",
+          "type": "DATE",
+          "description": "Actual finish date - Date réelle de fin d'exécution du projet ou de la phase."
+        },
+        {
+          "name": "REAL_START",
+          "type": "DATE",
+          "description": "Actual start date - Date réelle de démarrage du projet ou de la phase."
+        },
+        {
+          "name": "REPORT",
+          "type": "DATE",
+          "description": "Report date - Date de rapport/snapshot utilisée pour les états et exports."
+        },
+        {
+          "name": "RIGHTS",
+          "type": "SYMBOL",
+          "description": "Rights - Droits/permissions associés à l'objet projet (lecture/écriture/partage)."
+        },
+        {
+          "name": "RT_EXTERNAL_DEPENDENCES",
+          "type": "BINARY",
+          "description": "Real-time external dependencies - Flux/dépendances externes suivis en temps réel."
+        },
+        {
+          "name": "RT_EXTERNAL_VERSION",
+          "type": "INTEGER",
+          "description": "Real-time external version - Version externe en temps réel (synchro/miroir)."
+        },
+        {
+          "name": "SANDBOX_FOR_PROJECT",
+          "type": "ORDO-PROJECT",
+          "description": "Sandbox for project - Projet bac à sable lié pour tests/scénarios what-if."
+        },
+        {
+          "name": "SANDBOX_FOR_USER",
+          "type": "OPX2-USER",
+          "description": "Sandbox for user - Bac à sable utilisateur associé (expérimentation isolée)."
+        },
+        {
+          "name": "SAVE_LOAD",
+          "type": "DATE",
+          "description": "Save workload date - Date d'enregistrement de la charge (planifiée/exportée)."
+        },
+        {
+          "name": "SAVE_WS_DATES",
+          "type": "BOOLEAN",
+          "description": "Save work schedule dates - Indicateur de sauvegarde des dates du plan de travail (WS)."
+        },
+        {
+          "name": "SHARED_ACCESS",
+          "type": "BINARY",
+          "description": "Shared access - Accès partagé (groupes/permissions en écriture)."
+        },
+        {
+          "name": "SHARED_MILESTONES",
+          "type": "BINARY",
+          "description": "Shared milestones - Partage des jalons avec d'autres projets ou portefeuilles."
+        },
+        {
+          "name": "SOURCE_DCR_SYNC_DATASETS",
+          "type": "DCR-SYNCHRONIZED-OBJECTS",
+          "description": "Source DCR synchronized datasets - Source des jeux de données synchronisés via DCR."
+        },
+        {
+          "name": "STATUS",
+          "type": "SYMBOL",
+          "description": "Status - Statut courant de l'objet projet (planifié, en cours, clos, etc.)."
+        },
+        {
+          "name": "S_CFIELDS",
+          "type": "BOOLEAN",
+          "description": "Custom fields enabled - Utilisation/présence de champs personnalisés (booléen)."
+        },
+        {
+          "name": "TC_END_DATE",
+          "type": "DATE",
+          "description": "TimeCard end date - Date de fin de période dans TimeCard."
+        },
+        {
+          "name": "TC_START_DATE",
+          "type": "DATE",
+          "description": "TimeCard start date - Date de début de période dans TimeCard."
+        },
+        {
+          "name": "TEMPLATE",
+          "type": "STRING",
+          "description": "Template name - Nom du modèle appliqué à ce projet."
+        },
+        {
+          "name": "TIME_CARD",
+          "type": "DATE",
+          "description": "Time sheet broadcast date - Date de diffusion/prise en compte des feuilles de temps."
+        },
+        {
+          "name": "TIME_CARD_ID",
+          "type": "STRING",
+          "description": "Time card identifier - Identifiant unique de feuille de temps/période."
+        },
+        {
+          "name": "TIME_NOW_METHOD",
+          "type": "SYMBOL",
+          "description": "Time now method - Méthode de calcul de la date de référence ('Time now')."
+        },
+        {
+          "name": "TRACK_CHANGES",
+          "type": "BOOLEAN",
+          "description": "Track changes - Suivi des modifications des objets (audit et historisation)."
+        },
+        {
+          "name": "TRANSACTION_COUNTER",
+          "type": "INTEGER",
+          "description": "Transaction counter - Compteur de transactions utilisé pour la synchronisation et la concurrence d'accès."
+        },
+        {
+          "name": "UPDATE_DATE",
+          "type": "DATE",
+          "description": "Update date - Date de dernière modification/mise à jour des données du projet."
+        },
+        {
+          "name": "VERSION",
+          "type": "INTEGER",
+          "description": "Current version - Numéro de version courante de l'objet projet."
+        },
+        {
+          "name": "VERSION_ALLOW_ANY_MODIFICATION",
+          "type": "BOOLEAN",
+          "description": "Allow any modification in version - Autorise la modification de toute donnée du projet pour cette version."
+        },
+        {
+          "name": "VERSION_DOCUMENTATION",
+          "type": "MULTI-LINE-STRING",
+          "description": "Version documentation - Documentation/notes associées à la version (changelog, hypothèses, décisions)."
+        },
+        {
+          "name": "VERSION_ID",
+          "type": "SYMBOL",
+          "description": "Version ID - Identifiant unique de la version."
+        },
+        {
+          "name": "VERSION_NUMBER",
+          "type": "INTEGER",
+          "description": "Project version number - Numéro de version du projet (itération/lot)."
+        },
+        {
+          "name": "VERSION_TRANSACTION",
+          "type": "INTEGER",
+          "description": "Version transaction number - Numéro de transaction lié aux opérations de versionnage."
+        },
+        {
+          "name": "VERSION_TRANSACTION_AFTER",
+          "type": "INTEGER",
+          "description": "Version transaction after - Numéro de transaction post-création (après traitements complémentaires)."
+        },
+        {
+          "name": "V_RESOURCE",
+          "type": "BINARY",
+          "description": "Resource visibility rule - Règle de visibilité des ressources et de leur exposition."
+        },
+        {
+          "name": "WBS_DEFAULT",
+          "type": "BOOLEAN",
+          "description": "WBS default - Créer par défaut un élément WBS rattaché au projet (booléen)."
+        },
+        {
+          "name": "WEIGHT",
+          "type": "NUMBER",
+          "description": "Weight - Pondération/poids utilisé dans les calculs de scoring et de priorisation."
+        },
+        {
+          "name": "WS_VERSION",
+          "type": "INTEGER",
+          "description": "Workspace version - Version de l'espace de travail (WS) associée à cet enregistrement."
+        }
+      ]
+    }
+  ]
+}
