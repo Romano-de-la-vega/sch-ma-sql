@@ -218,18 +218,20 @@ def pick_columns_for_table(schema: dict, table: str, question: str, max_cols: in
 
     must_keep = [c for c in ("ID","PROJECT_ID","NAME","CODE","START_DATE","END_DATE") if c in cols_meta]
 
-    picked = []
-    for _, c in scores:
+    picked: list[str] = []
+    # Prioriser les colonnes essentielles en tête de liste
+    for c in must_keep:
         if c not in picked:
             picked.append(c)
+
+    # Compléter avec les colonnes les mieux scorées restantes
+    for _, c in scores:
         if len(picked) >= max_cols:
             break
-
-    for c in must_keep:
-        if c not in picked and len(picked) < max_cols:
+        if c not in picked:
             picked.append(c)
 
-    return picked
+    return picked[:max_cols]
 
 def build_context_pack(schema: dict, question: str, top_tables: int = 3, cols_per_table: int = 20):
     """

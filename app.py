@@ -6,6 +6,7 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 
 from schema_loader import load_schema, pick_tables_for_question, compress_to_handles
+from sql.utils import coerce_numeric_string_literals
 from guard import is_select_only, whitelist_ok, ensure_limit
 from prompts import NL2SQL_PROMPT, INTERPRET_PROMPT
 
@@ -51,9 +52,9 @@ def build_dsn() -> str:
     return f"host={host} port={port} dbname={db} user={user} password={pwd}"
 
 
-
 # --- exécution SQL avec DSN fourni par le code ---
 def run_sql(sql: str, dsn: str):
+    sql = coerce_numeric_string_literals(sql)
     with psycopg2.connect(dsn) as conn, conn.cursor() as cur:
         cur.execute(sql)
         cols = [d[0] for d in cur.description]
